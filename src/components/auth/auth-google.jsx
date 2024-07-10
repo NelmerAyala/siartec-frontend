@@ -1,10 +1,19 @@
 import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { authGoogle } from '@/services/auth/signin';
+import { signIn } from 'next-auth/react';
 
 
 const handleLogin = async (googleData) => {
-  const res = await authGoogle(googleData);
+  console.log(googleData)
+  // const res = await authGoogle(googleData);
+  const result = await signIn("googleCustom", {
+    googleData
+  });
+  if (!result.error) {
+    router.push("/");
+  }
+
   };
 
 export function LoginWithGoogle() {

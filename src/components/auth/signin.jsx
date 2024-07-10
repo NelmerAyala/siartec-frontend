@@ -14,7 +14,8 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { LoginWithGoogle } from "./auth-google";
 import { auth } from "@/services/auth/signin";
-
+import { useSession, signIn, signOut } from "next-auth/react"
+import { GoogleLogin } from "@react-oauth/google";
 
 const Signin = React.forwardRef((props, ref) => {
 
@@ -52,6 +53,8 @@ const Signin = React.forwardRef((props, ref) => {
           justifyContent="center"
 
         >
+                  <button onClick={() => signIn('google')}>Sign in with google</button>
+
           <LoginWithGoogle />
         </Grid>
         <Grid sx={{ my: 4 }} container justifyContent="center">

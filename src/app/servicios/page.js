@@ -1,11 +1,10 @@
 "use client";
 
+import { useSession, signIn, signOut } from "next-auth/react";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import EmblaCarousel from "@/components/home/carousel";
-import styles from "./page.module.css";
-import MenuHome from "@/components/home/header";
-import Footer from "@/components/footer";
+import { redirect } from "next/navigation";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -36,21 +35,15 @@ const SLIDES = [
 const OPTIONS = { loop: true, duration: 30 };
 
 export default function HomePage() {
-  return (
-    <>
-      <header>
-        <MenuHome></MenuHome>
-      </header>
-      <main>
-        {" "}
-        <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-      </main>
-      <footer>
-        <Footer></Footer>
-      </footer>
-    </>
-    // < className={styles.main}>
+  const { data: session } = useSession();
 
+  if (!session) {
+    redirect("/");
+  }
+
+  return (
+    // < className={styles.main}>
+    <>Text</>
     // </main>
   );
 }

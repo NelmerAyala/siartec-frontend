@@ -4,6 +4,7 @@ import AppMui from "@/mui/AppMui";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import MenuHome from "@/components/home/header";
 import Footer from "@/components/footer";
+import SessionWrapper from "@/components/SessionWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,22 +19,25 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <GoogleOAuthProvider
-      clientId={"" + process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-    >
-      <html lang="es">
-        <body className={inter.className}>
-          <AppMui>
-            <header>
-              <MenuHome></MenuHome>
-            </header>
-            <main>{children}</main>
-            <footer>
-              <Footer></Footer>
-            </footer>
-          </AppMui>
-        </body>
-      </html>
-    </GoogleOAuthProvider>
+    <SessionWrapper>
+      <GoogleOAuthProvider
+        clientId={"" + process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+      >
+        <html lang="es">
+          <body className={inter.className}>
+            <AppMui>
+              {/* <header>
+                <MenuHome></MenuHome>
+              </header>
+              <main>{children}</main>
+              <footer>
+                <Footer></Footer>
+              </footer> */}
+              {children}
+            </AppMui>
+          </body>
+        </html>
+      </GoogleOAuthProvider>
+    </SessionWrapper>
   );
 }
