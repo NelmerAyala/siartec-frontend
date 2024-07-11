@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Modal from '@mui/material/Modal';
 import SignInOutContainer from './tab-sign';
+import { useRouter } from 'next/navigation';
 
 export default function BasicModal(props) {
-  const ref = React.createRef();
 
-  const handleClose = () => props.setOpen(false);
+  const router = useRouter()
+  const handleClose = () => {router.push('/');}
 
   return (
     <div>

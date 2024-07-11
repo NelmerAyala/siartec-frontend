@@ -9,6 +9,7 @@ Request.interceptors.request.use(
   (config) => {
     let token = window.sessionStorage.getItem("token");
     config.headers["Authorization"] = token;
+    config.headers["Content-Type"] = 'application/json';
 
     config.baseURL = process.env.NEXT_PUBLIC_ENDPOINT;
     return config;

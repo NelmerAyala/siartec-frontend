@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { useSession, signIn, signOut } from "next-auth/react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -11,9 +11,10 @@ import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import ModalUnstyled from './modal';
+import BasicModal from './modal';
 import TabSignInOutContainer from './tab-sign';
-import { redirect, useRouter } from 'next/navigation';
+import { redirect, useRouter, useSearchParams } from 'next/navigation';
+
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -54,8 +55,18 @@ export default function MenuHome() {
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const redirectPage = (path) => { console.log("entrando y el path es: " + path); router.push(path) };
-  const onClick = (path) => { console.log("entrando y el path es: " + path); router.push(path) };
+  const redirectPage = (path) => { router.push(path) };
+  // const onClick = (path) => { router.push(path) };
+
+  const handleSignIn = () => { signIn(); };
+
+  
+  const searchParams  = useSearchParams();
+  useEffect(() => {
+    if(searchParams.has('callbackUrl')){setOpen(true);}
+    else{setOpen(false)}
+  },)
+
 
   const magicWand = (props) => {
     props.value === 'handleOpenModal' ? handleOpen() : props.value === 'redirectPage' ? redirectPage(props.path) : props.value === 'onClick' ? signOut() : console.log('error option menu')
@@ -129,7 +140,13 @@ export default function MenuHome() {
                   display: { xs: 'block', md: 'none' },
                 }}
               >
-  
+                    <Button
+                    key={100000}
+                    onClick={() => handleSignIn()}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                  >
+                    Login
+                  </Button>
                 {pages.map((page) => (
                   <Button
                     key={page.title}
@@ -192,9 +209,9 @@ export default function MenuHome() {
           </Toolbar>
         </Container>
       </AppBar >
-      <ModalUnstyled open={open} setOpen={setOpen}>
+      <BasicModal open={open} setOpen={setOpen}>
         <TabSignInOutContainer></TabSignInOutContainer>
-      </ModalUnstyled>
+      </BasicModal>
     </>
     );
   }
@@ -263,7 +280,13 @@ export default function MenuHome() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-
+                    <Button
+                    key={100000}
+                    onClick={() => signIn()}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                  >
+                    Login
+                  </Button>
               {pages.map((page) => (
                 <Button
                   key={page.title}
@@ -311,7 +334,13 @@ export default function MenuHome() {
             {/* whatever is on the left side */}
           </Box>
           <Box sx={{ flexGrow: 1, marginRight: '1', display: { xs: 'none', md: 'flex' } }}>
-
+          <Button
+                    key={100000}
+                    onClick={() => signIn()}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                  >
+                    Login
+                  </Button>
             {pages.map((page) => (
               <Button
                 key={page.title}
@@ -326,9 +355,9 @@ export default function MenuHome() {
         </Toolbar>
       </Container>
     </AppBar >
-    <ModalUnstyled open={open} setOpen={setOpen}>
+    <BasicModal open={open} setOpen={setOpen}>
       <TabSignInOutContainer></TabSignInOutContainer>
-    </ModalUnstyled>
+    </BasicModal>
   </>
   );
 }

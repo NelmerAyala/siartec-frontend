@@ -22,8 +22,16 @@ const Signin = React.forwardRef((props, ref) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async () => {
-    await auth({ email, password })
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    // await auth({ email, password });
+    await signIn('Credentials',{
+      email,
+      password,
+      // redirect: false
+      callbackUrl: "/" ?? 'http://localhost:3000/403'
+
+    })
   }
 
 
@@ -53,7 +61,7 @@ const Signin = React.forwardRef((props, ref) => {
           justifyContent="center"
 
         >
-                  <button onClick={() => signIn('google')}>Sign in with google</button>
+                  {/* <button onClick={() => signIn('google')}>Sign in with google</button> */}
 
           <LoginWithGoogle />
         </Grid>
@@ -68,6 +76,7 @@ const Signin = React.forwardRef((props, ref) => {
           noValidate
           autoComplete="off"
         >
+          <form onSubmit={onSubmit}>
           <TextField
             color='secondary'
             label="Correo electrónico"
@@ -88,14 +97,15 @@ const Signin = React.forwardRef((props, ref) => {
           />
 
           <Button
-            // type="submit"
+            type="submit"
             color="secondary"
             variant="contained"
             fullWidth
-            onClick={() => handleSubmit()}
+            // onClick={() => handleSubmit()}
           >
             Ingresar
           </Button>
+          </form>
           <Typography>
             <Link color={'secondary'} href="#">¿Olvidó su contraseña ?</Link>
           </Typography>
