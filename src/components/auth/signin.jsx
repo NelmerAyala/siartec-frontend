@@ -26,10 +26,10 @@ const Signin = React.forwardRef((props, ref) => {
     event.preventDefault();
     // await auth({ email, password });
     await signIn('Credentials',{
-      email,
-      password,
-      // redirect: false
-      callbackUrl: "/" ?? 'http://localhost:3000/403'
+      email: email,
+      password: password,
+      redirect: true,
+       callbackUrl: callbackUrl ?? 'http://localhost:3000/403'
 
     })
   }
@@ -76,7 +76,7 @@ const Signin = React.forwardRef((props, ref) => {
           noValidate
           autoComplete="off"
         >
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} >
           <TextField
             color='secondary'
             label="Correo electrónico"
