@@ -2,7 +2,8 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { auth } from "@/services/auth/signin";
+import { auth, authGoogle, authGoogleEmail } from "@/services/auth/signin";
+import { OAuth2Client } from "google-auth-library";
 
 const handler = NextAuth({
   providers: [
@@ -12,7 +13,7 @@ const handler = NextAuth({
     }),
     CredentialsProvider({
       //esto es para tener un provider personalizado(Autenticacion manual)
-      name: "Credentials",
+      name: "credentials",
       credentials: {
         email: {
           label: "Email",
@@ -27,31 +28,105 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        console.log(credentials);
-        console.log("ejemplo");
-
+        console.log("credentials: " + credentials);
         try {
           let user = await auth({
             email: credentials.email,
             password: credentials.password,
           });
+          console.log("user authenticate: " + user);
           // const user = { id: 1, name: "J Smith", email: "jsmith@example.com" };
 
           if (user) {
             // Any object returned will be saved in `user` property of the JWT
             return user;
           }
-
-          return null;
         } catch (error) {
-          console.log(error);
+          console.log("error: " + error);
+          return null;
         }
       },
     }),
+    CredentialsProvider({
+      // this!
+      id: "googleonetap", // We will use this id later to specify for what Provider we want to trigger the signIn method
+      name: "google-one-tap",
+
+      // This means that the authentication will be done through a single credential called 'credential'
+      credentials: {
+        credential: { type: "text" },
+      },
+      // This function will be called upon signIn
+      async authorize(credentials, req) {
+        const token = credentials.credential;
+        const googleAuthClient = new OAuth2Client();
+        const ticket = await googleAuthClient.verifyIdToken({
+          idToken: token,
+          audience: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+        });
+
+        const payload = ticket.getPayload();
+        console.log("payloadddddddd: " + JSON.stringify(payload));
+        if (!payload) {
+          throw new Error("Cannot extract payload from signin token");
+        }
+
+        const {
+          email,
+          sub,
+          given_name,
+          family_name,
+          email_verified,
+          picture: image,
+        } = payload;
+        if (!email) {
+          throw new Error("Email not available");
+        }
+
+        // At this point we have deconstructed the payload and we have all the user's info at our disposal.
+        // So first we're going to do a check to see if we already have this user in our DB using the email as identifier.
+        // let user = await adapter.getUserByEmail!(email);
+        let user = await authGoogleEmail({
+          email: email,
+        });
+
+        // If no user is found, then we create one.
+        // if (!user) {
+        //   user = await adapter.createUser!({
+        //     name: [given_name, family_name].join(" "),
+        //     email,
+        //     image,
+        //     emailVerified: email_verified ? new Date() : null,
+        //   });
+        // }
+
+        // The user may already exist, but maybe it signed up with a different provider. With the next few lines of code
+        // we check if the user already had a Google account associated, and if not we create one.
+        // let account = await adapter.getUserByAccount!({
+        //   provider: "google",
+        //   providerAccountId: sub,
+        // });
+
+        // if (!account && user) {
+        //   console.log("creating and linking account");
+        //   await adapter.linkAccount!({
+        //     userId: user.id,
+        //     provider: "google",
+        //     providerAccountId: sub,
+        //     type: "credentials",
+        //   });
+        // }
+        console.log("response USERRR : " + JSON.stringify(user));
+        if (user.status === 200) {
+          return user;
+        }
+        return null;
+      },
+    }),
   ],
-  // pages: {
-  //   signIn: "/",
-  // },
+  pages: {
+    signIn: "/",
+  },
 });
 
 export { handler as GET, handler as POST };

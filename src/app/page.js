@@ -6,8 +6,6 @@ import EmblaCarousel from "@/components/home/carousel";
 import styles from "./page.module.css";
 import MenuHome from "@/components/home/header";
 import Footer from "@/components/footer";
-import { auth } from "@/services/auth/signin";
-import { Button } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -36,28 +34,14 @@ const SLIDES = [
 ];
 
 const OPTIONS = { loop: true, duration: 30 };
-const onSubmit = async (event) => {
-  await auth({
-    email: "nelmerayala@gmail.com",
-    password: "Nel24297146@",
-  });
-};
 
 export default function HomePage() {
   return (
     <>
       <header>
-        <Button
-          onClick={() => {
-            onSubmit();
-          }}
-        >
-          nombre
-        </Button>
         <MenuHome></MenuHome>
       </header>
       <main>
-        {" "}
         <EmblaCarousel slides={SLIDES} options={OPTIONS} />
       </main>
       <footer>

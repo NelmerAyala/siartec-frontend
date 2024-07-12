@@ -16,22 +16,26 @@ import { LoginWithGoogle } from "./auth-google";
 import { auth } from "@/services/auth/signin";
 import { useSession, signIn, signOut } from "next-auth/react"
 import { GoogleLogin } from "@react-oauth/google";
+import { useRouter } from "next/navigation";
 
-const Signin = React.forwardRef((props, ref) => {
-
+export default function SigninPage(props) {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onSubmit = async (event) => {
+  const handleOnSubmit = async (event) => {
     event.preventDefault();
-    // await auth({ email, password });
-    await signIn('Credentials',{
+
+    const result = await signIn('credentials',{
       email: email,
       password: password,
       redirect: true,
-       callbackUrl: callbackUrl ?? 'http://localhost:3000/403'
-
+      callbackUrl: 'http://localhost:3000/'
     })
+
+    // if(!result.error){
+    //   router.push('/nelmer')
+    // }
   }
 
 
@@ -44,6 +48,7 @@ const Signin = React.forwardRef((props, ref) => {
   const avatarStyle = { backgroundColor: 'rgb(254 151 76)' }
   const btnstyle = { margin: "8px 0" };
   return (
+    <>
     <Grid>
       <Paper style={paperStyle}>
         <Avatar sx={avatarStyle} >
@@ -61,7 +66,7 @@ const Signin = React.forwardRef((props, ref) => {
           justifyContent="center"
 
         >
-                  {/* <button onClick={() => signIn('google')}>Sign in with google</button> */}
+                  <button onClick={() => signIn('google', { callbackUrl: 'http://localhost:3000/user' })}>Sign in with google</button>
 
           <LoginWithGoogle />
         </Grid>
@@ -73,10 +78,12 @@ const Signin = React.forwardRef((props, ref) => {
           sx={{
             '& .MuiTextField-root': { mb: 2 },
           }}
-          noValidate
+          noValidate={false}
           autoComplete="off"
+          
+          onSubmit={handleOnSubmit}
         >
-          <form onSubmit={onSubmit} >
+
           <TextField
             color='secondary'
             label="Correo electrónico"
@@ -105,7 +112,6 @@ const Signin = React.forwardRef((props, ref) => {
           >
             Ingresar
           </Button>
-          </form>
           <Typography>
             <Link color={'secondary'} href="#">¿Olvidó su contraseña ?</Link>
           </Typography>
@@ -120,7 +126,7 @@ const Signin = React.forwardRef((props, ref) => {
         </Box>
       </Paper >
     </Grid >
+    </>
   );
-});
+};
 
-export default Signin;

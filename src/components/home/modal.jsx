@@ -3,13 +3,12 @@ import Modal from '@mui/material/Modal';
 import SignInOutContainer from './tab-sign';
 import { useRouter } from 'next/navigation';
 
-export default function BasicModal(props) {
+const BasicModal =(props) => {
 
   const router = useRouter()
   const handleClose = () => {router.push('/');}
 
   return (
-    <div>
       <Modal
         open={props.open}
         onClose={handleClose}
@@ -24,6 +23,7 @@ export default function BasicModal(props) {
       >
         <SignInOutContainer />
       </Modal>
-    </div>
   );
 }
+
+export default BasicModal;

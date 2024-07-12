@@ -17,8 +17,7 @@ const typesContributors = [
   { id: 3, description: 'Industrial', },
 ]
 
-
-const Signup = () => {
+export default function SignupPage() {
   const paperStyle = {
     padding: 20,
     // width: 300, 
@@ -186,5 +185,3 @@ const Signup = () => {
     </Grid>
   )
 }
-
-export default Signup;

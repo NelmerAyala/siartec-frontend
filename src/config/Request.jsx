@@ -7,8 +7,8 @@ const Request = axios.create();
 
 Request.interceptors.request.use(
   (config) => {
-    let token = window.sessionStorage.getItem("token");
-    config.headers["Authorization"] = token;
+    // let token = window.sessionStorage.getItem("token");
+    // config.headers["Authorization"] = token;
 
     config.baseURL = process.env.NEXT_PUBLIC_ENDPOINT;
     return config;
@@ -20,9 +20,10 @@ Request.interceptors.request.use(
 
 Request.interceptors.response.use(
   function (response) {
-    console.log(response)
-    let data = response.data;
-    console.log(data);
+    console.log("nelmer")
+    console.log("response:"+response)
+    // let data = response.data;
+    // console.log(data);
 
     // Request.status = response.status;
 
@@ -31,10 +32,11 @@ Request.interceptors.response.use(
     //   <Alert severity="info" > Ekemplo </Alert >
     // }
 
-    return data;
+    return response;
   },
   function (error) {
-    let data = error.response.data;
+    console.log("error in request 1:"+error)
+    let data = error.response;
     // Request.status = error.response.status;
 
     if (data.status === 401) {

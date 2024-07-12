@@ -7,12 +7,16 @@ import { signIn } from 'next-auth/react';
 const handleLogin = async (googleData) => {
   console.log(googleData)
   // const res = await authGoogle(googleData);
-  const result = await signIn("googleCustom", {
-    googleData
+  // const result = await signIn("googleCustom", {
+  //   googleData
+  // });
+  // if (!result.error) {
+  //   router.push("/");
+  // }
+  await signIn("googleonetap", {
+    credential: googleData.credential,
+    redirect: true,
   });
-  if (!result.error) {
-    router.push("/");
-  }
 
   };
 
