@@ -3,8 +3,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { Paper } from '@mui/material';
-import SignupPage from '../auth/signup';
-import SigninPage from '../auth/signin';
+import SignupPage from './signup';
+import SigninPage from './signin';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -28,7 +28,7 @@ function a11yProps(index) {
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
-const paperStyle = { width: 400, margin: "1px auto" }
+const paperStyle = { width: 340, margin: "1px auto" }
 
 const  TabSignInOutContainer = React.forwardRef(function TabSignInOutContainer(props, ref) {
 // export default function TabSignInOutContainer () {

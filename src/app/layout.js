@@ -3,7 +3,7 @@ import "./globals.css";
 import AppMui from "@/mui/AppMui";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import MenuHome from "@/components/home/header";
-import Footer from "@/components/footer";
+import Footer from "@/components/home/footer";
 import SessionWrapper from "@/components/SessionWrapper";
 
 const inter = Inter({ subsets: ["latin"] });

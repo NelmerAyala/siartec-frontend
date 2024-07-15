@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import EmblaCarousel from "@/components/home/carousel";
 import styles from "./page.module.css";
 import MenuHome from "@/components/home/header";
-import Footer from "@/components/footer";
+import Footer from "@/components/home/footer";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",

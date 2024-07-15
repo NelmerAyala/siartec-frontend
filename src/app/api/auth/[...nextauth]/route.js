@@ -5,7 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { auth, authGoogle, authGoogleEmail } from "@/services/auth/signin";
 import { OAuth2Client } from "google-auth-library";
 
-const handler = NextAuth({
+const nextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -29,34 +29,38 @@ const handler = NextAuth({
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
         console.log("credentials: " + credentials);
-        try {
-          let user = await auth({
-            email: credentials.email,
-            password: credentials.password,
-          });
-          console.log("user authenticate: " + user);
-          // const user = { id: 1, name: "J Smith", email: "jsmith@example.com" };
 
-          if (user) {
-            // Any object returned will be saved in `user` property of the JWT
-            return user;
-          }
-        } catch (error) {
-          console.log("error: " + error);
-          return null;
+        let user = await auth({
+          email: credentials.email,
+          password: credentials.password,
+        });
+        console.log("user authenticate: " + user);
+        // const user = { id: 1, name: "J Smith", email: "jsmith@example.com" };
+
+        // if (user) {
+        //   // Any object returned will be saved in `user` property of the JWT
+        //   return user;
+        // }
+
+        if (user.user && user.access_token) {
+          return user;
         }
+
+        throw new Error(
+          JSON.stringify({
+            errors: [{ name: user.name, message: user.message }],
+            status: false,
+          })
+        );
       },
     }),
     CredentialsProvider({
-      // this!
-      id: "googleonetap", // We will use this id later to specify for what Provider we want to trigger the signIn method
+      id: "googleonetap",
       name: "google-one-tap",
-
-      // This means that the authentication will be done through a single credential called 'credential'
       credentials: {
         credential: { type: "text" },
       },
-      // This function will be called upon signIn
+
       async authorize(credentials, req) {
         const token = credentials.credential;
         const googleAuthClient = new OAuth2Client();
@@ -66,7 +70,6 @@ const handler = NextAuth({
         });
 
         const payload = ticket.getPayload();
-        console.log("payloadddddddd: " + JSON.stringify(payload));
         if (!payload) {
           throw new Error("Cannot extract payload from signin token");
         }
@@ -83,14 +86,10 @@ const handler = NextAuth({
           throw new Error("Email not available");
         }
 
-        // At this point we have deconstructed the payload and we have all the user's info at our disposal.
-        // So first we're going to do a check to see if we already have this user in our DB using the email as identifier.
-        // let user = await adapter.getUserByEmail!(email);
         let user = await authGoogleEmail({
           email: email,
         });
 
-        // If no user is found, then we create one.
         // if (!user) {
         //   user = await adapter.createUser!({
         //     name: [given_name, family_name].join(" "),
@@ -100,8 +99,6 @@ const handler = NextAuth({
         //   });
         // }
 
-        // The user may already exist, but maybe it signed up with a different provider. With the next few lines of code
-        // we check if the user already had a Google account associated, and if not we create one.
         // let account = await adapter.getUserByAccount!({
         //   provider: "google",
         //   providerAccountId: sub,
@@ -116,20 +113,56 @@ const handler = NextAuth({
         //     type: "credentials",
         //   });
         // }
-        console.log("response USERRR : " + JSON.stringify(user));
-        if (user.status === 200) {
+
+        if (user.user && user.access_token) {
           return user;
         }
-        return null;
+
+        throw new Error(
+          JSON.stringify({
+            errors: [{ name: user.name, message: user.message }],
+            status: false,
+          })
+        );
       },
     }),
   ],
+  session: { strategy: "jwt" },
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      if (user.user && user.access_token) {
+        return user;
+      } else {
+        throw new Error("invalid credentials");
+      }
+    },
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (user) {
+        token = user;
+      }
+
+      return token;
+    },
+    async session({ session, user, token }) {
+      session.accessToken = token.accessToken;
+      session.user = token.user;
+      return session;
+    },
+  },
   pages: {
     signIn: "/",
+    error: "/",
   },
-});
+};
 
-export { handler as GET, handler as POST };
+const handler = NextAuth(nextAuthOptions);
+
+export { handler as GET, handler as POST, nextAuthOptions };
 
 // const authOptions = NextAuth({
 //   // Configure one or more authentication providers

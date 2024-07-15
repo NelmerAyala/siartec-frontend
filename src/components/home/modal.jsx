@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 const BasicModal =(props) => {
 
   const router = useRouter()
-  const handleClose = () => {router.push('/');}
+  const handleClose = () => {props.setOpen(false);}
 
   return (
       <Modal

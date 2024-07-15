@@ -20,8 +20,7 @@ Request.interceptors.request.use(
 
 Request.interceptors.response.use(
   function (response) {
-    console.log("nelmer")
-    console.log("response:"+response)
+    console.log("response (Request):"+response)
     // let data = response.data;
     // console.log(data);
 
@@ -32,10 +31,10 @@ Request.interceptors.response.use(
     //   <Alert severity="info" > Ekemplo </Alert >
     // }
 
-    return response;
+    return response.data;
   },
   function (error) {
-    console.log("error in request 1:"+error)
+    console.log("error in request 1:"+JSON.stringify(error))
     let data = error.response;
     // Request.status = error.response.status;
 
