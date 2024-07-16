@@ -1,3 +1,3 @@
 export default function ServicesPage() {
-  return <>{"Servicios"}</>;
+  return <>{"Contactanos"}</>;
 }

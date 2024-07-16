@@ -2,14 +2,17 @@ const ENTITIES_TYPES_CONTRIBUTORS_NAME_ORDER = Object.freeze({
   NATURAL: {
     id: 1,
     name: "Natural",
+    code: "NATURAL",
   },
   COMERCIAL: {
     id: 2,
     name: "Comercial",
+    code: "COMERCIAL",
   },
   INDUSTRIAL: {
     id: 3,
     name: "Industrial",
+    code: "INDUSTRIAL",
   },
 });
 const ENTITIES_TYPES_CONTRIBUTORS_ID_ORDER = Object.freeze(

@@ -26,14 +26,15 @@ export default function RootLayout({ children }) {
         <html lang="es">
           <body className={inter.className}>
             <AppMui>
-              {/* <header>
-                <MenuHome></MenuHome>
-              </header>
-              <main>{children}</main>
-              <footer>
-                <Footer></Footer>
-              </footer> */}
-              {children}
+              <>
+                <header>
+                  <MenuHome></MenuHome>
+                </header>
+                <main>{children}</main>
+                <footer>
+                  <Footer></Footer>
+                </footer>
+              </>
             </AppMui>
           </body>
         </html>

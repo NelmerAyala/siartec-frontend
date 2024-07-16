@@ -46,7 +46,6 @@ export default function NotFound() {
           </CardActions>
         </Card>
       </Box>
-      <Footer></Footer>
     </>
   );
 }

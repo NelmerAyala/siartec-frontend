@@ -11,9 +11,14 @@ import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import BasicModal from "./modal";
+import SignInOutModal from "./modal";
 import TabSignInOutContainer from "./tab-sign";
-import { redirect, useRouter, useSearchParams } from "next/navigation";
+import {
+  redirect,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -47,22 +52,17 @@ export default function MenuHome() {
   };
 
   const [open, setOpen] = React.useState(false);
+  const [openChildren, setOpenChildren] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
   const redirectPage = (path) => {
     router.push(path);
   };
-  // const onClick = (path) => { router.push(path) };
 
-  // const handleSignIn = () => { signIn(); };
-
-  const searchParams = useSearchParams();
-
-  // useEffect(() => {
-  //   if(searchParams.has('callbackUrl')){setOpen(true);}
-  //   else{setOpen(false)}
-  // },)
+  const pathname = usePathname();
+  const path = pathname.split("/");
+  console.log("path: " + path[1]);
 
   const magicWand = (props) => {
     props.value === "handleOpenModal"
@@ -78,144 +78,151 @@ export default function MenuHome() {
   const { data: session } = useSession();
 
   if (session) {
-    return (
-      <>
-        <AppBar position="static">
-          <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              <Box
-                component="img"
-                sx={{
-                  // height: 60,
-                  width: 120,
-                  maxHeight: { xs: 233, md: 167 },
-                  maxWidth: { xs: 350, md: 250 },
-                  display: { xs: "none", md: "flex" },
-                  mr: 1,
-                }}
-                alt="The house from the offer."
-                src="/img/logo.png"
-              />
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                href="#app-bar-with-responsive-menu"
-                sx={{
-                  mr: 2,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              ></Typography>
-
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
+    if (path[1] !== "app") {
+      return (
+        <>
+          <AppBar position="static">
+            <Container maxWidth="xl">
+              <Toolbar disableGutters>
+                <Box
+                  component="img"
                   sx={{
-                    display: { xs: "block", md: "none" },
+                    // height: 60,
+                    width: 120,
+                    maxHeight: { xs: 233, md: 167 },
+                    maxWidth: { xs: 350, md: 250 },
+                    display: { xs: "none", md: "flex" },
+                    mr: 1,
+                  }}
+                  alt="The house from the offer."
+                  src="/img/logo.png"
+                />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="a"
+                  href="#app-bar-with-responsive-menu"
+                  sx={{
+                    mr: 2,
+                    display: { xs: "none", md: "flex" },
+                    fontFamily: "monospace",
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                ></Typography>
+
+                <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                  <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleOpenNavMenu}
+                    color="inherit"
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorElNav}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    open={Boolean(anchorElNav)}
+                    onClose={handleCloseNavMenu}
+                    sx={{
+                      display: { xs: "block", md: "none" },
+                    }}
+                  >
+                    {pages.map((page) => (
+                      <Button
+                        key={page.title}
+                        onClick={() =>
+                          magicWand({ value: page.onClick, path: page.path })
+                        }
+                        sx={{ my: 2, color: "white", display: "block" }}
+                      >
+                        {page.title}
+                      </Button>
+                    ))}
+                  </Menu>
+                </Box>
+
+                <Box
+                  component="img"
+                  sx={{
+                    // height: 60,
+                    width: 120,
+                    maxHeight: { xs: 233, md: 167 },
+                    maxWidth: { xs: 350, md: 250 },
+                    display: { xs: "flex", md: "none" },
+                    mr: 1,
+                  }}
+                  alt="The house from the offer."
+                  src="/img/logo.png"
+                />
+                <Typography
+                  variant="h5"
+                  noWrap
+                  component="a"
+                  href="#app-bar-with-responsive-menu"
+                  sx={{
+                    mr: 2,
+                    display: { xs: "flex", md: "none" },
+                    flexGrow: 1,
+                    fontFamily: "monospace",
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                ></Typography>
+                <Box
+                  display="flex"
+                  flexGrow={12}
+                  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                ></Box>
+                <Box
+                  sx={{
+                    flexGrow: 1,
+                    marginRight: "1",
+                    display: { xs: "none", md: "flex" },
                   }}
                 >
-                  {pages.map((page) => (
+                  {modules.map((module) => (
                     <Button
-                      key={page.title}
+                      key={module.title}
                       onClick={() =>
-                        magicWand({ value: page.onClick, path: page.path })
+                        magicWand({ value: module.onClick, path: module.path })
                       }
                       sx={{ my: 2, color: "white", display: "block" }}
                     >
-                      {page.title}
+                      {module.title}
                     </Button>
                   ))}
-                </Menu>
-              </Box>
-
-              <Box
-                component="img"
-                sx={{
-                  // height: 60,
-                  width: 120,
-                  maxHeight: { xs: 233, md: 167 },
-                  maxWidth: { xs: 350, md: 250 },
-                  display: { xs: "flex", md: "none" },
-                  mr: 1,
-                }}
-                alt="The house from the offer."
-                src="/img/logo.png"
-              />
-              <Typography
-                variant="h5"
-                noWrap
-                component="a"
-                href="#app-bar-with-responsive-menu"
-                sx={{
-                  mr: 2,
-                  display: { xs: "flex", md: "none" },
-                  flexGrow: 1,
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              ></Typography>
-              <Box
-                display="flex"
-                flexGrow={12}
-                sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-              ></Box>
-              <Box
-                sx={{
-                  flexGrow: 1,
-                  marginRight: "1",
-                  display: { xs: "none", md: "flex" },
-                }}
-              >
-                {modules.map((module) => (
-                  <Button
-                    key={module.title}
-                    onClick={() =>
-                      magicWand({ value: module.onClick, path: module.path })
-                    }
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {module.title}
-                  </Button>
-                ))}
-              </Box>
-            </Toolbar>
-          </Container>
-        </AppBar>
-        <BasicModal open={open} setOpen={setOpen}>
-          <TabSignInOutContainer></TabSignInOutContainer>
-        </BasicModal>
-      </>
-    );
+                </Box>
+              </Toolbar>
+            </Container>
+          </AppBar>
+          <SignInOutModal
+            open={open}
+            setOpen={setOpen}
+            openChildren={openChildren}
+            setOpenChildren={setOpenChildren}
+          >
+            <TabSignInOutContainer></TabSignInOutContainer>
+          </SignInOutModal>
+        </>
+      );
+    }
   } else {
     return (
       <>
@@ -353,9 +360,14 @@ export default function MenuHome() {
             </Toolbar>
           </Container>
         </AppBar>
-        <BasicModal open={open} setOpen={setOpen}>
+        <SignInOutModal
+          open={open}
+          setOpen={setOpen}
+          openChildren={openChildren}
+          setOpenChildren={setOpenChildren}
+        >
           <TabSignInOutContainer></TabSignInOutContainer>
-        </BasicModal>
+        </SignInOutModal>
       </>
     );
   }

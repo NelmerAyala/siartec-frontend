@@ -22,7 +22,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function SigninPage(props) {
   const router = useRouter();
-  const [email, setEmail] = useState("n");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [messageError, setMessageError] = useState("");
 
@@ -116,6 +116,13 @@ export default function SigninPage(props) {
       ) : (
         <></>
       )}
+      {props.messageCreate !== "" ? (
+        <Alert style={{ zIndex: "999999" }} severity="success" hidden={false}>
+          {props.messageCreate}
+        </Alert>
+      ) : (
+        <></>
+      )}
       <Grid>
         <Paper style={paperStyle}>
           <Avatar sx={avatarStyle}>
@@ -148,7 +155,6 @@ export default function SigninPage(props) {
             onSubmit={handleOnSubmit}
           >
             <TextField
-              defaultValue={"nelmerayala@gmail.com"}
               color="secondary"
               label="Correo electrónico"
               placeholder="Ingrese correo electrónico"
@@ -160,7 +166,6 @@ export default function SigninPage(props) {
             />
 
             <TextField
-              defaultValue={"Nel24297146@"}
               color="secondary"
               label="Contraseña"
               name="password"
@@ -193,9 +198,15 @@ export default function SigninPage(props) {
               Ingresar
             </Button>
             <Typography>
-              <Link color={"secondary"} href="#">
+              <Button
+                onClick={() => props.setOpenChildren(true)}
+                color={"secondary"}
+              >
                 ¿Olvidó su contraseña ?
-              </Link>
+              </Button>
+              {/* <Link color={"secondary"} href="#">
+                ¿Olvidó su contraseña ?
+              </Link> */}
             </Typography>
             <Grid sx={{ mt: 5 }}>
               <Typography textAlign={"right"}>
@@ -203,7 +214,7 @@ export default function SigninPage(props) {
                 <Link
                   color={"secondary"}
                   href="#"
-                  onClick={() => props.handleChange("event", 1)}
+                  onClick={() => props.handleChangeTab("event", 1)}
                 >
                   Registrarse
                 </Link>
