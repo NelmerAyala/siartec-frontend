@@ -28,7 +28,6 @@ export const authGoogle = async (params) => {
     const response = await Request.post("/auth/sign-in/google", {
       googleTokenId: params.credential,
     });
-    console.log("response (authGoogle): " + response);
     return response;
   } catch (error) {
     console.log("error (authGoogle):" + error);
