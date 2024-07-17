@@ -20,7 +20,7 @@ Request.interceptors.request.use(
 
 Request.interceptors.response.use(
   function (response) {
-    console.log("response (Request):"+response)
+    console.log("response (Request):" + response);
     // let data = response.data;
     // console.log(data);
 
@@ -34,13 +34,13 @@ Request.interceptors.response.use(
     return response.data;
   },
   function (error) {
-    console.log("error in request 1:"+JSON.stringify(error))
+    console.log("error (Request):" + JSON.stringify(error));
     let data = error.response;
     // Request.status = error.response.status;
 
     if (data.status === 401) {
       if (data.message) {
-        <Alert severity="error" > {data.message} </Alert>
+        <Alert severity="error"> {data.message} </Alert>;
       }
     }
 

@@ -116,7 +116,7 @@ export default function SignupPage(props) {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    console.log("new user data:" + dataContributor);
+
     let result;
     try {
       if (

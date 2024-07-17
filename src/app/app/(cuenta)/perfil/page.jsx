@@ -82,7 +82,7 @@ export default function PayTaxStamps() {
   };
 
   const handleSubmit = () => {
-    console.log("submit");
+    console.log("Guardar cambios");
   };
 
   const getToday = () => {

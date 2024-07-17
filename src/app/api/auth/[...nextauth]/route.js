@@ -27,20 +27,10 @@ const nextAuthOptions = {
         },
       },
       async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        console.log("credentials: " + credentials);
-
         let user = await auth({
           email: credentials.email,
           password: credentials.password,
         });
-        console.log("user authenticate: " + user);
-        // const user = { id: 1, name: "J Smith", email: "jsmith@example.com" };
-
-        // if (user) {
-        //   // Any object returned will be saved in `user` property of the JWT
-        //   return user;
-        // }
 
         if (user.user && user.access_token) {
           return user;
@@ -105,7 +95,6 @@ const nextAuthOptions = {
         // });
 
         // if (!account && user) {
-        //   console.log("creating and linking account");
         //   await adapter.linkAccount!({
         //     userId: user.id,
         //     provider: "google",
@@ -163,83 +152,3 @@ const nextAuthOptions = {
 const handler = NextAuth(nextAuthOptions);
 
 export { handler as GET, handler as POST, nextAuthOptions };
-
-// const authOptions = NextAuth({
-//   // Configure one or more authentication providers
-//   providers: [
-//     // GithubProvider({
-//     //   clientId: process.env.GITHUB_ID ?? '',
-//     //   clientSecret: process.env.GITHUB_SECRET ?? '',
-//     // }),
-//     // ...add more providers here
-
-//     GoogleProvider({
-//       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-//       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-//     }),
-//     CredentialsProvider({
-//       //esto es para tener un provider personalizado(Autenticacion manual)
-//       name: "Credentials",
-//       credentials: {
-//         email: {
-//           label: "Email",
-//           type: "email",
-//           placeholder: "usuario@google.com",
-//         },
-//         password: {
-//           label: "Contraseña",
-//           type: "password",
-//           placeholder: "*******",
-//         },
-//       },
-//       async authorize(credentials, req) {
-//         // Add logic here to look up the user from the credentials supplied
-//         const user = await auth({
-//           email: credentials.email,
-//           password: credentials.password,
-//         });
-
-//         if (user) {
-//           // Any object returned will be saved in `user` property of the JWT
-//           return user;
-//         }
-
-//         return null;
-//       },
-//     }),
-//   ],
-
-//   session: {
-//     strategy: "jwt",
-//   },
-//   callbacks: {
-//     //flujo de  auth.js (esto es como se van ejecutando las funciones)
-//     async signIn({ user, account, profile, email, credentials }) {
-//       return true;
-//     },
-
-//     async jwt({ token, user, account, profile }) {
-//       const dbUser = await prisma.user.findUnique({
-//         where: { email: token.email ?? "no-email" },
-//       });
-
-//       if (dbUser?.isActive === false) throw Error("Usuario no activo");
-
-//       token.roles = dbUser?.roles ?? ["no-roles"];
-//       token.id = dbUser?.id ?? "no-uuid";
-//       return token;
-//     },
-
-//     async session({ session, token, user }) {
-//       console.log(token);
-
-//       if (session && session.user) {
-//         session.user.roles = token.roles;
-//         session.user.id = token.id;
-//       }
-
-//       return session;
-//     },
-//   },
-// });
-// export { authOptions as GET, authOptions as POST };

@@ -15,9 +15,8 @@ export const createUser = async (params) => {
       };
       params.role = ROLES[roleForContributorType[params.contributor_type]].id;
     }
-    console.log("params.role: " + params.role);
+
     const response = await Request.post("/users", params);
-    console.log("response (createUser): " + response);
     return response;
   } catch (error) {
     console.log("error (createUser):" + error);

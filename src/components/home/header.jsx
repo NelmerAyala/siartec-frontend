@@ -62,7 +62,6 @@ export default function MenuHome() {
 
   const pathname = usePathname();
   const path = pathname.split("/");
-  console.log("path: " + path[1]);
 
   const magicWand = (props) => {
     props.value === "handleOpenModal"
