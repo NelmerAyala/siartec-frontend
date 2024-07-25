@@ -2,7 +2,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { auth, authGoogle, authGoogleEmail } from "@/services/auth/signin";
+import { auth, authGoogleEmail } from "@/services/auth/signin";
 import { OAuth2Client } from "google-auth-library";
 
 const nextAuthOptions = {
