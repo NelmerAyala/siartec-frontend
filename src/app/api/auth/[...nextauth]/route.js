@@ -27,6 +27,7 @@ const nextAuthOptions = {
         },
       },
       async authorize(credentials, req) {
+        console.log("ENTRANDOOOOO");
         let user = await auth({
           email: credentials.email,
           password: credentials.password,

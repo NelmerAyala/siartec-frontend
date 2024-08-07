@@ -19,8 +19,7 @@ import {
   useRouter,
   useSearchParams,
 } from "next/navigation";
-
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import Link from "next/link";
 
 const pages = [
   { title: "INICIO", onClick: "redirectPage", path: "/" },
@@ -30,7 +29,15 @@ const pages = [
   { title: "CONTÁCTANOS", onClick: "redirectPage", path: "/contactanos" },
   { title: "INGRESAR", onClick: "handleOpenModal", path: "" },
 ];
-const modules = [{ title: "Logout", onClick: "onClick", path: "/" }];
+const modules = [
+  { title: "INICIO", onClick: "redirectPage", path: "/" },
+  { title: "SERVICIOS", onClick: "redirectPage", path: "/servicios" },
+  { title: "INSTRUCTIVOS", onClick: "redirectPage", path: "/instructivos" },
+  { title: "GACETAS", onClick: "redirectPage", path: "/gacetas" },
+  { title: "CONTÁCTANOS", onClick: "redirectPage", path: "/contactanos" },
+  { title: "APP SIARTEC", onClick: "redirectPage", path: "/app" },
+  { title: "CERRAR SESIÓN", onClick: "onClick", path: "/" },
+];
 
 export default function MenuHome() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -63,7 +70,7 @@ export default function MenuHome() {
   const pathname = usePathname();
   const path = pathname.split("/");
 
-  const magicWand = (props) => {
+  const generateActions = (props) => {
     props.value === "handleOpenModal"
       ? handleOpen()
       : props.value === "redirectPage"
@@ -142,15 +149,21 @@ export default function MenuHome() {
                     }}
                   >
                     {pages.map((page) => (
-                      <Button
-                        key={page.title}
-                        onClick={() =>
-                          magicWand({ value: page.onClick, path: page.path })
-                        }
-                        sx={{ my: 2, color: "white", display: "block" }}
-                      >
+                      // <Button
+                      //   key={page.title}
+                      //   onClick={() =>
+                      //     generateActions({
+                      //       value: page.onClick,
+                      //       path: page.path,
+                      //     })
+                      //   }
+                      //   sx={{ my: 2, color: "white", display: "block" }}
+                      // >
+
+                      // </Button>
+                      <Link key={page.title} href={page.path}>
                         {page.title}
-                      </Button>
+                      </Link>
                     ))}
                   </Menu>
                 </Box>
@@ -197,15 +210,21 @@ export default function MenuHome() {
                   }}
                 >
                   {modules.map((module) => (
-                    <Button
-                      key={module.title}
-                      onClick={() =>
-                        magicWand({ value: module.onClick, path: module.path })
-                      }
-                      sx={{ my: 2, color: "white", display: "block" }}
-                    >
+                    // <Button
+                    //   key={module.title}
+                    //   onClick={() =>
+                    //     generateActions({
+                    //       value: module.onClick,
+                    //       path: module.path,
+                    //     })
+                    //   }
+                    //   sx={{ my: 2, color: "white", display: "block" }}
+                    // >
+                    //   {module.title}
+                    // </Button>
+                    <Link key={module.title} href={module.path}>
                       {module.title}
-                    </Button>
+                    </Link>
                   ))}
                 </Box>
               </Toolbar>
@@ -288,15 +307,21 @@ export default function MenuHome() {
                   }}
                 >
                   {pages.map((page) => (
-                    <Button
-                      key={page.title}
-                      onClick={() =>
-                        magicWand({ value: page.onClick, path: page.path })
-                      }
-                      sx={{ my: 2, color: "white", display: "block" }}
-                    >
+                    // <Button
+                    //   key={page.title}
+                    //   onClick={() =>
+                    //     generateActions({
+                    //       value: page.onClick,
+                    //       path: page.path,
+                    //     })
+                    //   }
+                    //   sx={{ my: 2, color: "white", display: "block" }}
+                    // >
+                    //   {page.title}
+                    // </Button>
+                    <Link key={page.title} href={page.path}>
                       {page.title}
-                    </Button>
+                    </Link>
                   ))}
                 </Menu>
               </Box>
@@ -348,7 +373,7 @@ export default function MenuHome() {
                   <Button
                     key={page.title}
                     onClick={() =>
-                      magicWand({ value: page.onClick, path: page.path })
+                      generateActions({ value: page.onClick, path: page.path })
                     }
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
