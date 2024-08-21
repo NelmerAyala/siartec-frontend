@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./styles/globals.scss";
 import AppMui from "@/mui/AppMui";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import MenuHome from "@/components/home/header";

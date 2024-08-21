@@ -11,6 +11,7 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Checkbox,
   Divider,
   FormControl,
   FormControlLabel,

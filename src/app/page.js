@@ -3,7 +3,7 @@
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import EmblaCarousel from "@/components/home/carousel";
-import styles from "./page.module.css";
+// import styles from "./page.module.css";
 import MenuHome from "@/components/home/header";
 import Footer from "@/components/home/footer";
 import { Box, Grid, Stack, Typography } from "@mui/material";
@@ -23,6 +23,7 @@ const SLIDES = [
     name: "Titulo #1",
     bg: "/img/carousel/bg-1.png",
     description: "Descripción 1",
+    width: "100",
   },
   {
     name: "Titulo #2",
@@ -95,7 +96,7 @@ export default function HomePage() {
               alignItems="flex-start"
               spacing={1}
             >
-              <Typography variant="h4" gutterBottom>
+              <Typography variant="h4" gutterBottom className="title">
                 SIARTEC
               </Typography>
               <address>

@@ -94,6 +94,7 @@ function MenuApp(props) {
             ALL_PRIVILEGES.getPrivilegesByName(option).code
           ) ? (
             <Link
+              key={index}
               href={ALL_PRIVILEGES.getPrivilegesByName(option).path}
               style={{ textDecoration: "none", color: "white" }}
             >
@@ -122,6 +123,7 @@ function MenuApp(props) {
             ALL_PRIVILEGES.getPrivilegesByName(option).code
           ) ? (
             <Link
+              key={index}
               href={ALL_PRIVILEGES.getPrivilegesByName(option).path}
               style={{ textDecoration: "none", color: "white" }}
             >

@@ -149,21 +149,19 @@ export default function MenuHome() {
                     }}
                   >
                     {pages.map((page) => (
-                      // <Button
-                      //   key={page.title}
-                      //   onClick={() =>
-                      //     generateActions({
-                      //       value: page.onClick,
-                      //       path: page.path,
-                      //     })
-                      //   }
-                      //   sx={{ my: 2, color: "white", display: "block" }}
-                      // >
-
-                      // </Button>
-                      <Link key={page.title} href={page.path}>
-                        {page.title}
-                      </Link>
+                      <Button
+                        key={page.title}
+                        onClick={() =>
+                          generateActions({
+                            value: page.onClick,
+                            path: page.path,
+                          })
+                        }
+                        sx={{ my: 2, color: "white", display: "block" }}
+                      ></Button>
+                      // <Link key={page.title} href={page.path}>
+                      //   {page.title}
+                      // </Link>
                     ))}
                   </Menu>
                 </Box>
@@ -210,21 +208,21 @@ export default function MenuHome() {
                   }}
                 >
                   {modules.map((module) => (
-                    // <Button
-                    //   key={module.title}
-                    //   onClick={() =>
-                    //     generateActions({
-                    //       value: module.onClick,
-                    //       path: module.path,
-                    //     })
-                    //   }
-                    //   sx={{ my: 2, color: "white", display: "block" }}
-                    // >
-                    //   {module.title}
-                    // </Button>
-                    <Link key={module.title} href={module.path}>
+                    <Button
+                      key={module.title}
+                      onClick={() =>
+                        generateActions({
+                          value: module.onClick,
+                          path: module.path,
+                        })
+                      }
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
                       {module.title}
-                    </Link>
+                    </Button>
+                    // <Link key={module.title} href={module.path}>
+                    //   {module.title}
+                    // </Link>
                   ))}
                 </Box>
               </Toolbar>
@@ -307,21 +305,21 @@ export default function MenuHome() {
                   }}
                 >
                   {pages.map((page) => (
-                    // <Button
-                    //   key={page.title}
-                    //   onClick={() =>
-                    //     generateActions({
-                    //       value: page.onClick,
-                    //       path: page.path,
-                    //     })
-                    //   }
-                    //   sx={{ my: 2, color: "white", display: "block" }}
-                    // >
-                    //   {page.title}
-                    // </Button>
-                    <Link key={page.title} href={page.path}>
+                    <Button
+                      key={page.title}
+                      onClick={() =>
+                        generateActions({
+                          value: page.onClick,
+                          path: page.path,
+                        })
+                      }
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
                       {page.title}
-                    </Link>
+                    </Button>
+                    // <Link key={page.title} href={page.path}>
+                    //   {page.title}
+                    // </Link>
                   ))}
                 </Menu>
               </Box>
