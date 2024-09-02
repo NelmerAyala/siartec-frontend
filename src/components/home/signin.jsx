@@ -190,7 +190,7 @@ export default function SigninPage(props) {
             />
             <Button
               type="submit"
-              color="secondary"
+              // color="secondary"
               variant="contained"
               fullWidth
               // onClick={() => handleSubmit()}

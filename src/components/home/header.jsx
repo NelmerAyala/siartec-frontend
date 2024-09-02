@@ -87,7 +87,7 @@ export default function MenuHome() {
     if (path[1] !== "app") {
       return (
         <>
-          <AppBar position="static">
+          <AppBar position="fixed">
             <Container maxWidth="xl">
               <Toolbar disableGutters>
                 <Box

@@ -12,7 +12,7 @@ export default function InformativeCard(props) {
         <CardMedia
           component="img"
           height="200"
-          image="/img/background.avif"
+          image="/img/background-card.webp"
           alt="information"
         />
         <CardContent>

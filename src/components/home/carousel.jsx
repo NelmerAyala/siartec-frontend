@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from "react";
 import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Fade from "embla-carousel-fade";
+import Autoplay from "embla-carousel-autoplay";
 import {
   NextButton,
   PrevButton,
@@ -9,27 +10,12 @@ import {
 } from "./EmblaCarouselArrowButtons";
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 
-const items = [
-  {
-    name: "Titulo #1",
-    bg: "/img/carousel/bg-1.png",
-    description: "Descripción 1",
-  },
-  {
-    name: "Titulo #2",
-    bg: "/img/carousel/bg-2.jpg",
-    description: "Descripción 1",
-  },
-  {
-    name: "Titulo #3",
-    bg: "/img/carousel/bg-3.jpg",
-    description: "Descripción 1",
-  },
-];
-
 const EmblaCarousel = (props) => {
   const { slides, options } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Fade()]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [
+    Fade(),
+    Autoplay({ playOnInit: true, delay: 1500 }),
+  ]);
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi);
@@ -46,12 +32,36 @@ const EmblaCarousel = (props) => {
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((data, index) => (
-            <div className="embla__slide" key={index}>
+            <div
+              className="embla__slide"
+              key={index}
+              style={{
+                width: "100%",
+                height: "650px",
+                overflow: "hidden",
+                padding: "0px",
+                position: "relative",
+              }}
+            >
               <img
                 className="embla__slide__img"
                 src={`${data.bg}`}
                 alt={`${data.name}`}
               />
+              <p
+                style={{
+                  position: "absolute",
+                  width: "100%",
+                  top: "40%",
+                  padding: "0 2rem",
+                  textAlign: "center",
+                  color: "#fff !important",
+                  fontSize: "3rem",
+                  lineHeight: "3rem",
+                }}
+              >
+                {data.description}
+              </p>
             </div>
           ))}
         </div>
