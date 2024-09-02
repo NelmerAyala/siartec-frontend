@@ -36,8 +36,8 @@ function ChildModal(props) {
     let result;
 
     if (email !== "") {
-      // result = await Request.post("/sendEmail", { email });
-      result = { status: 200, message: "Correo de recuperación enviado." };
+      result = await Request.post("/sendEmail", { email });
+      // result = { status: 200, message: "Correo de recuperación enviado." };
 
       if (result?.error && result.error !== null) {
         let message = "Error enviando mensaje";
