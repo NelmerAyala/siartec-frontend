@@ -134,11 +134,11 @@ const nextAuthOptions = {
       if (user) {
         token = user;
       }
+
       return token;
     },
     async session({ session, user, token }) {
-      // session.accessToken = token.accessToken;
-      session.access_token = token.access_token;
+      session.accessToken = token.accessToken;
       session.user = token.user;
       return session;
     },

@@ -60,37 +60,32 @@ function MenuApp(props) {
           width: "100%",
         }}
       >
-        <Link
-          key={"app"}
-          href={"/app"}
-          style={{ textDecoration: "none", color: "white" }}
-        >
-          <Box
-            component="img"
-            sx={{
-              // height: 60,
-              width: 120,
-              maxHeight: { xs: 233, md: 167 },
-              maxWidth: { xs: 350, md: 250 },
-              display: { xs: "none", md: "flex" },
-              mr: 1,
-            }}
-            alt="logo siartec"
-            src="/img/logo.png"
-          />
-          <Box
-            component="img"
-            sx={{
-              width: 60,
-              maxHeight: { xs: 233, md: 167 },
-              maxWidth: { xs: 350, md: 250 },
-              display: { xs: "flex", md: "none" },
-              mr: 1,
-            }}
-            alt="logo siartec"
-            src="/img/logo_letra.png"
-          />
-        </Link>
+        <Box
+          component="img"
+          sx={{
+            // height: 60,
+            width: 120,
+            maxHeight: { xs: 233, md: 167 },
+            maxWidth: { xs: 350, md: 250 },
+            display: { xs: "none", md: "flex" },
+            mr: 1,
+          }}
+          alt="logo siartec"
+          src="/img/logo.png"
+        />
+        <Box
+          component="img"
+          sx={{
+            // height: 60,
+            width: 60,
+            maxHeight: { xs: 233, md: 167 },
+            maxWidth: { xs: 350, md: 250 },
+            display: { xs: "flex", md: "none" },
+            mr: 1,
+          }}
+          alt="logo siartec"
+          src="/img/logo_letra.png"
+        />
       </Toolbar>
       <Divider />
       <List>

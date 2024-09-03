@@ -28,7 +28,8 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-const paperStyle = { width: 340, margin: "1px auto" };
+const paperStyle = {  margin: "1px auto" };
+//cambie el width para que el popun se viera mejor
 
 const TabSignInOutContainer = React.forwardRef(function TabSignInOutContainer(
   props,
@@ -45,7 +46,7 @@ const TabSignInOutContainer = React.forwardRef(function TabSignInOutContainer(
 
   return (
     <>
-      <Paper elevation={20} style={paperStyle}>
+      <Paper className="popup" elevation={20} style={paperStyle}>
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs

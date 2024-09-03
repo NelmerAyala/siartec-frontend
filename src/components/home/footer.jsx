@@ -6,6 +6,7 @@ export const Footer = () => {
     <>
       <Box
         sx={{
+          backgroundColor: "#2f2e2e",
           width: "100%",
           height: "auto",
           // backgroundColor: "colorPrimary",

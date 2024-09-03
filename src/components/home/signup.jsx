@@ -23,7 +23,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { MuiTelInput } from "mui-tel-input";
 import Checkbox from "@mui/material/Checkbox";
-import CONTRIBUTORS from "@/common/TYPES_CONTRIBUTORS";
+import TYPES_CONTRIBUTORS from "@/common/TYPES_CONTRIBUTORS";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { createUser } from "@/services/user/user-services";
 // import MuiPhoneNumber from "mui-phone-number";
@@ -35,7 +35,11 @@ export default function SignupPage(props) {
     { id: 3, description: "J" },
     { id: 4, description: "G" },
   ];
-  const typesContributors = Object.values(CONTRIBUTORS.TYPES_CONTRIBUTORS);
+  const typesContributors = [
+    { id: 1, description: "Natural" },
+    { id: 2, description: "Comercial" },
+    { id: 3, description: "Industrial" },
+  ];
 
   const paperStyle = {
     padding: 20,
@@ -49,8 +53,6 @@ export default function SignupPage(props) {
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
   const [messageError, setMessageError] = React.useState("");
-  const [passwordError, setPasswordError] = React.useState("");
-
   const [dataContributor, setDataContributor] = React.useState({
     email: "",
     password: "",
@@ -60,40 +62,61 @@ export default function SignupPage(props) {
     identity_document: "",
     phone_number: "",
     contributor_type: "",
-    // personal_signature: false,
+    personal_signature: false,
     birthdate: "",
     constitution_date: "",
     address: "",
   });
 
   const changeTypeContributor = (event) => {
+    let updatedValue = {};
+    updatedValue = { contributor_type: event.target.value };
     setDataContributor((dataContributor) => ({
       ...dataContributor,
-      contributor_type: event.target.value,
+      ...updatedValue,
     }));
+
+    if (
+      dataContributor.contributor_type !==
+      TYPES_CONTRIBUTORS.getTypeContributorByName("NATURAL").code
+    ) {
+      setDataContributor((dataContributor) => ({
+        ...dataContributor,
+        ...{ personal_signature: false },
+      }));
+    }
   };
 
   const changeLetter = (event) => {
+    let updatedValue = {};
+    updatedValue = { identity_document_letter: event.target.value };
     setDataContributor((dataContributor) => ({
       ...dataContributor,
-      identity_document_letter: event.target.value,
-      contributor_type: "",
+      ...updatedValue,
     }));
-    console.log(
-      "contributor_type: " + JSON.stringify(dataContributor.contributor_type)
-    );
+  };
+
+  const handleChangeCheck = (event) => {
+    let updatedValue = {};
+    updatedValue = {
+      personal_signature: event.target.checked,
+    };
+    setDataContributor((dataContributor) => ({
+      ...dataContributor,
+      ...updatedValue,
+    }));
   };
 
   const isNaturalContributor = () => {
     return dataContributor.contributor_type ===
-      CONTRIBUTORS.getTypeContributorByName("NATURAL").id
+      TYPES_CONTRIBUTORS.getTypeContributorByName("NATURAL").id
       ? true
       : false;
   };
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    console.log("dataContributor: " + JSON.stringify(dataContributor));
+
     let result;
     try {
       if (
@@ -136,17 +159,7 @@ export default function SignupPage(props) {
     let today = moment().format("YYYY-MM-DD");
     return today;
   };
-  const handlePassword = async (e) => {
-    setDataContributor((dataContributor) => ({
-      ...dataContributor,
-      password: e.target.value,
-    }));
-    if (e.target.validity.valid) {
-      setPasswordError(false);
-    } else {
-      setPasswordError(true);
-    }
-  };
+
   return (
     <>
       {messageError !== "" ? (
@@ -177,7 +190,6 @@ export default function SignupPage(props) {
             }}
             noValidate={false}
             autoComplete="off"
-            onSubmit={handleOnSubmit}
           >
             <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
               Datos Usuario
@@ -191,7 +203,7 @@ export default function SignupPage(props) {
               onChange={(e) =>
                 setDataContributor((dataContributor) => ({
                   ...dataContributor,
-                  email: e.target.value,
+                  ...{ email: e.target.value },
                 }))
               }
             />
@@ -203,7 +215,12 @@ export default function SignupPage(props) {
               placeholder="Ingrese contraseña"
               fullWidth
               required
-              onChange={handlePassword}
+              onChange={(e) =>
+                setDataContributor((dataContributor) => ({
+                  ...dataContributor,
+                  ...{ password: e.target.value },
+                }))
+              }
               type={showPassword ? "text" : "password"}
               InputProps={{
                 endAdornment: (
@@ -218,24 +235,6 @@ export default function SignupPage(props) {
                   </InputAdornment>
                 ),
               }}
-              error={passwordError}
-              helperText={
-                passwordError ? (
-                  <Typography component={"span"} variant={"body2"}>
-                    Por favor ingrese una contraseña segura, la misma debe
-                    contener entre 8 y 20, incluyendo: <br />- Al menos 1
-                    minúscula
-                    <br />- Al menos 1 mayúscula <br />- Al menos 1 simbolo
-                    (@$!%*?&)
-                  </Typography>
-                ) : (
-                  ""
-                )
-              }
-              inputProps={{
-                pattern:
-                  "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[0-9A-Za-zd@$!%*?&]{8,20}$",
-              }}
             />
             <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
               Datos Personales
@@ -249,7 +248,7 @@ export default function SignupPage(props) {
               onChange={(e) =>
                 setDataContributor((dataContributor) => ({
                   ...dataContributor,
-                  firstname: e.target.value,
+                  ...{ firstname: e.target.value },
                 }))
               }
             />
@@ -262,7 +261,7 @@ export default function SignupPage(props) {
               onChange={(e) =>
                 setDataContributor((dataContributor) => ({
                   ...dataContributor,
-                  lastname: e.target.value,
+                  ...{ lastname: e.target.value },
                 }))
               }
             />
@@ -277,10 +276,10 @@ export default function SignupPage(props) {
                     required
                     labelId="identity-document-letter-label"
                     id="id-letter"
-                    // value={dataContributor.identity_document_letter}
+                    value={dataContributor.identity_document_letter}
                     label="Letra"
                     onChange={changeLetter}
-                    // defaultValue={"V"}
+                    defaultValue={1}
                   >
                     {identityDocumentLletters.map((data, index) => (
                       <MenuItem key={data.id} value={data.description}>
@@ -294,14 +293,14 @@ export default function SignupPage(props) {
                 <TextField
                   color="secondary"
                   fullWidth
-                  type="text"
+                  type="number"
                   required
                   label="Documento de Identifiación"
                   placeholder="Ingrese C.I. o RIF"
                   onChange={(e) =>
                     setDataContributor((dataContributor) => ({
                       ...dataContributor,
-                      identity_document: e.target.value,
+                      ...{ identity_document: e.target.value },
                     }))
                   }
                 />
@@ -319,7 +318,7 @@ export default function SignupPage(props) {
               onChange={(e) =>
                 setDataContributor((dataContributor) => ({
                   ...dataContributor,
-                  phone_number: e,
+                  ...{ phone_number: e },
                 }))
               }
             />
@@ -327,60 +326,28 @@ export default function SignupPage(props) {
             <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
               Datos Contribuyente
             </Divider>
-            {["V", "E"].includes(dataContributor.identity_document_letter) ? (
-              <FormControl color="secondary" fullWidth sx={{ mb: 2 }}>
-                <InputLabel id="type-contributor-natural-label">
-                  Tipo de contribuyente Natural
-                </InputLabel>
-                <Select
-                  labelId="type-contributor-natural-label"
-                  id="type-contributor-natural"
-                  value={dataContributor.contributor_type}
-                  label="Tipo de contribuyente natural"
-                  onChange={changeTypeContributor}
-                  // defaultValue={1}
-                >
-                  {typesContributors.map((data, index) => {
-                    if (data.letters_contributors === "NATURAL")
-                      return (
-                        <MenuItem key={data.id} value={data.id}>
-                          {data.name}
-                        </MenuItem>
-                      );
-                  })}
-                </Select>
-              </FormControl>
-            ) : (
-              <></>
-            )}
+            <FormControl color="secondary" fullWidth sx={{ mb: 2 }}>
+              <InputLabel id="type-contributor-label">
+                Tipo de contribuyente
+              </InputLabel>
+              <Select
+                labelId="type-contributor-label"
+                id="type-contributor"
+                value={dataContributor.contributor_type}
+                label="Tipo de contribuyente"
+                onChange={changeTypeContributor}
+                defaultValue={1}
+                required
+              >
+                {typesContributors.map((data, index) => (
+                  <MenuItem key={data.id} value={data.id}>
+                    {data.description}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-            {["J", "G"].includes(dataContributor.identity_document_letter) ? (
-              <FormControl color="secondary" fullWidth sx={{ mb: 2 }}>
-                <InputLabel id="type-contributor-legal-label">
-                  Tipo de contribuyente Jurídico
-                </InputLabel>
-                <Select
-                  labelId="type-contributor-legal-label"
-                  id="type-contributor-legal"
-                  value={dataContributor.contributor_type}
-                  label="Tipo de contribuyente Jurídico"
-                  onChange={changeTypeContributor}
-                >
-                  {typesContributors.map((data, index) => {
-                    if (data.letters_contributors === "LEGAL")
-                      return (
-                        <MenuItem key={data.id} value={data.id}>
-                          {data.name}
-                        </MenuItem>
-                      );
-                  })}
-                </Select>
-              </FormControl>
-            ) : (
-              <></>
-            )}
-
-            {/* {isNaturalContributor() ? (
+            {isNaturalContributor() ? (
               <FormControlLabel
                 control={
                   <Checkbox
@@ -394,7 +361,7 @@ export default function SignupPage(props) {
               />
             ) : (
               <></>
-            )} */}
+            )}
 
             {!isNaturalContributor() ? (
               <TextField
@@ -451,7 +418,7 @@ export default function SignupPage(props) {
               onChange={(e) =>
                 setDataContributor((dataContributor) => ({
                   ...dataContributor,
-                  address: e.target.value,
+                  ...{ address: e.target.value },
                 }))
               }
             />
@@ -472,7 +439,7 @@ export default function SignupPage(props) {
                 color="secondary"
                 variant="contained"
                 fullWidth
-                // onClick={(e) => handleOnSubmit(e)}
+                onClick={(e) => handleOnSubmit(e)}
               >
                 Crear cuenta
               </Button>

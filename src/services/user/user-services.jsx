@@ -7,13 +7,11 @@ export const createUser = async (params) => {
         NATURAL: { id: 1 },
         COMMERCIAL: { id: 2 },
         INDUSTRIAL: { id: 3 },
-        FIRMA: { id: 4 },
       };
       const roleForContributorType = {
-        3: "NATURAL",
-        4: "COMMERCIAL",
-        5: "INDUSTRIAL",
-        6: "FIRMA",
+        1: "NATURAL",
+        2: "COMMERCIAL",
+        3: "INDUSTRIAL",
       };
       params.role = ROLES[roleForContributorType[params.contributor_type]].id;
     }

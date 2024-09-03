@@ -10,31 +10,30 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 import InformativeCard from "@/components/home/informative-card";
 import Link from "next/link";
 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
+
 const SLIDES = [
   {
     name: "Titulo #1",
-    bg: "/img/carousel/bg-1.webp",
+    bg: "/img/carousel/bg-1.png",
     description: "Descripción 1",
+    width: "100",
   },
   {
     name: "Titulo #2",
-    bg: "/img/carousel/bg-2.webp",
-    description: "Descripción 2",
+    bg: "/img/carousel/bg-2.jpg",
+    description: "Descripción 1",
   },
   {
     name: "Titulo #3",
-    bg: "/img/carousel/bg-3.webp",
-    description: "Descripción 3",
-  },
-  {
-    name: "Titulo #4",
-    bg: "/img/carousel/bg-4.webp",
-    description: "Descripción 4",
-  },
-  {
-    name: "Titulo #5",
-    bg: "/img/carousel/bg-5.webp",
-    description: "Descripción 5",
+    bg: "/img/carousel/bg-3.jpg",
+    description: "Descripción 1",
   },
 ];
 
@@ -43,6 +42,10 @@ const OPTIONS = { loop: true, duration: 30 };
 export default function HomePage() {
   return (
     <>
+      {/* <header>
+        <MenuHome></MenuHome>
+      </header>
+      <main> */}
       <EmblaCarousel slides={SLIDES} options={OPTIONS} />
 
       <Box sx={{ flexGrow: 1 }}>
@@ -77,7 +80,7 @@ export default function HomePage() {
           flexGrow: 1,
           padding: 5,
           backgroundImage: "url:('')",
-          backgroundImage: "url('/img/background-gray.png')",
+          backgroundImage: "url('/background-gray.png')",
           backgroundRepeat: "repeat",
         }}
       >
