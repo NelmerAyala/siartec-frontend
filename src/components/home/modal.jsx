@@ -33,19 +33,18 @@ function ChildModal(props) {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    let result;
 
     if (email !== "") {
-      result = await Request.post("/sendEmail", { email });
-      // result = { status: 200, message: "Correo de recuperación enviado." };
+      let resetPassword = await Request.post("/users/reset-password", {
+        email,
+      });
 
-      if (result?.error && result.error !== null) {
-        let message = "Error enviando mensaje";
-        setMessageError(message);
-        setMessageSuccess("");
-      } else {
-        setMessageSuccess(result.message);
+      if (resetPassword.hasOwnProperty("msg")) {
         setMessageError("");
+        setMessageSuccess(resetPassword.msg);
+      } else {
+        setMessageSuccess("");
+        setMessageError(resetPassword.data.msg);
       }
     } else {
       setMessageError("Debe ingresar correo electrónico");
@@ -75,37 +74,36 @@ function ChildModal(props) {
           ) : (
             <></>
           )}
-          <h2 id="child-modal-title">Recuperación de Contraseña</h2>
-          <p id="child-modal-description">
-            <Box
-              component="form"
-              sx={{
-                "& .MuiTextField-root": { mb: 2 },
-              }}
-              noValidate={false}
-              onSubmit={handleOnSubmit}
+          <h4 id="child-modal-title">Recuperación de Contraseña</h4>
+          <br />
+          <Box
+            id="child-modal-description"
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { mb: 2 },
+            }}
+            noValidate={false}
+            onSubmit={handleOnSubmit}
+          >
+            <TextField
+              color="secondary"
+              label="Correo electrónico"
+              placeholder="Ingrese correo electrónico"
+              type="email"
+              name="email"
+              fullWidth
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Button
+              type="submit"
+              color="secondary"
+              variant="contained"
+              fullWidth
             >
-              <TextField
-                color="secondary"
-                label="Correo electrónico"
-                placeholder="Ingrese correo electrónico"
-                type="email"
-                name="email"
-                fullWidth
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Button
-                type="submit"
-                color="secondary"
-                variant="contained"
-                fullWidth
-                // onClick={() => handleSubmit()}
-              >
-                Enviar
-              </Button>
-            </Box>
-          </p>
+              Enviar
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </React.Fragment>

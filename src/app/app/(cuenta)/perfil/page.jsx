@@ -32,6 +32,7 @@ const typesContributors = [
   { id: 1, description: "Natural" },
   { id: 2, description: "Comercial" },
   { id: 3, description: "Industrial" },
+  { id: 4, description: "Firma Personal" },
 ];
 
 export default function PayTaxStamps() {
