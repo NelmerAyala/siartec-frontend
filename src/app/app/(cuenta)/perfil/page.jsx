@@ -22,17 +22,22 @@ import {
   Typography,
 } from "@mui/material";
 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
+
 import TYPES_CONTRIBUTORS from "@/common/TYPES_CONTRIBUTORS";
 import moment from "moment";
-import { getSession, useSession } from "next-auth/react";
-import { getProfiledUser } from "@/services/user/get-profile-services";
 // import MuiPhoneNumber from "mui-phone-number";
 
 const typesContributors = [
   { id: 1, description: "Natural" },
   { id: 2, description: "Comercial" },
   { id: 3, description: "Industrial" },
-  { id: 4, description: "Firma Personal" },
 ];
 
 export default function PayTaxStamps() {
@@ -45,30 +50,17 @@ export default function PayTaxStamps() {
   const avatarStyle = { backgroundColor: "rgb(254 151 76)" };
   const marginTop = { marginTop: 5 };
 
-  const [typeContributor, setTypeContributor] = React.useState("");
-  const [profileUser, setprofileUser] = React.useState({
-    identity_document_letter: "",
-    lastname: "",
-    firstname: "",
-    image: "",
-    email: "",
-    birthdate: "",
-    constitution_date: "",
-    identity_document: "",
-    phone_number: "",
-  });
-  const [letter, setLetter] = React.useState("");
-  const [isJuridicSignature, setIsJuridicSignature] = React.useState(false);
-
-  const sendRequest = async () => {
-    let data = await getProfiledUser(await getSession());
-    console.log(data);
-    if (data) setprofileUser(data);
+  const session = {
+    user: {
+      lastname: "Lastname",
+      firstname: "Firstname",
+      image: "/img/avatar.jpg",
+    },
   };
 
-  React.useEffect(() => {
-    sendRequest();
-  }, []);
+  const [typeContributor, setTypeContributor] = React.useState("");
+  const [letter, setLetter] = React.useState("");
+  const [isJuridicSignature, setIsJuridicSignature] = React.useState(false);
 
   const changeTypeContributor = (event) => {
     setTypeContributor(event.target.value);
@@ -95,9 +87,7 @@ export default function PayTaxStamps() {
   };
 
   const getToday = () => {
-    let today = moment(
-      profileUser.birthdate || profileUser.constitution_date
-    ).format("YYYY-MM-DD");
+    let today = moment().format("YYYY-MM-DD");
     return today;
   };
 
@@ -114,19 +104,19 @@ export default function PayTaxStamps() {
               <CardMedia
                 component="img"
                 height="140"
-                image="/img/background-card.webp"
+                image="/img/background.avif"
                 alt="backgroud profile"
               />
               <CardContent>
                 <Avatar
-                  alt={profileUser.lastname + " " + profileUser.firstname}
-                  src={profileUser.image}
+                  alt={session.user.lastname + " " + session.user.firstname}
+                  src={session.user.image}
                   sx={{ width: 100, height: 100 }}
                 />
                 <Typography gutterBottom variant="h5" component="div">
-                  {profileUser.lastname + " " + profileUser.firstname}
+                  {session.user.lastname + " " + session.user.firstname}
                 </Typography>
-                <Typography variant="body">
+                <Typography variant="body2" color="text.secondary">
                   Tu información personal es importante para la generación de
                   estampillas fiscales, por eso aquí puedes realizar las
                   modificaciones necesarias.
@@ -149,30 +139,26 @@ export default function PayTaxStamps() {
             </Divider>
             <TextField
               color="secondary"
-              value={profileUser.firstname}
               fullWidth
               label="Nombres"
               placeholder="Ingrese correo electrónico"
             />
             <TextField
               color="secondary"
-              value={profileUser.lastname}
               fullWidth
               label="Apellidos"
               placeholder="Ingrese correo electrónico"
             />
             <TextField
               color="secondary"
-              value={profileUser.email}
               fullWidth
               label="Correo Electrónico"
               placeholder="Ingrese correo electrónico"
             />
             <TextField
               color="secondary"
-              // value={profileUser.birthdate || profileUser.constitution_date}
               type="date"
-              value={getToday()}
+              defaultValue={getToday()}
               fullWidth
               label="Fecha de nacimiento"
             />
@@ -182,10 +168,9 @@ export default function PayTaxStamps() {
                 <FormControl color="secondary" fullWidth>
                   <InputLabel id="letter-label">Letra</InputLabel>
                   <Select
-                    // value={letter}
                     labelId="letter-label"
                     id="letter"
-                    value={profileUser.identity_document_letter}
+                    value={letter}
                     label="Letra"
                     onChange={changeLetter}
                   >
@@ -209,16 +194,14 @@ export default function PayTaxStamps() {
                 <TextField
                   color="secondary"
                   fullWidth
-                  value={profileUser.identity_document}
-                  type="text"
+                  type="phone"
                   label="Documento de Identifiación"
-                  placeholder="Ingrese documento de identidad"
+                  placeholder="Ingrese correo electrónico"
                 />
               </Grid>
             </Grid>
 
             <TextField
-              value={profileUser.phone_number}
               fullWidth
               label="Número de Teléfono"
               placeholder="Ingrese número de teléfono"
@@ -234,7 +217,7 @@ export default function PayTaxStamps() {
               <Select
                 labelId="type-contributor-label"
                 id="type-contributor"
-                value={profileUser.contributorTypeId}
+                value={typeContributor}
                 label="Tipo de contribuyente"
                 onChange={changeTypeContributor}
               >

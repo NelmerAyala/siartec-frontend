@@ -1,16 +1,12 @@
-@import "./sass/variables";
-@import "./sass/generales";
-// @import "./sass/nav";
 
-@import "./sass/btns";
+.popup
+{
+  width: 100%;
+  max-width: 600px;
+  overflow-y: scroll;
+  height: 90vh;
 
-@import "./sass/modal";
-@import "./sass/slider";
-
-@import "./sass/footer";
-
-
-@import "./sass/todo";
+}
 
 $text_color: green;
 .title{

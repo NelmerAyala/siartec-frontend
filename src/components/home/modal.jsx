@@ -14,6 +14,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
+  // border: "2px solid #000",
   boxShadow: 24,
   pt: 2,
   px: 4,
@@ -33,18 +34,19 @@ function ChildModal(props) {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
+    let result;
 
     if (email !== "") {
-      let resetPassword = await Request.post("/users/reset-password", {
-        email,
-      });
+      // result = await Request.post("/sendEmail", { email });
+      result = { status: 200, message: "Correo de recuperación enviado." };
 
-      if (resetPassword.hasOwnProperty("msg")) {
-        setMessageError("");
-        setMessageSuccess(resetPassword.msg);
-      } else {
+      if (result?.error && result.error !== null) {
+        let message = "Error enviando mensaje";
+        setMessageError(message);
         setMessageSuccess("");
-        setMessageError(resetPassword.data.msg);
+      } else {
+        setMessageSuccess(result.message);
+        setMessageError("");
       }
     } else {
       setMessageError("Debe ingresar correo electrónico");
@@ -74,36 +76,37 @@ function ChildModal(props) {
           ) : (
             <></>
           )}
-          <h4 id="child-modal-title">Recuperación de Contraseña</h4>
-          <br />
-          <Box
-            id="child-modal-description"
-            component="form"
-            sx={{
-              "& .MuiTextField-root": { mb: 2 },
-            }}
-            noValidate={false}
-            onSubmit={handleOnSubmit}
-          >
-            <TextField
-              color="secondary"
-              label="Correo electrónico"
-              placeholder="Ingrese correo electrónico"
-              type="email"
-              name="email"
-              fullWidth
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Button
-              type="submit"
-              color="secondary"
-              variant="contained"
-              fullWidth
+          <h2 id="child-modal-title">Recuperación de Contraseña</h2>
+          <p id="child-modal-description">
+            <Box
+              component="form"
+              sx={{
+                "& .MuiTextField-root": { mb: 2 },
+              }}
+              noValidate={false}
+              onSubmit={handleOnSubmit}
             >
-              Enviar
-            </Button>
-          </Box>
+              <TextField
+                color="secondary"
+                label="Correo electrónico"
+                placeholder="Ingrese correo electrónico"
+                type="email"
+                name="email"
+                fullWidth
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Button
+                type="submit"
+                color="secondary"
+                variant="contained"
+                fullWidth
+                // onClick={() => handleSubmit()}
+              >
+                Enviar
+              </Button>
+            </Box>
+          </p>
         </Box>
       </Modal>
     </React.Fragment>

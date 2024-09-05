@@ -18,7 +18,7 @@ export default function NotFound() {
             <CardMedia
               component="img"
               // width="1000"
-              image="/img/404.webp"
+              image="/404.jpg"
               alt="green iguana"
             />
             <CardContent>
@@ -33,13 +33,15 @@ export default function NotFound() {
           <CardActions>
             <Link
               type="button"
-              // color="secondary"
+              color="secondary"
               variant="contained"
               // fullWidth
               size="small"
               href="/app"
             >
-              <Button variant="contained">Ir al Inicio</Button>
+              <Button color="secondary" variant="contained">
+                Ir al Inicio
+              </Button>
             </Link>
           </CardActions>
         </Card>

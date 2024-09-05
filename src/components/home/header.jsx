@@ -23,22 +23,24 @@ import Link from "next/link";
 
 const pages = [
   { title: "INICIO", onClick: "redirectPage", path: "/" },
-  { title: "SERVICIOS", onClick: "redirectPage", path: "/servicios" },
+  { title: "INFORMACION", onClick: "redirectPage", path: "/servicios" },
   { title: "INSTRUCTIVOS", onClick: "redirectPage", path: "/instructivos" },
   { title: "INFORMACION", onClick: "redirectPage", path: "/informacion" },
   { title: "GACETAS", onClick: "redirectPage", path: "/gacetas" },
   { title: "CONTÁCTANOS", onClick: "redirectPage", path: "/contactanos" },
+  { title: "NOSOTROS", onClick: "redirectPage", path: "/nosotros" },
   { title: "INGRESAR", onClick: "handleOpenModal", path: "" },
 ];
 const modules = [
   { title: "INICIO", onClick: "redirectPage", path: "/" },
-  { title: "SERVICIOS", onClick: "redirectPage", path: "/servicios" },
+  { title: "INFORMACION", onClick: "redirectPage", path: "/servicios" },
   { title: "INSTRUCTIVOS", onClick: "redirectPage", path: "/instructivos" },
   { title: "INFORMACION", onClick: "redirectPage", path: "/informacion" },
   { title: "GACETAS", onClick: "redirectPage", path: "/gacetas" },
   { title: "CONTÁCTANOS", onClick: "redirectPage", path: "/contactanos" },
   { title: "APP SIARTEC", onClick: "redirectPage", path: "/app" },
   { title: "CERRAR SESIÓN", onClick: "onClick", path: "/" },
+  { title: "NOSOTROS", onClick: "redirectPage", path: "/nosotros" },
 ];
 
 export default function MenuHome() {
@@ -89,7 +91,7 @@ export default function MenuHome() {
     if (path[1] !== "app") {
       return (
         <>
-          <AppBar position="fixed">
+          <AppBar position="static">
             <Container maxWidth="xl">
               <Toolbar disableGutters>
                 <Box

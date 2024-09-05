@@ -14,7 +14,7 @@ const EmblaCarousel = (props) => {
   const { slides, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
     Fade(),
-    Autoplay({ playOnInit: true, delay: 1500 }),
+    Autoplay({ playOnInit: true, delay: 3000 }),
   ]);
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
@@ -32,36 +32,12 @@ const EmblaCarousel = (props) => {
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((data, index) => (
-            <div
-              className="embla__slide"
-              key={index}
-              style={{
-                width: "100%",
-                height: "650px",
-                overflow: "hidden",
-                padding: "0px",
-                position: "relative",
-              }}
-            >
+            <div className="embla__slide" key={index}>
               <img
                 className="embla__slide__img"
                 src={`${data.bg}`}
                 alt={`${data.name}`}
               />
-              <p
-                style={{
-                  position: "absolute",
-                  width: "100%",
-                  top: "40%",
-                  padding: "0 2rem",
-                  textAlign: "center",
-                  color: "#fff !important",
-                  fontSize: "3rem",
-                  lineHeight: "3rem",
-                }}
-              >
-                {data.description}
-              </p>
             </div>
           ))}
         </div>
