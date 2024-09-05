@@ -1,63 +1,28 @@
-/* FUENTES */
-@font-face {
-    font-family: 'Canela';
-    src: url('https://rawcdn.githack.com/ricardoolivaalonso/Feinkoch/1a9843dce0cdcb756abaed876e99d9f6b6dae438/public/fonts/Canela-Thin-Web.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: block;
+@font-face 
+{
+    font-family: 'Abril';
+    src: url('fuentes/Abril_Fatface/AbrilFatface-Regular.ttf');
 }
 
 @font-face 
 {
-    font-family: 'Korpus-A';
-    src: url('https://rawcdn.githack.com/ricardoolivaa lonso/Feinkoch/1a9843dce0cdcb756abaed876e99d9f6b6dae438/public/fonts/KorpusGrotesk-A.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: block;
+    font-family: 'DM-italic';
+    src: url('fuentes/Roboto/Roboto-Italic.ttf');
 }
-  
+
 @font-face 
 {
-    font-family: 'Korpus-B';
-    src: url('https://rawcdn.githack.com/ricardoolivaalonso/Feinkoch/1a9843dce0cdcb756abaed876e99d9f6b6dae438/public/fonts/KorpusGrotesk-B.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: block;
+    font-family: 'DM-regular';
+    src: url('fuentes/Roboto/Roboto-Medium.ttf');
 }
 
-
-$texto-titulo: 'Canela', sans-serif;
-$texto-normal: 'Korpus-A', sans-serif;
-
-$texto-size: 16px;
-
-$white: #ffffff;
-$black: #242424;
-$gray: #ededed;
-$gray-b: #F8F8F8;
-$green: #B4C8C6;
-$blue: #8edbed;
-$color-verde: #94aa2a;
-$color-white: #f1f1f1;
-$color-black: #242424;
-$color1 : #1a1919;
-$color2 : #f6f4f2;
-$color3 : #fe974c;
-$color4 : #222;
+/*------------ fuentes ------------*/
+$Abril: 'Abril', sans-serif;
+$DM-i: 'DM-italic', sans-serif;
+$DM-r: 'DM-regular', sans-serif;
 
 
 
-
-
-$gap: 20px;
-$gap-v: 35px;
-$gap-h: 50px;
-
-
-$transition: .3s ease;
-
-$mq1: 770px;
-$mq2: 1024px;
-$mq3: 1200px;
-$mq4: 1400px;
-
+$color-1 : #191919;
+$color-2 : #fafafa;
+$color-3 : #330867 ;
