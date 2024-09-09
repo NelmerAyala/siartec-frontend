@@ -1,5 +1,4 @@
 import React, { FC, ReactElement } from "react";
-import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Fade from "embla-carousel-fade";
 import Autoplay from "embla-carousel-autoplay";
@@ -28,7 +27,7 @@ const EmblaCarousel = (props) => {
   } = usePrevNextButtons(emblaApi);
 
   return (
-    <div className="embla">
+    <div className="embla" style={{ padding: "54px 0 0" }}>
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((data, index) => (
@@ -37,7 +36,7 @@ const EmblaCarousel = (props) => {
               key={index}
               style={{
                 width: "100%",
-                height: "650px",
+                height: "100%",
                 overflow: "hidden",
                 padding: "0px",
                 position: "relative",

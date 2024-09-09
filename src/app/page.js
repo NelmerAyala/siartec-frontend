@@ -4,7 +4,7 @@ import "./styles/index.scss";
 import EmblaCarousel from "@/components/home/carousel";
 
 import { Box, Grid, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { createTheme, useTheme } from "@mui/material/styles";
 
 // tabs
 import AppBar from "@mui/material/AppBar";
@@ -78,7 +78,7 @@ const SLIDES = [
 const OPTIONS = { loop: true, duration: 30 };
 
 export default function HomePage() {
-  const theme = useTheme();
+  // const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -257,6 +257,7 @@ export default function HomePage() {
                         id="outlined-basic"
                         label="Cédula"
                         variant="outlined"
+                        color="primary"
                       />
                     </div>
                     <div className="">
@@ -264,6 +265,7 @@ export default function HomePage() {
                         id="outlined-basic"
                         label="Nro Timbre"
                         variant="outlined"
+                        sx={{}}
                       />
                     </div>
                     <Button className="btn-1" variant="contained">
@@ -295,7 +297,7 @@ export default function HomePage() {
                 className="cardImportant-panel"
                 value={value}
                 index={0}
-                dir={theme.direction}
+                // dir={theme.direction}
               >
                 <div className="card-content">
                   <Typography>
@@ -322,7 +324,7 @@ export default function HomePage() {
                 className="cardImportant-panel"
                 value={value}
                 index={1}
-                dir={theme.direction}
+                // dir={theme.direction}
               >
                 <div className="card-content">
                   <h2>40,75 bs</h2>
@@ -333,7 +335,7 @@ export default function HomePage() {
                 className="cardImportant-panel"
                 value={value}
                 index={2}
-                dir={theme.direction}
+                // dir={theme.direction}
               >
                 <div className="card-content">
                   <Typography>
@@ -351,7 +353,7 @@ export default function HomePage() {
                 className="cardImportant-panel"
                 value={value}
                 index={3}
-                dir={theme.direction}
+                // dir={theme.direction}
               >
                 <div className="card-content">
                   <Typography>tributosrecaudacion@gmail.com</Typography>

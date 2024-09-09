@@ -124,8 +124,12 @@ const SignInOutModal = (props) => {
       aria-describedby="modal-modal-description"
       style={{
         position: "absolute",
-        height: "100%",
+        overflow: "scroll",
         display: "block",
+        // top: "10%",
+        // bottom: "10%",
+        // left: "10%",
+        // height: "100%",
       }}
     >
       <>
