@@ -1,9 +1,89 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import InformativeCard from "./informative-card";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
     <>
+      <Box
+        sx={{
+          marginTop: 5,
+          flexGrow: 1,
+          padding: 5,
+          backgroundImage: "url:('')",
+          backgroundImage: "url('/img/background-gray.png')",
+          backgroundRepeat: "repeat",
+        }}
+      >
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          <Grid item xs={2} sm={4} md={6} key={1}>
+            <Stack
+              direction="column"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              spacing={1}
+            >
+              <Typography variant="h4" gutterBottom className="title">
+                SIARTEC
+              </Typography>
+              <address>
+                <strong>
+                  Secretaria de Hacienda y Finanzas del Estado Carabobo.
+                </strong>
+                <br />
+                Urb. Ind. La Quizanda Valencia.
+              </address>
+              <Typography>
+                <i></i> 0241-874.34.70 <br />
+                <i></i> tributosrecaudacion@gmail.com
+              </Typography>
+              <strong>Horario de Trabajo</strong>
+              <br />
+              <Typography>De Lunes a Viernes desde las 8am a 2pm.</Typography>
+            </Stack>
+          </Grid>
+          <Grid item xs={2} sm={4} md={6} key={2}>
+            <Stack
+              direction="column"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              spacing={1}
+            >
+              <Typography variant="h5" gutterBottom>
+                Enlaces de Interes
+              </Typography>
+              <Link
+                href="http://www.saime.gob.ve/"
+                target="_blank"
+                style={{ textDecoration: "none", color: "white!important" }}
+              >
+                1.- Servicio Administrativo de Identificación, Migración y
+                Extranjería.
+              </Link>
+              <Link
+                href="http://www.saren.gob.ve/"
+                target="_blank"
+                style={{ textDecoration: "none", color: "white!important" }}
+              >
+                2.- Servicio Autónomo de Registros y Notarías.
+              </Link>
+              <Link
+                href="http://www.cgr.gob.ve/"
+                target="_blank"
+                style={{ textDecoration: "none", color: "white!important" }}
+              >
+                3.- Contraloría General de la Republica Bolivariana de
+                Venezuela.
+              </Link>
+            </Stack>
+          </Grid>
+        </Grid>
+      </Box>
       <Box
         sx={{
           width: "100%",
