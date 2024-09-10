@@ -122,8 +122,9 @@ const SignInOutModal = (props) => {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      disableScrollLock
       style={{
-        position: "absolute",
+        // position: "absolute",
         overflow: "scroll",
         display: "block",
         // top: "10%",

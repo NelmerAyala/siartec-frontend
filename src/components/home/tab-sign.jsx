@@ -28,7 +28,7 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-const paperStyle = { width: 340, margin: "1px auto" };
+const paperStyle = { width: 500, margin: "1px auto" };
 
 const TabSignInOutContainer = React.forwardRef(function TabSignInOutContainer(
   props,

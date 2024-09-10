@@ -6,7 +6,11 @@ import MenuHome from "@/components/home/header";
 import Footer from "@/components/home/footer";
 import SessionWrapper from "@/components/SessionWrapper";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
+});
 
 export const metadata = {
   title: "Siartec",
@@ -32,7 +36,7 @@ export default function RootLayout({ children }) {
                 </header>
                 <main>{children}</main>
                 <footer>
-                  <Footer></Footer>
+                  <Footer />
                 </footer>
               </>
             </AppMui>

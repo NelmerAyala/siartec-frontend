@@ -47,12 +47,10 @@ p
     background-image: url(../../../../public/img/bg/textura2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-size: 100%;
   
     h2
     {
       color: $color-3;
-      text-shadow: 3px 3px 3px #df2d453b;
     }
 
     p
@@ -389,48 +387,29 @@ p
 ::selection { background-color: rgba(131, 224, 224, 0.226); }
 
 
-.text 
-{
-    font-family: $DM-r;
-    text-transform: uppercase;
-    background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 50px;
-    font: {
-        family: $DM-r;
-        font-size: 50px;
-    };
-}
+
 
 #oscuro
 {
   .text
   {
-    font-family: $DM-r;
-    text-transform: uppercase;
-    background: linear-gradient(to right, #30CFD0 0%, #ffffff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 50px;
-    font: {
-        family: $DM-r;
-        font-size: 50px;
-    };
+    color: $color-2;
+      
   }
 }
 
-.text-oscuro
-  {
-    font-family: $DM-r;
-    text-transform: uppercase;
-    background: linear-gradient(to right, #30CFD0 0%, #ffffff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 50px;
-    font: {
-        family: $DM-r;
-        font-size: 50px;
-    };
-  }
+.texto-oscuro
+{
+  color:  $color-2;
+}
 
+
+.foot
+{
+  text-align: center;
+}
+
+.foot-btn:hover
+ {
+    color: rgba(255, 255, 255, 0.589) !important;
+ }

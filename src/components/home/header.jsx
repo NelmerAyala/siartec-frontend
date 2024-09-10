@@ -89,450 +89,453 @@ export default function MenuHome() {
       ? signOut()
       : console.log("error option menu");
   };
-  let optionsMenu;
-  !session
-    ? (optionsMenu = pages)
-    : path[1] !== "app"
-    ? (optionsMenu = modules)
-    : (optionsMenu = pages);
-  // if (session) {
-  //   if (path[1] !== "app") {
-  //     return (
-  //       <>
-  //         <AppBar position="fixed" theme={headerTheme}>
-  //           <Container maxWidth="xl">
-  //             <Toolbar disableGutters>
-  //               <Box
-  //                 component="img"
-  //                 sx={{
-  //                   width: 120,
-  //                   maxHeight: { xs: 233, md: 167 },
-  //                   maxWidth: { xs: 350, md: 250 },
-  //                   display: { xs: "none", md: "flex" },
-  //                   mr: 1,
-  //                 }}
-  //                 alt="The house from the offer."
-  //                 src="/img/logo.png"
-  //               />
-  //               <Typography
-  //                 variant="h6"
-  //                 noWrap
-  //                 component="a"
-  //                 href="#app-bar-with-responsive-menu"
-  //                 sx={{
-  //                   mr: 2,
-  //                   display: { xs: "none", md: "flex" },
-  //                   fontFamily: "monospace",
-  //                   fontWeight: 700,
-  //                   letterSpacing: ".3rem",
-  //                   color: "inherit",
-  //                   textDecoration: "none",
-  //                 }}
-  //               ></Typography>
+  // let optionsMenu;
+  // !session
+  //   ? (optionsMenu = pages)
+  //   : path[1] !== "app"
+  //   ? (optionsMenu = modules)
+  //   : (optionsMenu = pages);
 
-  //               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-  //                 <IconButton
-  //                   size="large"
-  //                   aria-label="account of current user"
-  //                   aria-controls="menu-appbar"
-  //                   aria-haspopup="true"
-  //                   onClick={handleOpenNavMenu}
-  //                   color="inherit"
-  //                 >
-  //                   <MenuIcon />
-  //                 </IconButton>
-  //                 <Menu
-  //                   theme={headerTheme}
-  //                   id="menu-appbar"
-  //                   anchorEl={anchorElNav}
-  //                   anchorOrigin={{
-  //                     vertical: "bottom",
-  //                     horizontal: "left",
-  //                   }}
-  //                   keepMounted
-  //                   transformOrigin={{
-  //                     vertical: "top",
-  //                     horizontal: "left",
-  //                   }}
-  //                   open={Boolean(anchorElNav)}
-  //                   onClose={handleCloseNavMenu}
-  //                   sx={{
-  //                     display: { xs: "block", md: "none" },
-  //                   }}
-  //                 >
-  //                   {pages.map((page) => (
-  //                     <Button
-  //                       key={page.title}
-  //                       onClick={() =>
-  //                         generateActions({
-  //                           value: page.onClick,
-  //                           path: page.path,
-  //                         })
-  //                       }
-  //                       sx={{ my: 2, color: "white", display: "block" }}
-  //                     ></Button>
-  //                   ))}
-  //                 </Menu>
-  //               </Box>
+  // return (
+  //   <>
+  //     <AppBar position="fixed" theme={headerTheme}>
+  //       <Container maxWidth="xl">
+  //         <Toolbar disableGutters>
+  //           <Box
+  //             component="img"
+  //             sx={{
+  //               width: 120,
+  //               maxHeight: { xs: 233, md: 167 },
+  //               maxWidth: { xs: 350, md: 250 },
+  //               display: { xs: "none", md: "flex" },
+  //               mr: 1,
+  //             }}
+  //             alt="The house from the offer."
+  //             src="/img/logo.png"
+  //           />
+  //           <Typography
+  //             variant="h6"
+  //             noWrap
+  //             component="a"
+  //             href="#app-bar-with-responsive-menu"
+  //             sx={{
+  //               mr: 2,
+  //               display: { xs: "none", md: "flex" },
+  //               fontFamily: "monospace",
+  //               fontWeight: 700,
+  //               letterSpacing: ".3rem",
+  //               color: "inherit",
+  //               textDecoration: "none",
+  //             }}
+  //           ></Typography>
 
-  //               <Box
-  //                 component="img"
-  //                 sx={{
-  //                   width: 120,
-  //                   maxHeight: { xs: 233, md: 167 },
-  //                   maxWidth: { xs: 350, md: 250 },
-  //                   display: { xs: "flex", md: "none" },
-  //                   mr: 1,
-  //                 }}
-  //                 alt="The house from the offer."
-  //                 src="/img/logo.png"
-  //               />
-  //               <Typography
-  //                 variant="h5"
-  //                 noWrap
-  //                 component="a"
-  //                 href="#app-bar-with-responsive-menu"
-  //                 sx={{
-  //                   mr: 2,
-  //                   display: { xs: "flex", md: "none" },
-  //                   flexGrow: 1,
-  //                   fontFamily: "monospace",
-  //                   fontWeight: 700,
-  //                   letterSpacing: ".3rem",
-  //                   color: "inherit",
-  //                   textDecoration: "none",
-  //                 }}
-  //               ></Typography>
-  //               <Box
-  //                 display="flex"
-  //                 flexGrow={12}
-  //                 sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-  //               ></Box>
-  //               <Box
-  //                 sx={{
-  //                   flexGrow: 1,
-  //                   marginRight: "1",
-  //                   display: { xs: "none", md: "flex" },
-  //                 }}
-  //               >
-  //                 {modules.map((module) => (
-  //                   <Button
-  //                     key={module.title}
-  //                     onClick={() =>
-  //                       generateActions({
-  //                         value: module.onClick,
-  //                         path: module.path,
-  //                       })
-  //                     }
-  //                     sx={{ my: 2, color: "white", display: "block" }}
-  //                   >
-  //                     {module.title}
-  //                   </Button>
-  //                 ))}
-  //               </Box>
-  //             </Toolbar>
-  //           </Container>
-  //         </AppBar>
-  //         <SignInOutModal
-  //           open={open}
-  //           setOpen={setOpen}
-  //           openChildren={openChildren}
-  //           setOpenChildren={setOpenChildren}
-  //         >
-  //           <TabSignInOutContainer></TabSignInOutContainer>
-  //         </SignInOutModal>
-  //       </>
-  //     );
-  //   }
-  // } else {
-  //   return (
-  //     <>
-  //       <AppBar position="fixed" theme={headerTheme}>
-  //         <Container maxWidth="xl">
-  //           <Toolbar disableGutters>
-  //             <Box
-  //               component="img"
-  //               sx={{
-  //                 width: 120,
-  //                 maxHeight: { xs: 233, md: 167 },
-  //                 maxWidth: { xs: 350, md: 250 },
-  //                 display: { xs: "none", md: "flex" },
-  //                 mr: 1,
+  //           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+  //             <IconButton
+  //               size="large"
+  //               aria-label="account of current user"
+  //               aria-controls="menu-appbar"
+  //               aria-haspopup="true"
+  //               onClick={handleOpenNavMenu}
+  //               color="inherit"
+  //             >
+  //               <MenuIcon />
+  //             </IconButton>
+  //             <Menu
+  //               theme={headerTheme}
+  //               id="menu-appbar"
+  //               anchorEl={anchorElNav}
+  //               anchorOrigin={{
+  //                 vertical: "bottom",
+  //                 horizontal: "left",
   //               }}
-  //               alt="The house from the offer."
-  //               src="/img/logo.png"
-  //             />
-  //             <Typography
-  //               variant="h6"
-  //               noWrap
-  //               component="a"
-  //               href="#app-bar-with-responsive-menu"
-  //               sx={{
-  //                 mr: 2,
-  //                 display: { xs: "none", md: "flex" },
-  //                 fontFamily: "monospace",
-  //                 fontWeight: 700,
-  //                 letterSpacing: ".3rem",
-  //                 color: "inherit",
-  //                 textDecoration: "none",
+  //               keepMounted
+  //               transformOrigin={{
+  //                 vertical: "top",
+  //                 horizontal: "left",
   //               }}
-  //             ></Typography>
-
-  //             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-  //               <IconButton
-  //                 size="large"
-  //                 aria-label="account of current user"
-  //                 aria-controls="menu-appbar"
-  //                 aria-haspopup="true"
-  //                 onClick={handleOpenNavMenu}
-  //                 color="inherit"
-  //               >
-  //                 <MenuIcon />
-  //               </IconButton>
-  //               <Menu
-  //                 theme={headerTheme}
-  //                 id="menu-appbar"
-  //                 anchorEl={anchorElNav}
-  //                 anchorOrigin={{
-  //                   vertical: "bottom",
-  //                   horizontal: "left",
-  //                 }}
-  //                 keepMounted
-  //                 transformOrigin={{
-  //                   vertical: "top",
-  //                   horizontal: "left",
-  //                 }}
-  //                 open={Boolean(anchorElNav)}
-  //                 onClose={handleCloseNavMenu}
-  //                 sx={{
-  //                   display: { xs: "block", md: "none" },
-  //                 }}
-  //               >
-  //                 {pages.map((page) => (
-  //                   <Button
-  //                     key={page.title}
-  //                     onClick={() =>
-  //                       generateActions({
-  //                         value: page.onClick,
-  //                         path: page.path,
-  //                       })
-  //                     }
-  //                     sx={{ my: 2, color: "white", display: "block" }}
-  //                   >
-  //                     {page.title}
-  //                   </Button>
-  //                 ))}
-  //               </Menu>
-  //             </Box>
-  //             <Box
-  //               component="img"
+  //               open={Boolean(anchorElNav)}
+  //               onClose={handleCloseNavMenu}
   //               sx={{
-  //                 width: 120,
-  //                 maxHeight: { xs: 233, md: 167 },
-  //                 maxWidth: { xs: 350, md: 250 },
-  //                 display: { xs: "flex", md: "none" },
-  //                 mr: 1,
-  //               }}
-  //               alt="The house from the offer."
-  //               src="/img/logo.png"
-  //             />
-  //             <Typography
-  //               variant="h5"
-  //               noWrap
-  //               component="a"
-  //               href="#app-bar-with-responsive-menu"
-  //               sx={{
-  //                 mr: 2,
-  //                 display: { xs: "flex", md: "none" },
-  //                 flexGrow: 1,
-  //                 fontFamily: "monospace",
-  //                 fontWeight: 700,
-  //                 letterSpacing: ".3rem",
-  //                 color: "inherit",
-  //                 textDecoration: "none",
-  //               }}
-  //             ></Typography>
-  //             <Box
-  //               display="flex"
-  //               flexGrow={12}
-  //               sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-  //             ></Box>
-  //             <Box
-  //               sx={{
-  //                 flexGrow: 1,
-  //                 marginRight: "1",
-  //                 display: { xs: "none", md: "flex" },
+  //                 display: { xs: "block", md: "none" },
   //               }}
   //             >
-  //               {pages.map((page) => (
+  //               {optionsMenu.map((page) => (
   //                 <Button
   //                   key={page.title}
   //                   onClick={() =>
-  //                     generateActions({ value: page.onClick, path: page.path })
+  //                     generateActions({
+  //                       value: page.onClick,
+  //                       path: page.path,
+  //                     })
   //                   }
   //                   sx={{ my: 2, color: "white", display: "block" }}
   //                 >
   //                   {page.title}
   //                 </Button>
   //               ))}
-  //             </Box>
-  //           </Toolbar>
-  //         </Container>
-  //       </AppBar>
-  //       <SignInOutModal
-  //         open={open}
-  //         setOpen={setOpen}
-  //         openChildren={openChildren}
-  //         setOpenChildren={setOpenChildren}
-  //       >
-  //         <TabSignInOutContainer></TabSignInOutContainer>
-  //       </SignInOutModal>
-  //     </>
-  //   );
-  // }
+  //             </Menu>
+  //           </Box>
+  //           <Box
+  //             component="img"
+  //             sx={{
+  //               width: 120,
+  //               maxHeight: { xs: 233, md: 167 },
+  //               maxWidth: { xs: 350, md: 250 },
+  //               display: { xs: "flex", md: "none" },
+  //               mr: 1,
+  //             }}
+  //             alt="The house from the offer."
+  //             src="/img/logo.png"
+  //           />
+  //           <Typography
+  //             variant="h5"
+  //             noWrap
+  //             component="a"
+  //             href="#app-bar-with-responsive-menu"
+  //             sx={{
+  //               mr: 2,
+  //               display: { xs: "flex", md: "none" },
+  //               flexGrow: 1,
+  //               fontFamily: "monospace",
+  //               fontWeight: 700,
+  //               letterSpacing: ".3rem",
+  //               color: "inherit",
+  //               textDecoration: "none",
+  //             }}
+  //           ></Typography>
+  //           <Box
+  //             display="flex"
+  //             flexGrow={12}
+  //             sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+  //           ></Box>
+  //           <Box
+  //             sx={{
+  //               flexGrow: 1,
+  //               marginRight: "1",
+  //               display: { xs: "none", md: "flex" },
+  //             }}
+  //           >
+  //             {optionsMenu.map((page) => (
+  //               <Button
+  //                 key={page.title}
+  //                 onClick={() =>
+  //                   generateActions({ value: page.onClick, path: page.path })
+  //                 }
+  //                 sx={{ my: 2, color: "white", display: "block" }}
+  //               >
+  //                 {page.title}
+  //               </Button>
+  //             ))}
+  //           </Box>
+  //         </Toolbar>
+  //       </Container>
+  //     </AppBar>
+  //     <SignInOutModal
+  //       open={open}
+  //       setOpen={setOpen}
+  //       openChildren={openChildren}
+  //       setOpenChildren={setOpenChildren}
+  //     >
+  //       <TabSignInOutContainer></TabSignInOutContainer>
+  //     </SignInOutModal>
+  //   </>
+  // );
 
-  return (
-    <>
-      <AppBar position="fixed" theme={headerTheme}>
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <Box
-              component="img"
-              sx={{
-                width: 120,
-                maxHeight: { xs: 233, md: 167 },
-                maxWidth: { xs: 350, md: 250 },
-                display: { xs: "none", md: "flex" },
-                mr: 1,
-              }}
-              alt="The house from the offer."
-              src="/img/logo.png"
-            />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            ></Typography>
+  // opcion 2
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                theme={headerTheme}
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
+  if (session) {
+    if (path[1] !== "app") {
+      return (
+        <>
+          <AppBar position="fixed" theme={headerTheme}>
+            <Container maxWidth="xl">
+              <Toolbar disableGutters>
+                <Box
+                  component="img"
+                  sx={{
+                    width: 120,
+                    maxHeight: { xs: 233, md: 167 },
+                    maxWidth: { xs: 350, md: 250 },
+                    display: { xs: "none", md: "flex" },
+                    mr: 1,
+                  }}
+                  alt="The house from the offer."
+                  src="/img/logo.png"
+                />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="a"
+                  href="#app-bar-with-responsive-menu"
+                  sx={{
+                    mr: 2,
+                    display: { xs: "none", md: "flex" },
+                    fontFamily: "monospace",
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                ></Typography>
+
+                <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                  <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleOpenNavMenu}
+                    color="inherit"
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                  <Menu
+                    theme={headerTheme}
+                    id="menu-appbar"
+                    anchorEl={anchorElNav}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    open={Boolean(anchorElNav)}
+                    onClose={handleCloseNavMenu}
+                    sx={{
+                      display: { xs: "block", md: "none" },
+                    }}
+                  >
+                    {pages.map((page) => (
+                      <Button
+                        key={page.title}
+                        onClick={() =>
+                          generateActions({
+                            value: page.onClick,
+                            path: page.path,
+                          })
+                        }
+                        sx={{ my: 2, color: "white", display: "block" }}
+                      ></Button>
+                    ))}
+                  </Menu>
+                </Box>
+
+                <Box
+                  component="img"
+                  sx={{
+                    width: 120,
+                    maxHeight: { xs: 233, md: 167 },
+                    maxWidth: { xs: 350, md: 250 },
+                    display: { xs: "flex", md: "none" },
+                    mr: 1,
+                  }}
+                  alt="The house from the offer."
+                  src="/img/logo.png"
+                />
+                <Typography
+                  variant="h5"
+                  noWrap
+                  component="a"
+                  href="#app-bar-with-responsive-menu"
+                  sx={{
+                    mr: 2,
+                    display: { xs: "flex", md: "none" },
+                    flexGrow: 1,
+                    fontFamily: "monospace",
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                ></Typography>
+                <Box
+                  display="flex"
+                  flexGrow={12}
+                  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                ></Box>
+                <Box
+                  sx={{
+                    flexGrow: 1,
+                    marginRight: "1",
+                    display: { xs: "none", md: "flex" },
+                  }}
+                >
+                  {modules.map((module) => (
+                    <Button
+                      key={module.title}
+                      onClick={() =>
+                        generateActions({
+                          value: module.onClick,
+                          path: module.path,
+                        })
+                      }
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
+                      {module.title}
+                    </Button>
+                  ))}
+                </Box>
+              </Toolbar>
+            </Container>
+          </AppBar>
+          <SignInOutModal
+            open={open}
+            setOpen={setOpen}
+            openChildren={openChildren}
+            setOpenChildren={setOpenChildren}
+          >
+            <TabSignInOutContainer></TabSignInOutContainer>
+          </SignInOutModal>
+        </>
+      );
+    }
+  } else {
+    return (
+      <>
+        <AppBar position="fixed" theme={headerTheme}>
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+              <Box
+                component="img"
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  width: 120,
+                  maxHeight: { xs: 233, md: 167 },
+                  maxWidth: { xs: 350, md: 250 },
+                  display: { xs: "none", md: "flex" },
+                  mr: 1,
+                }}
+                alt="The house from the offer."
+                src="/img/logo.png"
+              />
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="#app-bar-with-responsive-menu"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              ></Typography>
+
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  theme={headerTheme}
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: "block", md: "none" },
+                  }}
+                >
+                  {pages.map((page) => (
+                    <Button
+                      key={page.title}
+                      onClick={() =>
+                        generateActions({
+                          value: page.onClick,
+                          path: page.path,
+                        })
+                      }
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
+                      {page.title}
+                    </Button>
+                  ))}
+                </Menu>
+              </Box>
+              <Box
+                component="img"
+                sx={{
+                  width: 120,
+                  maxHeight: { xs: 233, md: 167 },
+                  maxWidth: { xs: 350, md: 250 },
+                  display: { xs: "flex", md: "none" },
+                  mr: 1,
+                }}
+                alt="The house from the offer."
+                src="/img/logo.png"
+              />
+              <Typography
+                variant="h5"
+                noWrap
+                component="a"
+                href="#app-bar-with-responsive-menu"
+                sx={{
+                  mr: 2,
+                  display: { xs: "flex", md: "none" },
+                  flexGrow: 1,
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              ></Typography>
+              <Box
+                display="flex"
+                flexGrow={12}
+                sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+              ></Box>
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  marginRight: "1",
+                  display: { xs: "none", md: "flex" },
                 }}
               >
-                {optionsMenu.map((page) => (
+                {pages.map((page) => (
                   <Button
                     key={page.title}
                     onClick={() =>
-                      generateActions({
-                        value: page.onClick,
-                        path: page.path,
-                      })
+                      generateActions({ value: page.onClick, path: page.path })
                     }
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
                     {page.title}
                   </Button>
                 ))}
-              </Menu>
-            </Box>
-            <Box
-              component="img"
-              sx={{
-                width: 120,
-                maxHeight: { xs: 233, md: 167 },
-                maxWidth: { xs: 350, md: 250 },
-                display: { xs: "flex", md: "none" },
-                mr: 1,
-              }}
-              alt="The house from the offer."
-              src="/img/logo.png"
-            />
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            ></Typography>
-            <Box
-              display="flex"
-              flexGrow={12}
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-            ></Box>
-            <Box
-              sx={{
-                flexGrow: 1,
-                marginRight: "1",
-                display: { xs: "none", md: "flex" },
-              }}
-            >
-              {optionsMenu.map((page) => (
-                <Button
-                  key={page.title}
-                  onClick={() =>
-                    generateActions({ value: page.onClick, path: page.path })
-                  }
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page.title}
-                </Button>
-              ))}
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-      <SignInOutModal
-        open={open}
-        setOpen={setOpen}
-        openChildren={openChildren}
-        setOpenChildren={setOpenChildren}
-      >
-        <TabSignInOutContainer></TabSignInOutContainer>
-      </SignInOutModal>
-    </>
-  );
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+        <SignInOutModal
+          open={open}
+          setOpen={setOpen}
+          openChildren={openChildren}
+          setOpenChildren={setOpenChildren}
+        >
+          <TabSignInOutContainer></TabSignInOutContainer>
+        </SignInOutModal>
+      </>
+    );
+  }
 }

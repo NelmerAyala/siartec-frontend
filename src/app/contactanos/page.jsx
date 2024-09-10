@@ -26,19 +26,21 @@ export default function ServicesPage() {
     <>
       {/*-----------------timbres Fiscales-----------------*/}
       <div className="container2" id="oscuro">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31416.41765804649!2d-67.964938!3d10.176412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8067e872cbe809%3A0x275668424e9ac22f!2sSecretar%C3%ADa%20de%20Hacienda%20del%20Estado%20Carabobo%20(siartec)!5e0!3m2!1ses!2sve!4v1725373473284!5m2!1ses!2sve"
-          width="600"
-          height="450"
-          style={{ border: "0" }}
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
         {/* /*div */}
         <Box className="box" id="sect-1" sx={{ flexGrow: 1 }}>
           <Grid className="grid" container spacing={5}>
             <Grid item xs={10} className="texto">
+              <h2 className="text">Ubicación</h2>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31416.41765804649!2d-67.964938!3d10.176412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8067e872cbe809%3A0x275668424e9ac22f!2sSecretar%C3%ADa%20de%20Hacienda%20del%20Estado%20Carabobo%20(siartec)!5e0!3m2!1ses!2sve!4v1725373473284!5m2!1ses!2sve"
+                class="ubicacion"
+                width="600"
+                height="450"
+                style={{ border: "0" }}
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
               <h2 className="text">Formulario de Contacto</h2>
             </Grid>
 
