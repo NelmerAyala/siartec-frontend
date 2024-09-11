@@ -1,86 +1,7 @@
-// import { Box, Input } from "@mui/material";
-// // import "./style.scss";
-
-// export default async function MainApp() {
-//   return <>Página Principal</>;
-// }
 "use client";
 
-// import * as React from "react";
-// import PropTypes from "prop-types";
-// import Tabs from "@mui/material/Tabs";
-// import Tab from "@mui/material/Tab";
-// import Box from "@mui/material/Box";
-// import { Typography } from "@mui/material";
-
-// function CustomTabPanel(props) {
-//   const { children, value, index, ...other } = props;
-
-//   return (
-//     <div
-//       role="tabpanel"
-//       hidden={value !== index}
-//       id={`simple-tabpanel-${index}`}
-//       aria-labelledby={`simple-tab-${index}`}
-//       {...other}
-//     >
-//       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-//     </div>
-//   );
-// }
-
-// CustomTabPanel.propTypes = {
-//   children: PropTypes.node,
-//   index: PropTypes.number.isRequired,
-//   value: PropTypes.number.isRequired,
-// };
-
-// function a11yProps(index) {
-//   return {
-//     id: `simple-tab-${index}`,
-//     "aria-controls": `simple-tabpanel-${index}`,
-//   };
-// }
-
-// export default function BasicTabs() {
-//   const [value, setValue] = React.useState(0);
-
-//   const handleChange = (event, newValue) => {
-//     setValue(newValue);
-//   };
-
-//   return (
-//     <>
-//       <Typography variant="h4">
-//         Ahora puede adquirir sus estampillas con tres simples pasos
-//       </Typography>
-//       <Box sx={{ width: "100%" }}>
-//         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-//           <Tabs
-//             value={value}
-//             onChange={handleChange}
-//             aria-label="basic tabs example"
-//           >
-//             <Tab label="Paso 1" {...a11yProps(0)} />
-//             <Tab label="Paso 2" {...a11yProps(1)} />
-//             <Tab label="Paso 3" {...a11yProps(2)} />
-//           </Tabs>
-//         </Box>
-//         <CustomTabPanel value={value} index={0}>
-//           Paso 1
-//         </CustomTabPanel>
-//         <CustomTabPanel value={value} index={1}>
-//           Paso 2
-//         </CustomTabPanel>
-//         <CustomTabPanel value={value} index={2}>
-//           Paso 3
-//         </CustomTabPanel>
-//       </Box>
-//     </>
-//   );
-// }
-
 import * as React from "react";
+import "../styles/index.scss";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -90,6 +11,11 @@ import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 
 const steps = ["Paso 1", "Paso 2", "Paso 3"];
+const IMAGES_STEPS = [
+  "img/steps/selection.svg",
+  "img/steps/selection_options.svg",
+  "img/steps/transfer_money.svg",
+];
 
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -138,7 +64,11 @@ export default function HorizontalLinearStepper() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box
+      sx={{ width: "100%", padding: "20px 0" }}
+      color={"#000"}
+      bgcolor={"lightgray"}
+    >
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
@@ -164,6 +94,15 @@ export default function HorizontalLinearStepper() {
             Todos los pasos completados - Ya puedes descargar/imprimir tu
             estampilla fiscal
           </Typography>
+          <Container maxWidth="sm">
+            <Box
+              component="img"
+              alt={`img/steps/end.svg`}
+              src={`img/steps/end.svg`}
+              maxWidth="sm"
+              sx={{ height: "50vh" }}
+            ></Box>
+          </Container>
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Box sx={{ flex: "1 1 auto" }} />
             <Button onClick={handleReset}>Reiniciar Pasos</Button>
@@ -174,7 +113,13 @@ export default function HorizontalLinearStepper() {
           <Typography sx={{ mt: 2, mb: 1 }}>Paso {activeStep + 1}</Typography>
 
           <Container maxWidth="sm">
-            <Box sx={{ bgcolor: "#cfe8fc", height: "50vh" }} />
+            <Box
+              component="img"
+              alt={`${IMAGES_STEPS[activeStep]}`}
+              src={`${IMAGES_STEPS[activeStep]}`}
+              maxWidth="sm"
+              sx={{ height: "50vh" }}
+            ></Box>
           </Container>
 
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
