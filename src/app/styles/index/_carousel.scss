@@ -19,12 +19,14 @@
   flex: 0 0 var(--slide-size);
   min-width: 0;
   padding-left: var(--slide-spacing);
+  background-color: #000;
 }
 .embla__slide__img {
   /* border-radius: 1.8rem; */
   display: block;
   height: var(--slide-height);
   width: 100%;
+  opacity: .5;
   object-fit: cover;
 }
 .embla__controls {
@@ -109,4 +111,11 @@
 }
 .embla__slide__img {
   user-select: none;
+}
+
+.embla__slide p
+{
+  font-family: $Abril;
+  color:  $color-2;
+  letter-spacing: .1em;
 }

@@ -58,7 +58,7 @@
      background-position: top!important;
      height: 350px;
      padding: 1em 2em;
-     background: #313131;
+     background: $color-1;
      border-radius: 10px;
      h2
      {
@@ -88,12 +88,17 @@
    background-image: url(../../../../public/img/bg/informacion/estampillas2.png);
 }
 
-
-// seccion#2
 #back-3
 {
-   background-image: url(../../../../public/img/bg/informacion/1x1000_1.png);
+   background-image: url(../../../../public/img/bg/informacion/estampillas3.png);
 }
+
+
+// seccion#2
+// #back-3
+// {
+//    background-image: url(../../../../public/img/bg/informacion/1x1000_1.png);
+// }
 
 #back-4
 {
