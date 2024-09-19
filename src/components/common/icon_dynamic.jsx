@@ -5,6 +5,7 @@ import {
   ExitToAppSharp,
   Payments,
   List,
+  Home,
 } from "@mui/icons-material";
 
 export const IconDynamic = ({ iconName }) => {
@@ -19,6 +20,8 @@ export const IconDynamic = ({ iconName }) => {
       return <ExitToAppSharp />;
     case "Payments":
       return <Payments />;
+    case "Home":
+      return <Home />;
     case "List":
       return <List />;
     default:

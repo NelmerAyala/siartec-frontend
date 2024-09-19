@@ -32,6 +32,10 @@ const theme = createTheme({
     info: {
       main: "#ffffff",
     },
+
+    black: {
+      main: "#00000",
+    },
   },
   typography: {
     fontFamily: roboto.style.fontFamily,

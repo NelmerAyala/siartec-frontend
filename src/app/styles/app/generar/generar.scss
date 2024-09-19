@@ -1,0 +1,39 @@
+@import "../../sass/variables";
+@import "../../sass/global.scss";
+
+.container2 {
+  border-radius: 20px;
+  box-shadow: 20;
+}
+
+.btn-1,
+.btn-2 {
+  border: 2px solid;
+  border-radius: 7px;
+  font: inherit;
+  line-height: 2;
+  margin: 0px;
+  padding: 10px 20px;
+}
+
+.container2 {
+  padding: 40px 20px;
+}
+
+#oscuro {
+  background-image: none !important;
+}
+
+// body {
+//   color: #191919 !important;
+// }
+
+// .css-1n69r7-MuiDivider-root::before,
+// .css-1n69r7-MuiDivider-root::after {
+//   width: 100%;
+//   border-top: thin solid #191919 !important;
+// }
+
+// .css-17ytrju-MuiFormLabel-root-MuiInputLabel-root {
+//   color: #191919 !important;
+// }

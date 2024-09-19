@@ -2,6 +2,15 @@
 // LISTAR ESTAMPIL
 const ENTITIES_PRIVILEGES_NAME_ORDER = Object.freeze({
   // PROFILE
+
+  INICIO: {
+    code: "C_NUEVO",
+    name: "Inicio",
+    icon: "Home",
+    module: "natural",
+    path: "/app/",
+  },
+
   R_PROFILE: {
     code: "R_PROFILE",
     name: "Perfil",
@@ -18,13 +27,6 @@ const ENTITIES_PRIVILEGES_NAME_ORDER = Object.freeze({
   },
 
   // TAX STAMPS
-  READ_TAX_STAMPS: {
-    code: "R_TAX_STAMPS",
-    name: "Estampillas",
-    icon: "List",
-    module: "natural",
-    path: "/app/estampilla/lista",
-  },
   CREATE_TAX_STAMPS: {
     code: "C_TAX_STAMPS",
     name: "Generar Estampillas",
@@ -32,12 +34,21 @@ const ENTITIES_PRIVILEGES_NAME_ORDER = Object.freeze({
     module: "natural",
     path: "/app/estampilla/generar",
   },
+
   CREATE_PAYMENTS: {
     code: "C_PAYMENTS",
     name: "Pagar",
     icon: "Payments",
     module: "natural",
     path: "/app/estampilla/pagar",
+  },
+
+  READ_TAX_STAMPS: {
+    code: "R_TAX_STAMPS",
+    name: "Lista de Estampillas",
+    icon: "List",
+    module: "natural",
+    path: "/app/estampilla/lista",
   },
 });
 const ENTITIES_PRIVILEGES_ID_ORDER = Object.freeze(

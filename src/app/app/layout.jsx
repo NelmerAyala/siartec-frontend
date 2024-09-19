@@ -6,6 +6,7 @@ import FooterApp from "@/components/app/footer";
 export default async function LayoutApp({ children }) {
   const session = await getServerSession(nextAuthOptions);
   session.roles = [
+    "C_NUEVO",
     "R_PROFILE",
     "U_PROFILE",
     "U_PASSWORD",
