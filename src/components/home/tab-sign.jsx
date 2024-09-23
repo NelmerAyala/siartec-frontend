@@ -51,8 +51,8 @@ const TabSignInOutContainer = React.forwardRef(function TabSignInOutContainer(
             <Tabs
               value={value}
               onChange={handleChangeTab}
-              indicatorColor="secondary"
-              textColor="secondary"
+              // indicatorColor="secondary"
+              // textColor="secondary"
               aria-label="tabs sign in or sign up"
             >
               <Tab label="INGRESAR" {...a11yProps(0)} />

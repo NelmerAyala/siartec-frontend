@@ -15,6 +15,7 @@ import {
   Divider,
   Select,
   TextField,
+  Button,
 } from "@mui/material";
 
 //table
@@ -56,9 +57,9 @@ export default function CreateTaxStamps() {
 
   return (
     <>
-      <div className="container2" id="oscuro">
-        <Box className="box" id="sect-2" sx={{ flexGrow: 1 }}>
-          <Grid className="grid" container spacing={5}>
+      <div>
+        <Box className="box" id="sect-2" sx={{ flexGrow: 1, padding: "2rem" }}>
+          <Grid className="grid" container>
             <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
               Seleccione Destino de la Estampilla
             </Divider>
@@ -116,7 +117,8 @@ export default function CreateTaxStamps() {
             </Grid>
             <Grid item xs={1}>
               <div className="buttons">
-                <button
+                <Button
+                  variant="contained"
                   className="btn-1 btn-oscuro"
                   onClick={() => {
                     setContribuyents([
@@ -135,7 +137,7 @@ export default function CreateTaxStamps() {
                   }}
                 >
                   Añadir
-                </button>
+                </Button>
               </div>
             </Grid>
             <Grid item xs={12}></Grid>

@@ -183,7 +183,7 @@ export default function SignupPage(props) {
               Datos Usuario
             </Divider>
             <TextField
-              color="secondary"
+              /* color="secondary" */
               fullWidth
               label="Correo Electrónico"
               placeholder="Ingrese correo electrónico"
@@ -197,7 +197,7 @@ export default function SignupPage(props) {
             />
             <TextField
               // defaultValue={"Nel24297146@"}
-              color="secondary"
+              /* color="secondary" */
               label="Contraseña"
               name="password"
               placeholder="Ingrese contraseña"
@@ -241,7 +241,7 @@ export default function SignupPage(props) {
               Datos Personales
             </Divider>
             <TextField
-              color="secondary"
+              /* color="secondary" */
               fullWidth
               label="Nombres"
               placeholder="Ingrese nombres"
@@ -254,7 +254,7 @@ export default function SignupPage(props) {
               }
             />
             <TextField
-              color="secondary"
+              /* color="secondary" */
               fullWidth
               label="Apellidos"
               placeholder="Ingrese apellidos"
@@ -269,7 +269,7 @@ export default function SignupPage(props) {
 
             <Grid container>
               <Grid item xs={3}>
-                <FormControl color="secondary" fullWidth sx={{ mb: 2 }}>
+                <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
                   <InputLabel id="identity-document-letter-label">
                     Letra
                   </InputLabel>
@@ -292,7 +292,7 @@ export default function SignupPage(props) {
               </Grid>
               <Grid item xs={9}>
                 <TextField
-                  color="secondary"
+                  /* color="secondary" */
                   fullWidth
                   type="text"
                   required
@@ -308,7 +308,7 @@ export default function SignupPage(props) {
               </Grid>
             </Grid>
             <MuiTelInput
-              color="secondary"
+              /* color="secondary" */
               fullWidth
               label="Número de Teléfono"
               required
@@ -328,7 +328,7 @@ export default function SignupPage(props) {
               Datos Contribuyente
             </Divider>
             {["V", "E"].includes(dataContributor.identity_document_letter) ? (
-              <FormControl color="secondary" fullWidth sx={{ mb: 2 }}>
+              <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
                 <InputLabel id="type-contributor-natural-label">
                   Tipo de contribuyente Natural
                 </InputLabel>
@@ -355,7 +355,7 @@ export default function SignupPage(props) {
             )}
 
             {["J", "G"].includes(dataContributor.identity_document_letter) ? (
-              <FormControl color="secondary" fullWidth sx={{ mb: 2 }}>
+              <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
                 <InputLabel id="type-contributor-legal-label">
                   Tipo de contribuyente Jurídico
                 </InputLabel>
@@ -385,7 +385,7 @@ export default function SignupPage(props) {
                 control={
                   <Checkbox
                     name="checked-allrules"
-                    color="secondary"
+                    color="secondary" 
                     onClick={(e) => handleChangeCheck(e)}
                   />
                 }
@@ -398,7 +398,7 @@ export default function SignupPage(props) {
 
             {!isNaturalContributor() ? (
               <TextField
-                color="secondary"
+                /* color="secondary" */
                 type="date"
                 defaultValue={getToday()}
                 fullWidth
@@ -413,7 +413,7 @@ export default function SignupPage(props) {
               />
             ) : dataContributor.personal_signature === true ? (
               <TextField
-                color="secondary"
+                /* color="secondary" */
                 type="date"
                 defaultValue={getToday()}
                 fullWidth
@@ -428,7 +428,7 @@ export default function SignupPage(props) {
               />
             ) : (
               <TextField
-                color="secondary"
+                /* color="secondary" */
                 type="date"
                 defaultValue={getToday()}
                 fullWidth
@@ -444,7 +444,7 @@ export default function SignupPage(props) {
             )}
 
             <TextField
-              color="secondary"
+              /* color="secondary" */
               fullWidth
               label="Dirección"
               placeholder="Ingrese dirección"
@@ -469,7 +469,7 @@ export default function SignupPage(props) {
             <Grid sx={{ mt: 5 }}>
               <Button
                 type="submit"
-                color="secondary"
+                // color="secondary"
                 variant="contained"
                 fullWidth
                 // onClick={(e) => handleOnSubmit(e)}

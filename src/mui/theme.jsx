@@ -14,17 +14,18 @@ const theme = createTheme({
     dark: true,
   },
   palette: {
-    mode: "dark",
+    // mode: "dark",
     primary: {
-      // main: "rgb(254 151 76)",
-      main: "#ffffff",
+      main: "rgb(254 151 76)",
+      // main: "#ffffff",
     },
     secondary: {
       main: "#045496",
     },
     background: {
-      paper: "#1a1919",
-      default: "#1a1919",
+      paper: "#ffffff",
+      dark: "#1a1919",
+      // default: "#1a1919",
     },
     error: {
       main: "#ff1200",

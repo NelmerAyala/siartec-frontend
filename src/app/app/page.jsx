@@ -65,9 +65,9 @@ export default function HorizontalLinearStepper() {
 
   return (
     <Box
-      sx={{ width: "100%", padding: "20px 0" }}
+      sx={{ width: "100%", padding: "2rem" }}
       color={"#000"}
-      bgcolor={"lightgray"}
+      // bgcolor={"lightgray"}
     >
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
