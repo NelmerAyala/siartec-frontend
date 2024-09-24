@@ -1,4 +1,5 @@
 "use client";
+import "../styles/app/inicio.scss";
 
 import * as React from "react";
 import "../styles/index.scss";
@@ -9,12 +10,19 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
-
+import Grid from "@mui/material/Grid";
 const steps = ["Paso 1", "Paso 2", "Paso 3"];
-const IMAGES_STEPS = [
-  "img/steps/selection.svg",
-  "img/steps/selection_options.svg",
-  "img/steps/transfer_money.svg",
+const IMAGES_STEPS = ["img/steps/1.svg", "img/steps/2.svg", "img/steps/3.svg"];
+const caption = [
+  "Compra estampillas de forma: fácil, rápida y segura.",
+  "Con tan solo un click",
+  "Formas de Pago",
+];
+
+const captionDesq = [
+  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa ipsam delectus repellendus aperiam doloremque quidem laudantium vel rem placeat.",
+  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa ipsam delectus repellendus aperiam doloremque quidem laudantium vel rem placeat.",
+  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa ipsam delectus repellendus aperiam doloremque quidem laudantium vel rem placeat.",
 ];
 
 export default function HorizontalLinearStepper() {
@@ -64,11 +72,7 @@ export default function HorizontalLinearStepper() {
   };
 
   return (
-    <Box
-      sx={{ width: "100%", padding: "20px 0" }}
-      color={"#000"}
-      bgcolor={"lightgray"}
-    >
+    <div className="container2">
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
@@ -91,14 +95,14 @@ export default function HorizontalLinearStepper() {
       {activeStep === steps.length ? (
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>
-            Todos los pasos completados - Ya puedes descargar/imprimir tu
+            Ha completado todos los pasos - Ya puedes descargar/imprimir tu
             estampilla fiscal
           </Typography>
           <Container maxWidth="sm">
             <Box
               component="img"
-              alt={`img/steps/end.svg`}
-              src={`img/steps/end.svg`}
+              alt={`img/steps/4.svg`}
+              src={`img/steps/4.svg`}
               maxWidth="sm"
               sx={{ height: "50vh" }}
             ></Box>
@@ -110,17 +114,25 @@ export default function HorizontalLinearStepper() {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>Paso {activeStep + 1}</Typography>
-
-          <Container maxWidth="sm">
-            <Box
-              component="img"
-              alt={`${IMAGES_STEPS[activeStep]}`}
-              src={`${IMAGES_STEPS[activeStep]}`}
-              maxWidth="sm"
-              sx={{ height: "50vh" }}
-            ></Box>
-          </Container>
+          <Box className="box" sx={{ flexGrow: 1 }}>
+            <Grid className="grid" container spacing={5}>
+              <Grid item xs={6}>
+                <Box className="texto" component="">
+                  <h2>{caption[activeStep]}</h2>
+                  <p>{captionDesq[activeStep]}</p>
+                </Box>
+              </Grid>
+              <Grid item xs={6}>
+                <Box component="">
+                  <Box
+                    component="img"
+                    alt={`${IMAGES_STEPS[activeStep]}`}
+                    src={`${IMAGES_STEPS[activeStep]}`}
+                  ></Box>
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
 
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
@@ -144,6 +156,6 @@ export default function HorizontalLinearStepper() {
           </Box>
         </React.Fragment>
       )}
-    </Box>
+    </div>
   );
 }
