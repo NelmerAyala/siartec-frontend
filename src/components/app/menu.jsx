@@ -4,7 +4,7 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
+// import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -52,9 +52,10 @@ function MenuApp(props) {
   };
 
   const drawer = (
-    <div>
+    <Box style={{ backgroundColor: "background.dark" }}>
       <Toolbar
         sx={{
+          // backgroundColor: "background.dark",
           display: "flex",
           justifyContent: "center",
           width: "100%",
@@ -101,9 +102,13 @@ function MenuApp(props) {
             <Link
               key={index}
               href={ALL_PRIVILEGES.getPrivilegesByName(option).path}
-              style={{ textDecoration: "none", color: "white" }}
+              // style={{ textDecoration: "none", color: "white" }}
             >
-              <ListItem key={index} disablePadding>
+              <ListItem
+                key={index}
+                disablePadding
+                sx={{ color: "background.paper" }}
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <IconDynamic
@@ -130,9 +135,15 @@ function MenuApp(props) {
             <Link
               key={index}
               href={ALL_PRIVILEGES.getPrivilegesByName(option).path}
-              style={{ textDecoration: "none", color: "white" }}
+              sx={{ textDecoration: "none" }}
             >
-              <ListItem key={index} disablePadding>
+              <ListItem
+                key={index}
+                disablePadding
+                sx={{
+                  color: "background.paper",
+                }}
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <IconDynamic
@@ -151,7 +162,7 @@ function MenuApp(props) {
         )}
       </List>
       <Divider />
-      <List>
+      <List sx={{ color: "background.paper" }}>
         <ListItem key={0} disablePadding>
           <ListItemButton onClick={() => signOut()}>
             <ListItemIcon>
@@ -161,7 +172,7 @@ function MenuApp(props) {
           </ListItemButton>
         </ListItem>
       </List>
-    </div>
+    </Box>
   );
 
   // Remove this const when copying and pasting into your project.
@@ -170,12 +181,14 @@ function MenuApp(props) {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          // backgroundColor: "background.dark",
+          color: "background.paper",
         }}
       >
         <Toolbar>
@@ -195,8 +208,12 @@ function MenuApp(props) {
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{
+          width: { sm: drawerWidth },
+          flexShrink: { sm: 0 },
+        }}
         aria-label="mailbox folders"
+        style={{}}
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
@@ -213,6 +230,7 @@ function MenuApp(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              backgroundColor: "background.dark",
             },
           }}
         >
@@ -225,6 +243,7 @@ function MenuApp(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              backgroundColor: "background.dark",
             },
           }}
           open
@@ -236,7 +255,7 @@ function MenuApp(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          // p: 3,
           width: { xs: `calc(100% - ${drawerWidth}px)` },
         }}
       >

@@ -72,7 +72,11 @@ export default function HorizontalLinearStepper() {
   };
 
   return (
-    <div className="container2">
+    <Box
+      sx={{ width: "100%", padding: "2rem" }}
+      color={"#000"}
+      // bgcolor={"lightgray"}
+    >
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
@@ -156,6 +160,6 @@ export default function HorizontalLinearStepper() {
           </Box>
         </React.Fragment>
       )}
-    </div>
+    </Box>
   );
 }

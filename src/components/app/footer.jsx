@@ -8,12 +8,14 @@ export const Footer = () => {
     <>
       <Box
         sx={{
-          marginTop: 5,
+          // marginTop: 5,
           flexGrow: 1,
-          padding: 5,
+          // padding: 5,
           backgroundImage: "url:('')",
           // backgroundImage: "url('/img/background-gray.png')",
-          backgroundRepeat: "repeat",
+          // backgroundRepeat: "repeat",
+          backgroundColor: "background.dark",
+          color: "background.paper",
         }}
         className="foot"
       >
@@ -97,6 +99,7 @@ export const Footer = () => {
           // backgroundColor: "colorPrimary",
           paddingTop: "1rem",
           paddingBottom: "1rem",
+          backgroundColor: "background.dark",
         }}
       >
         <Container>
@@ -117,7 +120,7 @@ export const Footer = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Typography color="textSecondary" variant="subtitle1">
+              <Typography color="background.paper" variant="subtitle1">
                 {`${new Date().getFullYear()} | © Gobernación Bolivariana de Carabobo | Secretaría de Hacienda y Finanzas | © 2018-2019`}
               </Typography>
             </Grid>

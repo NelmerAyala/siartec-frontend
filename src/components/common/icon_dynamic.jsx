@@ -11,19 +11,19 @@ import {
 export const IconDynamic = ({ iconName }) => {
   switch (iconName) {
     case "AccountBox":
-      return <AccountBox />;
+      return <AccountBox sx={{ color: "background.paper" }} />;
     case "Password":
-      return <Password />;
+      return <Password sx={{ color: "background.paper" }} />;
     case "Difference":
-      return <Difference />;
+      return <Difference sx={{ color: "background.paper" }} />;
     case "ExitToAppSharp":
-      return <ExitToAppSharp />;
+      return <ExitToAppSharp sx={{ color: "background.paper" }} />;
     case "Payments":
-      return <Payments />;
+      return <Payments sx={{ color: "background.paper" }} />;
     case "Home":
-      return <Home />;
+      return <Home sx={{ color: "background.paper" }} />;
     case "List":
-      return <List />;
+      return <List sx={{ color: "background.paper" }} />;
     default:
       return <></>;
   }

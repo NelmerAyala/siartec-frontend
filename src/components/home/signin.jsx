@@ -101,6 +101,7 @@ export default function SigninPage(props) {
 
   const paperStyle = {
     padding: 20,
+    backgroundColor: "white",
     // height: "73vh",
     // width: 300,
     margin: "0.5rem",
@@ -155,7 +156,7 @@ export default function SigninPage(props) {
             onSubmit={handleOnSubmit}
           >
             <TextField
-              color="secondary"
+              // color="secondary"
               label="Correo electrónico"
               placeholder="Ingrese correo electrónico"
               type="email"
@@ -166,7 +167,7 @@ export default function SigninPage(props) {
             />
 
             <TextField
-              color="secondary"
+              // color="secondary"
               label="Contraseña"
               name="password"
               placeholder="Ingrese contraseña"
@@ -200,7 +201,7 @@ export default function SigninPage(props) {
             <Typography>
               <Button
                 onClick={() => props.setOpenChildren(true)}
-                color={"secondary"}
+                // color={"secondary"}
               >
                 ¿Olvidó su contraseña ?
               </Button>
@@ -212,7 +213,7 @@ export default function SigninPage(props) {
               <Typography textAlign={"right"}>
                 No tiene una cuenta?{" "}
                 <Link
-                  color={"secondary"}
+                  // color={"secondary"}
                   href="#"
                   onClick={() => props.handleChangeTab("event", 1)}
                 >
