@@ -60,6 +60,28 @@ export default function CreateTaxStamps() {
         <Box className="box" id="sect-2" sx={{ flexGrow: 1 }}>
           <Grid className="grid" container spacing={5}>
             <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
+              Datos del Contribuyentes
+            </Divider>
+            <Grid item xs={12}>
+              <TextField
+                color="secondary"
+                value="Carlos Cárdenas"
+                type="text"
+                fullWidth
+                label="Nombre"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                color="secondary"
+                value="28465203"
+                type="text"
+                fullWidth
+                label="Rif/Cédula"
+              />
+            </Grid>
+
+            <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
               Seleccione Destino de la Estampilla
             </Divider>
             {/* <ul>{entesList}</ul> */}
@@ -139,27 +161,7 @@ export default function CreateTaxStamps() {
               </div>
             </Grid>
             <Grid item xs={12}></Grid>
-            <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
-              Datos del Contribuyentes
-            </Divider>
-            <Grid item xs={12}>
-              <TextField
-                color="secondary"
-                value="Carlos Cárdenas"
-                type="text"
-                fullWidth
-                label="Nombre"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                color="secondary"
-                value="28465203"
-                type="text"
-                fullWidth
-                label="Rif/Cédula"
-              />
-            </Grid>
+
             <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
               Destino(s) de la Estampilla
             </Divider>
