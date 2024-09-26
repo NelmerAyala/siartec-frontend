@@ -57,7 +57,7 @@ export default function CreateTaxStamps() {
 
   return (
     <>
-      <div>
+      <div className="container2">
         <Box className="box" id="sect-2" sx={{ flexGrow: 1, padding: "2rem" }}>
           <Grid className="grid" container>
             <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>

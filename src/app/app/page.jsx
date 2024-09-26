@@ -73,6 +73,7 @@ export default function HorizontalLinearStepper() {
 
   return (
     <Box
+      className="container2"
       sx={{ width: "100%", padding: "2rem" }}
       color={"#000"}
       // bgcolor={"lightgray"}

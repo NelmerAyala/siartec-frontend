@@ -1,21 +1,22 @@
-
-
-.ubicacion{
-    width: 100%;
-    border-radius: 15px;
-    height: 35vh !important;
-    box-shadow: 0px 6px 12px 0px rgba(255, 255, 255, 0.5);
-    margin-bottom: 50px;
+.ubicacion {
+  width: 100%;
+  border-radius: 15px;
+  height: 35vh !important;
+  box-shadow: 0px 6px 12px 0px rgba(255, 255, 255, 0.5);
+  margin-bottom: 50px;
 }
 
-.consultar-space
-{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.consultar-space {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 
-    div
-    {
-        width: 100%;
-    }
+  div {
+    width: 100%;
+  }
+}
+.consultar-content {
+  .text {
+    color: #191919 !important;
+  }
 }

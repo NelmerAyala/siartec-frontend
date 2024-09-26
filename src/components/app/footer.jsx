@@ -6,14 +6,9 @@ import Link from "next/link";
 export const Footer = () => {
   return (
     <>
-      <Box
+      {/* <Box
         sx={{
-          // marginTop: 5,
           flexGrow: 1,
-          // padding: 5,
-          backgroundImage: "url:('')",
-          // backgroundImage: "url('/img/background-gray.png')",
-          // backgroundRepeat: "repeat",
           backgroundColor: "background.dark",
           color: "background.paper",
         }}
@@ -91,12 +86,12 @@ export const Footer = () => {
             </Stack>
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
       <Box
         sx={{
           width: "100%",
           height: "auto",
-          // backgroundColor: "colorPrimary",
+          backgroundColor: "colorPrimary",
           paddingTop: "1rem",
           paddingBottom: "1rem",
           backgroundColor: "background.dark",

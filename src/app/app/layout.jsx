@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
 import MenuApp from "@/components/app/menu";
 import FooterApp from "@/components/app/footer";
+import { Box } from "@mui/material";
 
 export default async function LayoutApp({ children }) {
   const session = await getServerSession(nextAuthOptions);
@@ -22,7 +23,7 @@ export default async function LayoutApp({ children }) {
   return (
     <>
       <MenuApp session={session}>
-        {children}
+        <Box sx={{ height: "90vh" }}>{children}</Box>
         <FooterApp />
       </MenuApp>
     </>

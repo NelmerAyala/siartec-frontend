@@ -77,7 +77,7 @@ export default function ServicesPage() {
                       />
                     </Grid>
                     <div className="buttons">
-                      <button className="btn-1 btn-oscuro">ENVIAR</button>
+                      <button className="btn-1 ">ENVIAR</button>
                     </div>
                   </Grid>
                 </div>
