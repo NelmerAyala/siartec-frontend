@@ -106,36 +106,12 @@ export default function PayTaxStamps() {
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
+        sx={{
+          padding: 5,
+        }}
         // columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        <Grid item xs={12} sm={12} md={4}>
-          <Card>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                image="/img/background-card.webp"
-                alt="backgroud profile"
-              />
-              <CardContent>
-                <Avatar
-                  alt={profileUser.lastname + " " + profileUser.firstname}
-                  src={profileUser.image}
-                  sx={{ width: 100, height: 100 }}
-                />
-                <Typography gutterBottom variant="h5" component="div">
-                  {profileUser.lastname + " " + profileUser.firstname}
-                </Typography>
-                <Typography variant="body">
-                  Tu información personal es importante para la generación de
-                  estampillas fiscales, por eso aquí puedes realizar las
-                  modificaciones necesarias.
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={12} md={8}>
+        <Grid item xs={12} sm={12} md={12}>
           <Box
             component="form"
             sx={{
@@ -257,7 +233,6 @@ export default function PayTaxStamps() {
           </Box>
         </Grid>
 
-        <Grid item xs={4}></Grid>
         <Grid item xs={8}>
           <Button
             type="submit"

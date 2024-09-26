@@ -25,8 +25,9 @@ export default function ChangePassword() {
   const [messageSuccess, setMessageSuccess] = React.useState("");
   const [passwordError, setPasswordError] = React.useState("");
   const [passwordNewError, setPasswordNewError] = React.useState("");
-  const [passwordNewConfirmError, setPasswordNewConfirmError] =
-    React.useState("");
+  const [passwordNewConfirmError, setPasswordNewConfirmError] = React.useState(
+    ""
+  );
 
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -36,8 +37,9 @@ export default function ChangePassword() {
   const handleClickShowPasswordNew = () => setShowPasswordNew(!showPasswordNew);
   const handleMouseDownPasswordNew = () => setShowPasswordNew(!showPasswordNew);
 
-  const [showPasswordNewConfirm, setShowPasswordNewConfirm] =
-    React.useState(false);
+  const [showPasswordNewConfirm, setShowPasswordNewConfirm] = React.useState(
+    false
+  );
   const handleClickShowPasswordNewConfirm = () =>
     setShowPasswordNewConfirm(!showPasswordNewConfirm);
   const handleMouseDownPasswordNewConfirm = () =>
@@ -133,9 +135,12 @@ export default function ChangePassword() {
         alignItems={"center"}
         noValidate={false}
         autoComplete="off"
+        sx={{
+          padding: 5,
+        }}
       >
-        <Grid container spacing={{ xs: 2, md: 1 }}>
-          <Grid item xs={12} sm={6} md={3}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
             <TextField
               id="passwordCurrent"
               label="Contraseña Actual"
@@ -178,7 +183,7 @@ export default function ChangePassword() {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12}>
             <TextField
               id="passwordNew"
               label="Nueva Contraseña"
@@ -220,7 +225,7 @@ export default function ChangePassword() {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12}>
             <TextField
               id="passwordNewConfirm"
               label="Confirme nueva Contraseña"
@@ -269,11 +274,9 @@ export default function ChangePassword() {
           <Grid
             item
             xs={12}
-            sm={6}
-            md={3}
-            display={"flex"}
-            justifyContent={"center"}
-            alignItems={"center"}
+            // display={"flex"}
+            // justifyContent={"center"}
+            // alignItems={"center"}
           >
             <Button type="submit" variant="contained" onClick={handleOnSubmit}>
               Guardar

@@ -13,7 +13,6 @@ export default async function LayoutApp({ children }) {
     "U_PASSWORD",
     "R_TAX_STAMPS",
     "C_TAX_STAMPS",
-    "C_PAYMENTS",
   ];
 
   if (!session) {
@@ -23,7 +22,7 @@ export default async function LayoutApp({ children }) {
   return (
     <>
       <MenuApp session={session}>
-        <Box sx={{ height: "90vh" }}>{children}</Box>
+        <Box sx={{ minHeight: "90vh" }}>{children}</Box>
         <FooterApp />
       </MenuApp>
     </>

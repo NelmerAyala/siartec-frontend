@@ -144,12 +144,9 @@ export const Footer = () => {
       <>
         <Box
           sx={{
-            marginTop: 5,
             flexGrow: 1,
             padding: 5,
-            backgroundImage: "url:('')",
-            // backgroundImage: "url('/img/background-gray.png')",
-            backgroundRepeat: "repeat",
+            backgroundColor: "background.dark",
           }}
           className="foot"
         >
@@ -164,6 +161,7 @@ export const Footer = () => {
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
+                color="background.paper"
                 spacing={1}
               >
                 <Typography variant="h4" gutterBottom className="title">
@@ -187,6 +185,7 @@ export const Footer = () => {
                 justifyContent="center"
                 alignItems="center"
                 spacing={1}
+                color="background.paper"
               >
                 <Typography variant="h5" gutterBottom>
                   Enlaces de Interes
@@ -230,7 +229,7 @@ export const Footer = () => {
           sx={{
             width: "100%",
             height: "auto",
-            // backgroundColor: "colorPrimary",
+            backgroundColor: "background.dark",
             paddingTop: "1rem",
             paddingBottom: "1rem",
           }}
@@ -245,7 +244,7 @@ export const Footer = () => {
                     width: 120,
                     maxHeight: { xs: 233, md: 167 },
                     maxWidth: { xs: 350, md: 250 },
-                    // display: { xs: 'none', md: 'flex' },
+
                     mr: 1,
                   }}
                   alt="The house from the offer."
@@ -253,7 +252,7 @@ export const Footer = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <Typography color="textSecondary" variant="subtitle1">
+                <Typography color="background.paper" variant="subtitle1">
                   {`${new Date().getFullYear()} | © Gobernación Bolivariana de Carabobo | Secretaría de Hacienda y Finanzas | © 2018-2019`}
                 </Typography>
               </Grid>

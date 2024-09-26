@@ -254,8 +254,10 @@ export default function HomePage() {
               <Card className="consultar">
                 <div className="consultar-content">
                   <CardContent className="consultar-space">
-                    <h2 className="texto-oscuro">Búsqueda de Planillas</h2>
-                    <Typography>Por favor rellene el formulario</Typography>
+                    <h2 color="background.dark">Búsqueda de Planillas</h2>
+                    <Typography color="background.dark">
+                      Por favor rellene el formulario
+                    </Typography>
                   </CardContent>
                   <CardActions className="consultar-space">
                     <div className="">

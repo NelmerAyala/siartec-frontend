@@ -35,14 +35,6 @@ const ENTITIES_PRIVILEGES_NAME_ORDER = Object.freeze({
     path: "/app/estampilla/generar",
   },
 
-  CREATE_PAYMENTS: {
-    code: "C_PAYMENTS",
-    name: "Pagar",
-    icon: "Payments",
-    module: "natural",
-    path: "/app/estampilla/pagar",
-  },
-
   READ_TAX_STAMPS: {
     code: "R_TAX_STAMPS",
     name: "Lista de Estampillas",

@@ -1,13 +1,19 @@
 "use client";
 
-import { Grid, Paper } from "@mui/material";
+import { Box, Grid, Paper } from "@mui/material";
 import TableListTaxStamps from "./table";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 export default function ListTaxStamps() {
   return (
     <>
-      <TableListTaxStamps />
+      <Box
+        sx={{
+          padding: 5,
+        }}
+      >
+        <TableListTaxStamps />
+      </Box>
     </>
   );
 }
