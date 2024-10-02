@@ -1,5 +1,6 @@
 "use client";
 import "../../../styles/app/generar/generar.scss";
+import jsonData from "../../../../../public/data.json";
 
 import * as React from "react";
 
@@ -55,8 +56,51 @@ export default function CreateTaxStamps() {
   const [tramite, setTramite] = useState("");
   const [contribuyents, setContribuyents] = useState([]);
 
+  //mejoras
+  const ent = jsonData["entes"];
+  const subEnt = jsonData["subEntes"];
+  const tramites = jsonData["Tramites"];
+
+  const [prueba, setPrueba] = useState("");
+  /*
+  const getData = async () => {
+    await fetch("../../data.json")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json.entes[0].id);
+        console.log("-----------");
+        if (json.entes[0].id !== 1) {
+          setPrueba("no Existe");
+          return;
+        }
+        setPrueba(json.entes[0].name);
+      });
+  };
+*/
+  const getData = async () => {
+    await fetch("../../data.json")
+      .then((response) => response.json())
+      .then((json) => {
+        for (let i = 0; i < json.entes.length; i++) {
+          console.log(json.entes[i].id);
+          console.log("-----------");
+        }
+        //console.log(json.entes.length);
+        console.log("xxxxxxxxxxx");
+        //probar desde acá
+        if (json.entes[0].id !== 1) {
+          setPrueba("no Existe");
+          return;
+        }
+        setPrueba(json.entes[0].name);
+      });
+  };
+
+  getData();
+
   return (
     <>
+      {prueba}
       <Box className="box" id="sect-2" sx={{ flexGrow: 1, padding: "2rem" }}>
         <Grid className="grid" container spacing={3}>
           <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
@@ -96,11 +140,11 @@ export default function CreateTaxStamps() {
                 label="ente"
                 onChange={(e) => setEnte(e.target.value)}
               >
-                <MenuItem value={"Saime"}>Saime</MenuItem>
-                <MenuItem value={"Sarem"}>Sarem</MenuItem>
-                <MenuItem value={"Registro Principal"}>
-                  Registro Principal
-                </MenuItem>
+                {ent.map((item) => (
+                  // debería enviar el id
+                  // <MenuItem value={item["id"]}>{item["name"]}</MenuItem>
+                  <MenuItem value={item["id"]}>{item["name"]}</MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -114,9 +158,10 @@ export default function CreateTaxStamps() {
                 label="subEnte"
                 onChange={(e) => setSubEnte(e.target.value)}
               >
-                <MenuItem value={10}>1</MenuItem>
-                <MenuItem value={20}>2</MenuItem>
-                <MenuItem value={30}>3</MenuItem>
+                {}
+                {subEnt.map((item) => (
+                  <MenuItem value={item["id"]}>{item["name"]}</MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -131,9 +176,11 @@ export default function CreateTaxStamps() {
                 label="tramite"
                 onChange={(e) => setTramite(e.target.value)}
               >
-                <MenuItem value={10}>1</MenuItem>
-                <MenuItem value={20}>2</MenuItem>
-                <MenuItem value={30}>3</MenuItem>
+                {tramites.map((item) => (
+                  // debería enviar el id
+                  // <MenuItem value={item["id"]}>{item["name"]}</MenuItem>
+                  <MenuItem value={item["id"]}>{item["name"]}</MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>

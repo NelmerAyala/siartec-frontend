@@ -1,0 +1,125 @@
+{
+  "entes": [
+    {
+      "id": 1,
+      "name": "Sotarn"
+    },
+    {
+      "id": 2,
+      "name": "Registros y Notarias"
+    },
+    {
+      "id": 3,
+      "name": "Procuradoria"
+    }
+  ],
+  "subEntes": [
+    {
+      "id": 1,
+      "idEnte": 1,
+      "name": "no Aplica"
+    },
+    {
+      "id": 2,
+      "idEnte": 2,
+      "name": "Primer Registo Inmobiliario"
+    },
+    {
+      "id": 3,
+      "idEnte": 2,
+      "name": "Segundo Registo Inmobiliario"
+    },
+    {
+      "id": 4,
+      "idEnte": 2,
+      "name": "Municipios Guacara, San Joaquín y Diego Ibarra"
+    },
+    {
+      "id": 5,
+      "idEnte": 2,
+      "name": "Municipios Naguanagua y San Diego"
+    },
+    {
+      "id": 6,
+      "idEnte": 2,
+      "name": "Municipio Montalban"
+    },
+    {
+      "id": 7,
+      "idEnte": 2,
+      "name": "Funciones Notariales de Carlos Arvelo"
+    },
+    {
+      "id": 8,
+      "idEnte": 2,
+      "name": "Municipio Bejuma"
+    },
+    {
+      "id": 9,
+      "idEnte": 3,
+      "name": "no Aplica"
+    }
+  ],
+  "Tramites": [
+    {
+      "id": 1,
+      "idEnte": 1,
+      "name": "Solicitudes"
+    },
+    {
+      "id": 2,
+      "idEnte": 1,
+      "name": "Autorizaciòn"
+    },
+    {
+      "id": 3,
+      "idEnte": 1,
+      "name": "Renuncias"
+    },
+    {
+      "id": 4,
+      "idEnte": 1,
+      "name": "Otorgamientos"
+    },
+    {
+      "id": 5,
+      "idEnte": 1,
+      "name": "Testamentos"
+    },
+    {
+      "id": 6,
+      "idEnte": 1,
+      "name": "Actas de Remate"
+    },
+    {
+      "id": 7,
+      "idEnte": 1,
+      "name": "Certificados"
+    },
+    {
+      "id": 8,
+      "idEnte": 1,
+      "name": "Inscripciones"
+    },
+    {
+      "id": 9,
+      "idEnte": 1,
+      "name": "Cierre de titularidad"
+    },
+    {
+      "id": 10,
+      "idEnte": 1,
+      "name": "Consultas"
+    },
+    {
+      "id": 11,
+      "idEnte": 1,
+      "name": "Contratos"
+    },
+    {
+      "id": 12,
+      "idEnte": 1,
+      "name": "Expedición"
+    }
+  ]
+}
