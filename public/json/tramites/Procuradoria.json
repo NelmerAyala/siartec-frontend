@@ -1,0 +1,13 @@
+{
+  "error": false,
+  "code_error": 0,
+  "error_message": null,
+  "response": {
+    "tramites": [
+      "Consultas / Solicitudes",
+      "Contratos con los Ingresos Estadales Públicos",
+      "Contratos Relativos a Inmuebles",
+      "Expedición de Copias Certificadas"
+    ]
+  }
+}

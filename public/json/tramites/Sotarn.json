@@ -1,0 +1,13 @@
+{
+  "error": false,
+  "code_error": 0,
+  "error_message": null,
+  "response": {
+    "tramites": [
+      "Solicitudes de actividad de Explotación",
+      "Autorizaciòn",
+      "Renuncias",
+      "Otorgamientos"
+    ]
+  }
+}

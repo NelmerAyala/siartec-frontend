@@ -1,0 +1,21 @@
+{
+  "error": false,
+  "code_error": 0,
+  "error_message": null,
+  "response": {
+    "tramites": [
+      "Solicitudes",
+      "Autorizaciòn",
+      "Renuncias",
+      "Otorgamientos",
+      "Testamentos",
+      "Actas de Remate",
+      "Certificados",
+      "Inscripciones",
+      "Cierre de titularidad",
+      "Consultas",
+      "Contratos",
+      "Expedición"
+    ]
+  }
+}
