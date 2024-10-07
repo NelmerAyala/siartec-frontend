@@ -72,7 +72,7 @@ const SLIDES = [
     name: "Titulo #5",
     bg: "/img/carousel/bg-5.webp",
     description: "La Bombonerita",
-  },
+  },  
 ];
 
 const OPTIONS = { loop: true, duration: 30 };
@@ -98,13 +98,14 @@ export default function HomePage() {
               <h2 className="text">SIARTEC</h2>
 
               <Typography>
-                <b>
-                  Sistema Automatizado de Recaudación Tributaria del Estado
-                  Carabobo
-                </b>{" "}
-                <br />
-                Está pensado para facilitar la gestión de los pagos de los
-                tributos del Estado Carababo
+               
+               <b>Sistema Automatizado de Recaudación Tributaria del Estado Carabobo</b>  <br/>
+               
+              Se crea con el  objeto de realizar un seguimiento automatizado de las operaciones de recaudación de los tributos del Estado Carabobo
+               <br/> <br/> 
+               
+                Y como herramienta requerida para el efectivo cumplimiento del pago de los tributos, basado en los principios de atención oportuna, respuesta efectiva, trato equitativo, respeto, amabilidad, puntualidad, veracidad y legalidad.
+              
               </Typography>
 
               <div className="buttons">
@@ -118,7 +119,7 @@ export default function HomePage() {
                 className="img-banner"
                 alt="The house from the offer."
                 src="img/bg/bg-1.png"
-              />
+              /> 
             </Grid>
             {/* 
                                 Ejemplo de manejo en distindos contextos
@@ -150,19 +151,14 @@ export default function HomePage() {
       <div className="container2">
         <Box className="box" sx={{ flexGrow: 1 }}>
           <h2 className="text">Tributos</h2>
-
-          <Typography>
-            Listado de tributos que se pagan en por medio de Siartec..
-          </Typography>
-          <Typography>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto
-            sint laborum consequatur laboriosam saepe a quod? Quidem possimus
-            eaque assumenda explicabo dolore tempora. Aperiam eos optio aliquid
-            a. Dolore eius dignissimos reprehenderit ullam possimus repellendus
-            sed voluptas officia neque, harum vitae corrupti autem quaerat
-            necessitatibus, fuga voluptate rerum repudiandae corporis..
-          </Typography>
-
+         
+            <Typography>
+              Tributos que se pagan por medio de SIARTEC..
+            </Typography>
+            <Typography>
+              
+            </Typography>
+       
           <Grid className="grid" container spacing={5}>
             <Grid item xs={5}>
               <div
@@ -172,9 +168,7 @@ export default function HomePage() {
                 <div className="content">
                   <h2 className="title">Timbres Fiscales</h2>
                   <Typography className="copy">
-                    Tus impuestos son la fuerza motriz detrás del progreso de
-                    nuestro país. Financian proyectos que generan empleo,
-                    impulsan la economía y mejoran nuestra calidad de vida.
+                  Se utiliza para recaudar impuestos o tasas sobre diversos documentos, bienes o servicios. 
                   </Typography>
                   <button className="btn-2">ver más</button>
                 </div>
@@ -188,9 +182,7 @@ export default function HomePage() {
                 <div className="content">
                   <h2 className="title">1x1000</h2>
                   <Typography className="copy">
-                    Los impuestos son la inversión que hacemos como sociedad
-                    para construir un futuro mejor.
-                  </Typography>
+                  Es el impuesto estadal por la emisión de órdenes de pago, cheques, transferencias y cualquier otro medio de pago efectuado por parte de entes u órganos del sector público nacional, estadal y municipal                  </Typography>
                   <button className="btn-2">ver más</button>
                 </div>
               </div>
@@ -203,9 +195,7 @@ export default function HomePage() {
                 <div className="content">
                   <h2 className="title">Renta Minera</h2>
                   <Typography className="copy">
-                    Al pagar impuestos, estamos contribuyendo a crear una
-                    comunidad más justa y próspera para todos.
-                  </Typography>
+                  Es un tributo que grava el aprovechamiento de minerales no metálicos por las empresas y personas naturales dedicadas a la actividad minera.                   </Typography>
                   <button className="btn-2">ver más</button>
                 </div>
               </div>
@@ -218,10 +208,7 @@ export default function HomePage() {
                 <div className="content">
                   <h2 className="title">Guias de Circulacion</h2>
                   <Typography className="copy">
-                    Tu contribución es vital para que podamos seguir llevando a
-                    cabo nuestra misión de [mencionar la misión de la
-                    organización]. Con tu apoyo, podremos [mencionar proyectos
-                    específicos]
+                  Tiene como finalidad de controlar el transporte y circulación de los minerales no metálicos en la jurisdicción del Estado Carabobo
                   </Typography>
                   <button className="btn-2">ver más</button>
                 </div>
@@ -237,8 +224,7 @@ export default function HomePage() {
           <div className="copy">
             <h2>Beneficios</h2>
             <Typography>
-              Automatiza tus pagos, ahorra tiempo y reduce errores. ¡Más
-              eficiencia, menos estrés!
+              Automatiza tus pagos, ahorra tiempo y reduce errores. ¡Más eficiencia, menos estrés!
             </Typography>
           </div>
         </div>
@@ -254,10 +240,8 @@ export default function HomePage() {
               <Card className="consultar">
                 <div className="consultar-content">
                   <CardContent className="consultar-space">
-                    <h2 color="background.dark">Búsqueda de Planillas</h2>
-                    <Typography color="background.dark">
-                      Por favor rellene el formulario
-                    </Typography>
+                    <h2 className="texto-oscuro">Búsqueda de Planillas</h2>
+                    <Typography>Por favor rellene el formulario</Typography>
                   </CardContent>
                   <CardActions className="consultar-space">
                     <div className="">
@@ -364,21 +348,17 @@ export default function HomePage() {
                 // dir={theme.direction}
               >
                 <div className="card-content">
-                  <Typography>
-                    <span> #1: </span> tributosrecaudacion@gmail.com
-                  </Typography>
-                  <Typography>
-                    <span> #2: </span> recaudacionycontrol18@gmail.com
-                  </Typography>
-                  <Typography>
-                    <span> #3: </span> asist.contribuyente2016@gmail.com
-                  </Typography>
+                   <Typography><span> #1: </span> tributosrecaudacion@gmail.com</Typography>
+                   <Typography><span> #2: </span> recaudacionycontrol18@gmail.com</Typography>
+                   <Typography><span> #3: </span> asist.contribuyente2016@gmail.com</Typography>
                 </div>
               </TabPanel>
             </Grid>
           </Grid>
         </Box>
       </div>
+
+      
     </>
   );
 }

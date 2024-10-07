@@ -32,14 +32,14 @@ export default function ServiciosPage() {
             <Grid item xs={10} className="texto">
               <h2 className="text">Timbres Fiscales</h2>
               <p>
-                Un timbre fiscal es una etiqueta adhesiva que se utiliza para recaudar impuestos o tasas sobre diversos documentos, bienes o servicios. Es decir, al adquirir un timbre fiscal y colocarlo en el documento correspondiente, se está pagando un impuesto al Estado.
+                Un timbre fiscal se utiliza para recaudar impuestos o tasas sobre diversos documentos, bienes o servicios, es decir, al adquirir un timbre fiscal y colocarlo en el documento correspondiente, se está otorgando validez al mismo.
               </p>
             </Grid>
 
             <Grid item xs={4}>
               <div className="flip">
                 <div className="front" id="back-1">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
                   <h3>¿Para que sirve?</h3>
@@ -56,13 +56,12 @@ export default function ServiciosPage() {
             <Grid item xs={4}>
               <div className="flip">
                 <div className="front" id="back-2">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
                   <h3>¿Dónde se usan?</h3>
                   <p>
-                    Documentación legal: Contratos, escrituras, poderes, etc. <br/>
-                    Licencias y permisos: Licencias de conducir, permisos de armas, etc. <br/>
+                    Se usan en Actos y documentos expedidos por una autoridad Nacional o Estadal : <br/>
                   </p>
                 </div>
               </div>
@@ -71,12 +70,12 @@ export default function ServiciosPage() {
             <Grid item xs={4}>
               <div className="flip" >
                 <div className="front" id="back-3">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
                   <h3>¿Qué es una UCD?</h3>
                   <p>
-                    <b>Unidad de Cuenta Dinámica</b> Está basada en la moneda de mayor denominación publicada en el Bando de Venezuela.
+                    <b>Unidad de Cuenta Dinámica</b> Está basada en la moneda de mayor denominación publicada por el Banco Central de Venezuela.
                   </p>
                 </div>
               </div>
@@ -97,22 +96,21 @@ export default function ServiciosPage() {
         <Box className="box" id="sect-2" sx={{ flexGrow: 1 }}>
           <Grid className="grid" container spacing={5}>
             <Grid item xs={10} className="texto">
-              <h2 className="text">1x1000</h2>
+              <h2 className="text">1 x 1000</h2>
               <p>
-              El impuesto 1x1000 es un tipo de tributo que se aplica sobre ciertos actos o contratos, generalmente relacionados con bienes inmuebles. Su nombre se debe a que, tradicionalmente, se calculaba aplicando un porcentaje del 1% sobre el valor de la transacción.
-              </p>
+              Es el impuesto estadal por la emisión de órdenes de pago, cheques, transferencias y cualquier otro medio de pago efectuado por parte de entes u órganos del sector público nacional, estadal y municipal<br/> <br/> Otorgamiento de instrumentos crediticios a favor de personas naturales o jurídicas por parte de los bancos y demás instituciones financieras ubicados en la jurisdicción del estado Carabobo
+               que sean realizadas en calidad de anticipos, pagos parciales o pagos totales a favor de contratistas derivados del contrato de ejecución de obras, prestación de servicio o de adquisición de bienes y servicios, no podrá exceder de un bolívar por cada mil bolívares (1x1000)              </p>
             </Grid>
 
             <Grid item xs={3}>
               <div className="flip" >
                 <div className="front" id="back-4">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
                   <h3>Base Imponible:</h3>
                   <p>
-                    El impuesto se calcula sobre el valor de un bien inmueble, como un terreno, una casa o un apartamento, cuando se realiza una operación como una compraventa, un alquiler o una donación.
-                  </p>
+                  Se calcula según sea el caso, será el que resulte de multiplicar el monto neto de los instrumentos crediticios o instrumentos de pago, por (0,001), correspondiente a la alícuota impositiva de cualquier monto.                  </p>
                 </div>
               </div>
             </Grid>
@@ -120,12 +118,13 @@ export default function ServiciosPage() {
             <Grid item xs={3}>
               <div className="flip" >
                 <div className="front" id="back-5">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
                   <h3> Alícuota: </h3>
                   <p>
-                    La alícuota es el porcentaje que se aplica sobre la base imponible para determinar el monto del impuesto. Si bien tradicionalmente era del 1%, esta tasa puede variar según la legislación de cada jurisdicción.
+                  El cálculo del impuesto a pagar o retener, según sea el caso, se tomará del monto bruto de los instrumentos crediticios o instrumentos de pago.
+                    <br/> <br/>Cálculo del impuesto uno por mil (1x1000) = monto neto x 0,001
                   </p>
                 </div>
               </div>
@@ -133,7 +132,7 @@ export default function ServiciosPage() {
             <Grid item xs={3}>
               <div className="flip" >
                 <div className="front" id="back-6">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
                   <h3>Destinatario: </h3>
@@ -162,14 +161,14 @@ export default function ServiciosPage() {
             <Grid bg="secondary" item xs={10} className="texto">
               <h2 className="text">Renta Minera</h2>
               <p>
-                El impuesto sobre la renta minera es un tributo que grava las ganancias obtenidas por las empresas y personas naturales dedicadas a la actividad minera. Este impuesto se establece con el objetivo de que el sector minero contribuya de manera justa al financiamiento de los gastos públicos y al desarrollo económico del país.
+                El impuesto sobre la renta minera es un tributo que grava el aprovechamiento de minerales no metálicos por las empresas y personas naturales dedicadas a la actividad minera. Este impuesto se establece con el objetivo de que el sector minero contribuya de manera justa al financiamiento de los gastos públicos y al desarrollo económico del país.
               </p>
             </Grid>
 
             <Grid item xs={4}>
               <div className="flip" >
                 <div className="front" id="back-8">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
                   <h3>Explotación de recursos naturales:</h3>
@@ -183,7 +182,7 @@ export default function ServiciosPage() {
             <Grid item xs={4}>
               <div className="flip" >
                 <div className="front" id="back-9">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
                   <h3>Impacto ambiental: </h3>
@@ -197,7 +196,7 @@ export default function ServiciosPage() {
             <Grid item xs={4}>
               <div className="flip" >
                 <div className="front" id="back-10">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
                   <h3>Generación de ingresos para el Estado: </h3>
@@ -225,14 +224,14 @@ export default function ServiciosPage() {
             <Grid item xs={10} className="texto">
               <h2 className="text">Guias de Circulación</h2>
               <p>
-                 Es un tipo de tributo que se aplica a ciertos documentos que autorizan el transporte de mercancías o bienes. Su objetivo principal es controlar el flujo de bienes, recaudar ingresos para el Estado y, en algunos casos, proteger ciertos sectores productivos.
+              Tiene como finalidad de controlar el transporte y circulación de los minerales no metálicos en la jurisdicción del Estado Carabobo
               </p>
             </Grid>
 
             <Grid item xs={5}>
               <div className="flip" >
                 <div className="front" id="back-6">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
                   <h3>Control de Comercio</h3>
@@ -246,12 +245,12 @@ export default function ServiciosPage() {
             <Grid item xs={5}>
               <div className="flip" >
                 <div className="front" id="back-7">
-                  <h2 className="text-shadow">Click</h2>
+                  <h2 className="text-shadow"></h2>
                 </div>
                 <div className="back">
-                  <h3>Guías de transporte de mercancías: </h3>
+                  <h3>Guías de circulación: </h3>
                   <p>
-                    Utilizadas para el transporte de bienes en general, desde productos agrícolas hasta maquinaria industrial.
+                    Utilizadas para el transporte y circulación de minerales no metálicos.
                   </p>
                 </div>
               </div>

@@ -28,12 +28,10 @@ export default function ServiciosPage() {
               <h2 className="text">SIARTEC</h2>
 
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
-                dolor odit vel, odio doloremque praesentium facere id harum,
-                porro blanditiis, libero neque ipsum saepe rerum quas autem
-                accusamus voluptatem veniam minus sunt molestias cumque numquam
-                obcaecati optio. Consectetur minima nemo beatae at assumenda
-                quibusdam recusandae omnis fugiat, explicabo unde voluptatum.
+              Se crea con el  objeto de realizar un seguimiento automatizado de las operaciones de recaudación de los tributos del Estado Carabobo
+              </p>
+              <p> 
+                Y como herramienta requerida para el efectivo cumplimiento del pago de los tributos, basado en los principios de atención oportuna, respuesta efectiva, trato equitativo, respeto, amabilidad, puntualidad, veracidad y legalidad.
               </p>
               <br />
 
@@ -49,12 +47,7 @@ export default function ServiciosPage() {
                 </div>
                 <div class="back">
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Laboriosam ut, quo recusandae adipisci quidem, sunt itaque
-                    cum aut soluta tempora ducimus temporibus dolore quis
-                    eveniet enim nobis nulla iste. Voluptatibus, debitis.
-                    Assumenda aspernatur nam dolor distinctio aliquam molestiae,
-                    vel eos.
+                  Fomentar la cultura tributaria para fortalecer e incrementar los ingresos estadales por concepto de ramos tributarios, de acuerdo a los lineamientos emanados del Ejecutivo Regional, fundamentados en los preceptos constitucionales vigentes y en los principios que rigen el funcionamiento de la Administración  Pública Nacional
                   </p>
                 </div>
               </div>
@@ -67,17 +60,9 @@ export default function ServiciosPage() {
                 </div>
                 <div class="back">
                   <p>
-                    Good tools make application development quicker and easier
-                    to maintain than if you did everything by hand..
+                  Ser un Órgano de referencia nacional en ejecución de las actividades inherentes a la recaudación, verificación y fiscalización en los diversos ramos tributarios estadales, con un equipo de alto desempeño, coadyuvando en la gestión a favor de todos los carabobeños.
                   </p>
-                  <p>
-                    Good tools make application development quicker and easier
-                    to maintain than if you did everything by hand..
-                  </p>
-                  <p>
-                    Good tools make application development quicker and easier
-                    to maintain than if you did everything by hand..
-                  </p>
+                  
                 </div>
               </div>
             </Grid>
@@ -89,11 +74,7 @@ export default function ServiciosPage() {
                 </div>
                 <div class="back">
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Laborum sit amet et soluta, saepe voluptates animi, iste
-                    quam harum quasi ut debitis, consequatur minima cum vitae
-                    accusamus temporibus vero maiores natus error quaerat.
-                    Rerum, deleniti.
+                  Honestidad, transparencia, pasión, diferenciación, orientación al cliente, calidad y responsabilidad social.
                   </p>
                 </div>
               </div>
