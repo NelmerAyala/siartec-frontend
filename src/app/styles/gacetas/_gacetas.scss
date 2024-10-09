@@ -10,11 +10,11 @@
       border-radius: 15px;
 
       th {
-        font-size: 20px;
+        font-size: 15px;
       }
 
       td {
-        font-size: 20px;
+        font-size: 15px;
       }
     }
 
@@ -23,8 +23,7 @@
         td {
           p,
           div {
-            font-size: 20px;
-            color: $color-2;
+            font-size: 16px;
           }
         }
       }
@@ -38,6 +37,7 @@
   text-transform: uppercase;
   display: block;
   line-height: 20px;
+  font-size: 15px;
   height: 100%;
   text-align: center;
   border-radius: 7px;

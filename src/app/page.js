@@ -72,7 +72,7 @@ const SLIDES = [
     name: "Titulo #5",
     bg: "/img/carousel/bg-5.webp",
     description: "La Bombonerita",
-  },  
+  },
 ];
 
 const OPTIONS = { loop: true, duration: 30 };
@@ -98,14 +98,13 @@ export default function HomePage() {
               <h2 className="text">SIARTEC</h2>
 
               <Typography>
-               
-               <b>Sistema Automatizado de Recaudación Tributaria del Estado Carabobo</b>  <br/>
-               
-              Se crea con el  objeto de realizar un seguimiento automatizado de las operaciones de recaudación de los tributos del Estado Carabobo
-               <br/> <br/> 
-               
-                Y como herramienta requerida para el efectivo cumplimiento del pago de los tributos, basado en los principios de atención oportuna, respuesta efectiva, trato equitativo, respeto, amabilidad, puntualidad, veracidad y legalidad.
-              
+                <b>
+                  Sistema Automatizado de Recaudación Tributaria del Estado
+                  Carabobo
+                </b>{" "}
+                <br />
+                Está pensado para facilitar la gestión de los pagos de los
+                tributos del Estado Carababo
               </Typography>
 
               <div className="buttons">
@@ -119,7 +118,7 @@ export default function HomePage() {
                 className="img-banner"
                 alt="The house from the offer."
                 src="img/bg/bg-1.png"
-              /> 
+              />
             </Grid>
             {/* 
                                 Ejemplo de manejo en distindos contextos
@@ -151,14 +150,11 @@ export default function HomePage() {
       <div className="container2">
         <Box className="box" sx={{ flexGrow: 1 }}>
           <h2 className="text">Tributos</h2>
-         
-            <Typography>
-              Tributos que se pagan por medio de SIARTEC..
-            </Typography>
-            <Typography>
-              
-            </Typography>
-       
+
+          <Typography>
+            Listado de tributos que se pagan en por medio de Siartec.
+          </Typography>
+
           <Grid className="grid" container spacing={5}>
             <Grid item xs={5}>
               <div
@@ -168,7 +164,9 @@ export default function HomePage() {
                 <div className="content">
                   <h2 className="title">Timbres Fiscales</h2>
                   <Typography className="copy">
-                  Se utiliza para recaudar impuestos o tasas sobre diversos documentos, bienes o servicios. 
+                    Tus impuestos son la fuerza motriz detrás del progreso de
+                    nuestro país. Financian proyectos que generan empleo,
+                    impulsan la economía y mejoran nuestra calidad de vida.
                   </Typography>
                   <button className="btn-2">ver más</button>
                 </div>
@@ -182,7 +180,9 @@ export default function HomePage() {
                 <div className="content">
                   <h2 className="title">1x1000</h2>
                   <Typography className="copy">
-                  Es el impuesto estadal por la emisión de órdenes de pago, cheques, transferencias y cualquier otro medio de pago efectuado por parte de entes u órganos del sector público nacional, estadal y municipal                  </Typography>
+                    Los impuestos son la inversión que hacemos como sociedad
+                    para construir un futuro mejor.
+                  </Typography>
                   <button className="btn-2">ver más</button>
                 </div>
               </div>
@@ -195,7 +195,9 @@ export default function HomePage() {
                 <div className="content">
                   <h2 className="title">Renta Minera</h2>
                   <Typography className="copy">
-                  Es un tributo que grava el aprovechamiento de minerales no metálicos por las empresas y personas naturales dedicadas a la actividad minera.                   </Typography>
+                    Al pagar impuestos, estamos contribuyendo a crear una
+                    comunidad más justa y próspera para todos.
+                  </Typography>
                   <button className="btn-2">ver más</button>
                 </div>
               </div>
@@ -208,7 +210,10 @@ export default function HomePage() {
                 <div className="content">
                   <h2 className="title">Guias de Circulacion</h2>
                   <Typography className="copy">
-                  Tiene como finalidad de controlar el transporte y circulación de los minerales no metálicos en la jurisdicción del Estado Carabobo
+                    Tu contribución es vital para que podamos seguir llevando a
+                    cabo nuestra misión de [mencionar la misión de la
+                    organización]. Con tu apoyo, podremos [mencionar proyectos
+                    específicos]
                   </Typography>
                   <button className="btn-2">ver más</button>
                 </div>
@@ -224,7 +229,8 @@ export default function HomePage() {
           <div className="copy">
             <h2>Beneficios</h2>
             <Typography>
-              Automatiza tus pagos, ahorra tiempo y reduce errores. ¡Más eficiencia, menos estrés!
+              Automatiza tus pagos, ahorra tiempo y reduce errores. ¡Más
+              eficiencia, menos estrés!
             </Typography>
           </div>
         </div>
@@ -240,8 +246,7 @@ export default function HomePage() {
               <Card className="consultar">
                 <div className="consultar-content">
                   <CardContent className="consultar-space">
-                    <h2 className="texto-oscuro">Búsqueda de Planillas</h2>
-                    <Typography>Por favor rellene el formulario</Typography>
+                    <h2 textColor="primary">Búsqueda de Planillas</h2>
                   </CardContent>
                   <CardActions className="consultar-space">
                     <div className="">
@@ -293,16 +298,16 @@ export default function HomePage() {
               >
                 <div className="card-content">
                   <Typography>
-                    <span>BANCO NACIONAL DE CREDITO</span> 0241-874.34.70
+                    <span>BANCO NACIONAL DE CREDITO:</span> 0241-874.34.70
                   </Typography>
                   <Typography>
-                    <span>BANCRECER </span> 0241-874.34.64
+                    <span>BANCRECER: </span> 0241-874.34.64
                   </Typography>
                   <Typography>
-                    <span>BANCO DE VENEZUELA </span> 0241-874.34.64
+                    <span>BANCO DE VENEZUELA:</span> 0241-874.34.64
                   </Typography>
                   <Typography>
-                    <span>100% BANCO </span> 0241-874.34.64
+                    <span>100% BANCO:</span> 0241-874.34.64
                   </Typography>
                   <Typography>
                     <span>Nombre:</span> Gobernación del Estado Carabobo
@@ -331,7 +336,7 @@ export default function HomePage() {
               >
                 <div className="card-content">
                   <Typography>
-                    <span>ASISTENCIA AL CONTRIBUYENTE </span> 0241-874.34.70
+                    <span>ASISTENCIA AL CONTRIBUYENTE: </span> 0241-874.34.70
                   </Typography>
                   <Typography>
                     <span>RECAUDACIÓN Y CONTROL: </span> 0241-874.34.64
@@ -348,17 +353,21 @@ export default function HomePage() {
                 // dir={theme.direction}
               >
                 <div className="card-content">
-                   <Typography><span> #1: </span> tributosrecaudacion@gmail.com</Typography>
-                   <Typography><span> #2: </span> recaudacionycontrol18@gmail.com</Typography>
-                   <Typography><span> #3: </span> asist.contribuyente2016@gmail.com</Typography>
+                  <Typography>
+                    <span> #1: </span> tributosrecaudacion@gmail.com
+                  </Typography>
+                  <Typography>
+                    <span> #2: </span> recaudacionycontrol18@gmail.com
+                  </Typography>
+                  <Typography>
+                    <span> #3: </span> asist.contribuyente2016@gmail.com
+                  </Typography>
                 </div>
               </TabPanel>
             </Grid>
           </Grid>
         </Box>
       </div>
-
-      
     </>
   );
 }

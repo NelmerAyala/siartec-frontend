@@ -11,6 +11,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
+import { TextField } from "@mui/material";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -31,12 +32,27 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 let nextId = 0;
+let montoInical = 0;
+let num = 0;
+
 const SelectsAnidados = () => {
   const [state, setState] = useState("");
   const [town, setTown] = useState("");
   const [suburb, setSuburb] = useState("");
-  const [contribuyents, setContribuyents] = useState([]);
+  let [contribuyents, setContribuyents] = useState([]);
 
+  //console.clear()
+
+  const deleteItem = (id) => {
+    console.log(id);
+    const deleteEst = contribuyents.filter(
+      (contribuyent) => contribuyent.id !== id
+    );
+    setContribuyents(deleteEst);
+  };
+
+  let montoTotal = contribuyents.length * 199;
+  let suma = montoInical + montoTotal;
   return (
     <Grid className="grid" container spacing={3}>
       <Grid item xs={3}>
@@ -113,25 +129,51 @@ const SelectsAnidados = () => {
                 <StyledTableCell align="right">Sub Ente</StyledTableCell>
                 <StyledTableCell align="right">Trámite</StyledTableCell>
                 <StyledTableCell align="right">Monto</StyledTableCell>
-                <StyledTableCell align="right">Eliminar</StyledTableCell>
+                <StyledTableCell align="center">Eliminar</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {contribuyents.map((row) => (
                 <StyledTableRow key={row.id}>
                   <StyledTableCell component="th" scope="row">
-                    {row.id + 1}
+                    {num + 1}
                   </StyledTableCell>
                   <StyledTableCell align="right">{row.ente}</StyledTableCell>
                   <StyledTableCell align="right">{row.subEnte}</StyledTableCell>
                   <StyledTableCell align="right">{row.tramite}</StyledTableCell>
-                  <StyledTableCell align="right">209.3</StyledTableCell>
-                  <StyledTableCell align="right">cuadrito</StyledTableCell>
+                  <StyledTableCell align="right">199</StyledTableCell>
+                  <StyledTableCell align="center">
+                    <a href={"#" + row.id} onClick={() => deleteItem(row.id)}>
+                      X
+                    </a>
+                  </StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
+      </Grid>
+      <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
+        Información adicional
+      </Divider>
+      <Grid item xs={10}>
+        <TextField
+          color="secondary"
+          value={suma}
+          type="text"
+          fullWidth
+          label="Monto a Pagar"
+        />
+      </Grid>
+      <Grid item xs={1}>
+        <div className="buttons">
+          <Button variant="contained">Comprar</Button>
+        </div>
+      </Grid>
+      <Grid item xs={1}>
+        <div className="buttons">
+          <Button variant="contained">Generar</Button>
+        </div>
       </Grid>
     </Grid>
   );

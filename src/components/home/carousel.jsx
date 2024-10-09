@@ -13,11 +13,12 @@ const EmblaCarousel = (props) => {
   const { slides, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
     Fade(),
-    Autoplay({ playOnInit: true, delay: 1500 }),
+    Autoplay({ playOnInit: true, delay: 2500 }),
   ]);
 
-  const { selectedIndex, scrollSnaps, onDotButtonClick } =
-    useDotButton(emblaApi);
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
+    emblaApi
+  );
 
   const {
     prevBtnDisabled,
@@ -53,7 +54,7 @@ const EmblaCarousel = (props) => {
                   width: "100%",
                   top: "40%",
                   padding: "0 2rem",
-                  textAlign: "center",
+                  textAlign: "center !important",
                   color: "#fff !important",
                   fontSize: "3rem",
                   lineHeight: "3rem",

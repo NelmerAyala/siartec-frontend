@@ -17,7 +17,7 @@ import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
@@ -29,6 +29,26 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 
+import TableHead from "@mui/material/TableHead";
+import { styled } from "@mui/material/styles";
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 // CODES
 
 const style = {
@@ -114,28 +134,28 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(name, calories, fat) {
-  return { name, calories, fat };
+function createData(nro, name, ver) {
+  return { nro, name, ver };
 }
 
 const rows = [
-  createData("Minerales no Metalicos del estado Carabobo", "ver"),
-  createData("Decreto #568", "ver"),
-  createData("Decreto #567", "ver"),
-  createData("Ley de Ramos Tributarios", "ver"),
-  createData("Ley de Reforma de la Ley de Hacienda Publica", "ver"),
-  createData("Incremento del valor del ITE", "ver"),
-  createData("Ley de Reforma Parcial de la Ley de Hacienda", "ver"),
-  createData("Ley de Reforma Parcial de la Ley de Timbre Fiscal", "ver"),
-  createData("Gaceta SIARTEC", "ver"),
-  createData("Ley de Timbre Fiscal. NOV-2018", "ver"),
-  createData("Ley Importe Tributario", "ver"),
-  createData("Ley de Timbre Fiscal. MAR-2019", "ver"),
-  createData("Ley de Hacienda Carabobo", "ver"),
-  createData("Ley de Minerales No Metalicos", "ver"),
-  createData("Reforma de la Ley de Timbre Fiscal", "ver"),
-  createData("Gaceta 6998", "ver"),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
+  createData(1, "Minerales no Metalicos del estado Carabobo", "ver"),
+  createData(2, "Decreto #568", "ver"),
+  createData(3, "Decreto #567", "ver"),
+  createData(4, "Ley de Ramos Tributarios", "ver"),
+  createData(5, "Ley de Reforma de la Ley de Hacienda Publica", "ver"),
+  createData(6, "Incremento del valor del ITE", "ver"),
+  createData(7, "Ley de Reforma Parcial de la Ley de Hacienda", "ver"),
+  createData(8, "Ley de Reforma Parcial de la Ley de Timbre Fiscal", "ver"),
+  createData(9, "Gaceta SIARTEC", "ver"),
+  createData(10, "Ley de Timbre Fiscal. NOV-2018", "ver"),
+  createData(11, "Ley Importe Tributario", "ver"),
+  createData(12, "Ley de Timbre Fiscal. MAR-2019", "ver"),
+  createData(13, "Ley de Hacienda Carabobo", "ver"),
+  createData(14, "Ley de Minerales No Metalicos", "ver"),
+  createData(15, "Reforma de la Ley de Timbre Fiscal", "ver"),
+  createData(16, "Gaceta 6998", "ver"),
+].sort((a, b) => (a.nro < b.nro ? -1 : 1));
 
 export default function GacetasPage() {
   const [open, setOpen] = React.useState(false);
@@ -184,6 +204,13 @@ export default function GacetasPage() {
                   sx={{ minWidth: 500 }}
                   aria-label="custom pagination table"
                 >
+                  <TableHead>
+                    <TableRow>
+                      <StyledTableCell>Nro.</StyledTableCell>
+                      <StyledTableCell>Nombre</StyledTableCell>
+                      <StyledTableCell align="right"></StyledTableCell>
+                    </TableRow>
+                  </TableHead>
                   <TableBody>
                     {(rowsPerPage > 0
                       ? rows.slice(
@@ -192,13 +219,14 @@ export default function GacetasPage() {
                         )
                       : rows
                     ).map((row) => (
-                      <TableRow key={row.name}>
+                      <TableRow key={row.nro}>
                         <TableCell component="th" scope="row">
-                          {row.name}
+                          {row.nro}
                         </TableCell>
+                        <TableCell>{row.name}</TableCell>
                         <TableCell style={{ width: 160 }} align="right">
                           <a className="verMas" href="#1" onClick={handleOpen}>
-                            {row.calories}
+                            {row.ver}
                           </a>
                         </TableCell>
                       </TableRow>
@@ -216,7 +244,7 @@ export default function GacetasPage() {
                           5,
                           10,
                           25,
-                          { label: "All", value: -1 },
+                          { label: "Todas", value: -1 },
                         ]}
                         colSpan={3}
                         count={rows.length}
@@ -233,6 +261,7 @@ export default function GacetasPage() {
                         onPageChange={handleChangePage}
                         onRowsPerPageChange={handleChangeRowsPerPage}
                         ActionsComponent={TablePaginationActions}
+                        labelRowsPerPage={"Gacetas por página"}
                       />
                     </TableRow>
                   </TableFooter>

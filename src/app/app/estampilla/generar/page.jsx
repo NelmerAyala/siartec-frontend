@@ -90,35 +90,7 @@ export default function CreateTaxStamps() {
         </Grid>
 
         <SelectAnidados />
-
-        <br />
-        <Grid className="grid" container spacing={3}>
-          <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
-            Información adicional
-          </Divider>
-          <Grid item xs={10}>
-            <TextField
-              color="secondary"
-              value="209.87"
-              type="text"
-              fullWidth
-              label="Monto a Pagar"
-            />
-          </Grid>
-          <Grid item xs={1}>
-            <div className="buttons">
-              <Button variant="contained">Comprar</Button>
-            </div>
-          </Grid>
-          <Grid item xs={1}>
-            <div className="buttons">
-              <Button variant="contained">Generar</Button>
-            </div>
-          </Grid>
-        </Grid>
       </Box>
-
-      {``}
     </>
   );
 }

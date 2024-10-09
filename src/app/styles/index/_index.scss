@@ -3,7 +3,7 @@
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
   button {
-    font-size: 17px;
+    font-size: 16px;
   }
 }
 
@@ -33,11 +33,11 @@
       }
     }
     h2 {
-      font-size: 70px;
+      font-size: 24px;
     }
 
     p {
-      font-size: 27.5px;
+      font-size: 20px;
     }
   }
 }
@@ -58,11 +58,11 @@
       flex-direction: column;
 
       h2 {
-        font-size: 25px;
+        font-size: 18px;
       }
 
       p {
-        font-size: 17.5px;
+        font-size: 16px;
       }
 
       div {
@@ -104,14 +104,14 @@
         margin: 0px;
         font-family: $Abril;
         font-weight: 400;
-        font-size: 35px;
+        font-size: 24px;
         padding: 0px 20px;
       }
 
       p {
         color: #fff;
 
-        font-size: 25px;
+        font-size: 16px;
         padding: 0px 20px;
       }
     }
@@ -123,9 +123,16 @@
 }
 
 .box p {
-  font-size: 20px;
+  font-size: 16px;
+  text-align: justify;
 }
 
-.container2 {
-  background-image: none !important;
+#bg-1 {
+  background-image: url("../../../../public/img/bg/bg-1.png");
+  background-size: cover;
+}
+
+#bg-2 {
+  background-image: url("../../../../public/img/bg/bg-6.jpg");
+  background-size: cover;
 }
