@@ -30,8 +30,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
-let nextId = 0;
+let indexUnique = parseInt(Math.random() * 10000);
+console.log("indexUnique: " + indexUnique);
+let nextId = indexUnique;
 let montoInical = 0;
 let num = 0;
 
@@ -119,7 +120,6 @@ const SelectsAnidados = () => {
         Destino(s) de la Estampilla
       </Divider>
       <Grid item xs={12}>
-        {" "}
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
@@ -133,10 +133,10 @@ const SelectsAnidados = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {contribuyents.map((row) => (
+              {contribuyents.map((row, index) => (
                 <StyledTableRow key={row.id}>
                   <StyledTableCell component="th" scope="row">
-                    {num + 1}
+                    {index + 1}
                   </StyledTableCell>
                   <StyledTableCell align="right">{row.ente}</StyledTableCell>
                   <StyledTableCell align="right">{row.subEnte}</StyledTableCell>
