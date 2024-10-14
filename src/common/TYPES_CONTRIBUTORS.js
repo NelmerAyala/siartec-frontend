@@ -23,6 +23,12 @@ const ENTITIES_TYPES_CONTRIBUTORS_NAME_ORDER = Object.freeze({
     code: "FIRMA",
     letters_contributors: "NATURAL",
   },
+  SUCESION: {
+    id: 5,
+    name: "Sucesión",
+    code: "SUCESION",
+    letters_contributors: "LEGAL",
+  },
 });
 const ENTITIES_TYPES_CONTRIBUTORS_ID_ORDER = Object.freeze(
   Object.keys(ENTITIES_TYPES_CONTRIBUTORS_NAME_ORDER).reduce((acc, k) => {

@@ -1,10 +1,9 @@
 "use client";
+import React, { useState } from "react";
+
 import "../../../styles/app/generar/generar.scss";
-import SelectAnidados from "@/components/app/SelectAnidados";
+import SelectsAnidados from "@/components/app/SelectAnidados";
 
-import * as React from "react";
-
-import { useState } from "react";
 let nextId = 0;
 
 import Box from "@mui/material/Box";
@@ -89,7 +88,7 @@ export default function CreateTaxStamps() {
           {/* <ul>{entesList}</ul> */}
         </Grid>
 
-        <SelectAnidados />
+        <SelectsAnidados />
       </Box>
     </>
   );

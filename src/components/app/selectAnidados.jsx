@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SelectList from "./SelectList";
+import SelectList from "./selectList";
 
 import Grid from "@mui/material/Grid";
 import { Button, Divider } from "@mui/material";

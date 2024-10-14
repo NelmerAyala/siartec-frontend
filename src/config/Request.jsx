@@ -15,12 +15,12 @@ Request.interceptors.request.use(
 
 Request.interceptors.response.use(
   function (response) {
-    console.log("response (Request):" + response);
+    // console.log("response (Request):" + response);
 
     return response.data;
   },
   function (error) {
-    console.log("error (Request):" + JSON.stringify(error));
+    // console.log("error (Request):" + JSON.stringify(error));
     let data = error.response;
 
     if (data.status === 401) {

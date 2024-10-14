@@ -27,14 +27,13 @@ import moment from "moment";
 import { getSession, useSession } from "next-auth/react";
 import { getProfiledUser } from "@/services/user/get-profile-services";
 // import MuiPhoneNumber from "mui-phone-number";
+import CONTRIBUTORS from "@/common/TYPES_CONTRIBUTORS";
+import IDENTIY_DOCUMENT_LETTERS, {
+  LETTERS,
+} from "@/common/IDENTIY_DOCUMENT_LETTERS";
 
-const typesContributors = [
-  { id: 1, description: "Natural" },
-  { id: 2, description: "Comercial" },
-  { id: 3, description: "Industrial" },
-  { id: 4, description: "Firma Personal" },
-];
-
+const typesContributors = Object.values(CONTRIBUTORS.TYPES_CONTRIBUTORS);
+const identityDocumentLetters = Object.values(IDENTIY_DOCUMENT_LETTERS.LETTERS);
 export default function PayTaxStamps() {
   const paperStyle = {
     padding: 20,
@@ -56,6 +55,7 @@ export default function PayTaxStamps() {
     constitution_date: "",
     identity_document: "",
     phone_number: "",
+    contributor_type: "",
   });
   const [letter, setLetter] = React.useState("");
   const [isJuridicSignature, setIsJuridicSignature] = React.useState(false);
@@ -80,7 +80,11 @@ export default function PayTaxStamps() {
   };
 
   const changeLetter = (event) => {
-    setLetter(event.target.value);
+    setprofileUser((profileUser) => ({
+      ...profileUser,
+      identity_document_letter: event.target.value,
+      contributor_type: "",
+    }));
   };
 
   const isNaturalContributor = () => {
@@ -155,28 +159,24 @@ export default function PayTaxStamps() {
 
             <Grid container spacing={0}>
               <Grid item xs={1}>
-                <FormControl color="secondary" fullWidth>
-                  <InputLabel id="letter-label">Letra</InputLabel>
+                <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
+                  <InputLabel id="identity-document-letter-label">
+                    Letra
+                  </InputLabel>
                   <Select
-                    // value={letter}
-                    labelId="letter-label"
-                    id="letter"
+                    required
+                    labelId="identity-document-letter-label"
+                    id="id-letter"
                     value={profileUser.identity_document_letter}
                     label="Letra"
                     onChange={changeLetter}
+                    // defaultValue={"V"}
                   >
-                    <MenuItem key={"V"} value={"V"}>
-                      {"V"}
-                    </MenuItem>
-                    <MenuItem key={"E"} value={"E"}>
-                      {"E"}
-                    </MenuItem>
-                    <MenuItem key={"J"} value={"J"}>
-                      {"J"}
-                    </MenuItem>
-                    <MenuItem key={"G"} value={"G"}>
-                      {"G"}
-                    </MenuItem>
+                    {identityDocumentLetters.map((data, index) => (
+                      <MenuItem key={data.id} value={data.code}>
+                        {data.code}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </Grid>
@@ -203,7 +203,67 @@ export default function PayTaxStamps() {
             <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
               Datos Contribuyente
             </Divider>
-            <FormControl color="secondary" fullWidth>
+            {[
+              LETTERS.VENEZOLANO.code,
+              LETTERS.EXTRANJERO.code,
+              LETTERS.PASAPORTE.code,
+            ].includes(profileUser.identity_document_letter) ? (
+              <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="type-contributor-natural-label">
+                  Tipo de contribuyente Natural
+                </InputLabel>
+                <Select
+                  labelId="type-contributor-natural-label"
+                  id="type-contributor-natural"
+                  value={profileUser.contributor_type.id}
+                  label="Tipo de contribuyente natural"
+                  onChange={changeTypeContributor}
+                  // defaultValue={1}
+                >
+                  {typesContributors.map((data, index) => {
+                    if (data.letters_contributors === "NATURAL")
+                      return (
+                        <MenuItem key={data.id} value={data.id}>
+                          {data.name}
+                        </MenuItem>
+                      );
+                  })}
+                </Select>
+              </FormControl>
+            ) : (
+              <></>
+            )}
+
+            {[
+              LETTERS.JURIDICO.code,
+              LETTERS.GUBERNAMENTAL.code,
+              LETTERS.CONSEJO.code,
+            ].includes(profileUser.identity_document_letter) ? (
+              <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="type-contributor-legal-label">
+                  Tipo de contribuyente Jurídico
+                </InputLabel>
+                <Select
+                  labelId="type-contributor-legal-label"
+                  id="type-contributor-legal"
+                  value={profileUser.contributor_type.id}
+                  label="Tipo de contribuyente Jurídico"
+                  onChange={changeTypeContributor}
+                >
+                  {typesContributors.map((data, index) => {
+                    if (data.letters_contributors === "LEGAL")
+                      return (
+                        <MenuItem key={data.id} value={data.id}>
+                          {data.name}
+                        </MenuItem>
+                      );
+                  })}
+                </Select>
+              </FormControl>
+            ) : (
+              <></>
+            )}
+            {/* <FormControl color="secondary" fullWidth>
               <InputLabel id="type-contributor-label">
                 Tipo de contribuyente
               </InputLabel>
@@ -220,7 +280,7 @@ export default function PayTaxStamps() {
                   </MenuItem>
                 ))}
               </Select>
-            </FormControl>
+            </FormControl> */}
 
             {isNaturalContributor() ? (
               <FormControlLabel

@@ -24,18 +24,18 @@ import FormControl from "@mui/material/FormControl";
 import { MuiTelInput } from "mui-tel-input";
 import Checkbox from "@mui/material/Checkbox";
 import CONTRIBUTORS from "@/common/TYPES_CONTRIBUTORS";
+import IDENTIY_DOCUMENT_LETTERS, {
+  LETTERS,
+} from "@/common/IDENTIY_DOCUMENT_LETTERS";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { createUser } from "@/services/user/user-services";
 // import MuiPhoneNumber from "mui-phone-number";
 
 export default function SignupPage(props) {
-  const identityDocumentLletters = [
-    { id: 1, description: "V" },
-    { id: 2, description: "E" },
-    { id: 3, description: "J" },
-    { id: 4, description: "G" },
-  ];
   const typesContributors = Object.values(CONTRIBUTORS.TYPES_CONTRIBUTORS);
+  const identityDocumentLetters = Object.values(
+    IDENTIY_DOCUMENT_LETTERS.LETTERS
+  );
 
   const paperStyle = {
     padding: 20,
@@ -282,9 +282,9 @@ export default function SignupPage(props) {
                     onChange={changeLetter}
                     // defaultValue={"V"}
                   >
-                    {identityDocumentLletters.map((data, index) => (
-                      <MenuItem key={data.id} value={data.description}>
-                        {data.description}
+                    {identityDocumentLetters.map((data, index) => (
+                      <MenuItem key={data.id} value={data.code}>
+                        {data.code}
                       </MenuItem>
                     ))}
                   </Select>
@@ -327,7 +327,11 @@ export default function SignupPage(props) {
             <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
               Datos Contribuyente
             </Divider>
-            {["V", "E"].includes(dataContributor.identity_document_letter) ? (
+            {[
+              LETTERS.VENEZOLANO.code,
+              LETTERS.EXTRANJERO.code,
+              LETTERS.PASAPORTE.code,
+            ].includes(dataContributor.identity_document_letter) ? (
               <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
                 <InputLabel id="type-contributor-natural-label">
                   Tipo de contribuyente Natural
@@ -354,7 +358,11 @@ export default function SignupPage(props) {
               <></>
             )}
 
-            {["J", "G"].includes(dataContributor.identity_document_letter) ? (
+            {[
+              LETTERS.JURIDICO.code,
+              LETTERS.GUBERNAMENTAL.code,
+              LETTERS.CONSEJO.code,
+            ].includes(dataContributor.identity_document_letter) ? (
               <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
                 <InputLabel id="type-contributor-legal-label">
                   Tipo de contribuyente Jurídico
