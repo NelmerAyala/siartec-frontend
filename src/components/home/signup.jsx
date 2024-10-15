@@ -54,8 +54,7 @@ export default function SignupPage(props) {
   const [dataContributor, setDataContributor] = React.useState({
     email: "",
     password: "",
-    firstname: "",
-    lastname: "",
+    fullname: "",
     identity_document_letter: "",
     identity_document: "",
     phone_number: "",
@@ -99,8 +98,7 @@ export default function SignupPage(props) {
       if (
         dataContributor.email !== "" &&
         dataContributor.password !== "" &&
-        dataContributor.firstname !== "" &&
-        dataContributor.lastname !== "" &&
+        dataContributor.fullname !== "" &&
         dataContributor.identity_document_letter !== "" &&
         dataContributor.identity_document !== "" &&
         dataContributor.phone_number !== "" &&
@@ -241,20 +239,18 @@ export default function SignupPage(props) {
               Datos Personales
             </Divider>
             <TextField
-              /* color="secondary" */
               fullWidth
-              label="Nombres"
-              placeholder="Ingrese nombres"
+              label="Nombres y Apellidos / Razón social"
+              placeholder="Ingrese Nombres y Apellidos / Razón social"
               required
               onChange={(e) =>
                 setDataContributor((dataContributor) => ({
                   ...dataContributor,
-                  firstname: e.target.value,
+                  fullname: e.target.value,
                 }))
               }
             />
-            <TextField
-              /* color="secondary" */
+            {/* <TextField
               fullWidth
               label="Apellidos"
               placeholder="Ingrese apellidos"
@@ -265,7 +261,7 @@ export default function SignupPage(props) {
                   lastname: e.target.value,
                 }))
               }
-            />
+            /> */}
 
             <Grid container>
               <Grid item xs={3}>
