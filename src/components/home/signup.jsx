@@ -29,9 +29,42 @@ import IDENTIY_DOCUMENT_LETTERS, {
 } from "@/common/IDENTIY_DOCUMENT_LETTERS";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { createUser } from "@/services/user/user-services";
+import SelectParishes from "./selectParishes";
+import { getParishesByMunicipality } from "@/services/parishes/get-parishes-by-municipality";
+import { getMunicipalityByState } from "@/services/municipalilties/get-municipalities-by-state";
+import SelectMunicipalities from "./selectMunicipalities";
+// import { selectParishes } from "./selectParishes";
 // import MuiPhoneNumber from "mui-phone-number";
 
 export default function SignupPage(props) {
+  const [state, setState] = React.useState(["default"]);
+  const [municipalities, setMunicipalities] = React.useState([]);
+  const [municipalitySelect, setMunicipalitySelect] = React.useState([]);
+  const [parishes, setParishes] = React.useState([]);
+
+  const handleStateChange = async (event) => {
+    setState(event.target.value);
+
+    if (event.target.value !== "default") {
+      const getMunicipality = await getMunicipalityByState({
+        state: event.target.value,
+      });
+      if (getMunicipality) setMunicipalities(getMunicipality);
+    } else {
+      setMunicipalities([]);
+      setParishes([]);
+    }
+  };
+
+  const handleMunicipalityChange = async (event) => {
+    setMunicipalitySelect(event.target.value);
+
+    const getParishes = await getParishesByMunicipality({
+      municipality: event.target.value,
+    });
+    if (getParishes) setParishes(getParishes);
+  };
+
   const typesContributors = Object.values(CONTRIBUTORS.TYPES_CONTRIBUTORS);
   const identityDocumentLetters = Object.values(
     IDENTIY_DOCUMENT_LETTERS.LETTERS
@@ -63,6 +96,7 @@ export default function SignupPage(props) {
     birthdate: "",
     constitution_date: "",
     address: "",
+    parish: "",
   });
 
   const changeTypeContributor = (event) => {
@@ -104,6 +138,7 @@ export default function SignupPage(props) {
         dataContributor.phone_number !== "" &&
         dataContributor.contributor_type !== "" &&
         dataContributor.address !== "" &&
+        dataContributor.parish !== "" &&
         (dataContributor.birthdate !== "" ||
           dataContributor.constitution_date !== "")
       ) {
@@ -459,6 +494,76 @@ export default function SignupPage(props) {
                 }))
               }
             />
+
+            <FormControl fullWidth sx={{ mb: 2 }}>
+              <InputLabel id="state-label">Estado</InputLabel>
+              <Select
+                required
+                labelId="state-label"
+                id="id-state"
+                value={state}
+                label="Estado"
+                onChange={handleStateChange}
+              >
+                <MenuItem key={0} value={"default"}>
+                  Seleccione el estado
+                </MenuItem>
+                <MenuItem key={7} value={7}>
+                  Carabobo
+                </MenuItem>
+              </Select>
+            </FormControl>
+
+            <SelectMunicipalities
+              municipalities={municipalities}
+              setMunicipalities={setMunicipalities}
+              state={state}
+              setDataContributor={setDataContributor}
+              dataContributor={dataContributor}
+              handleMunicipalityChange={handleMunicipalityChange}
+            />
+            <SelectParishes
+              parishes={parishes}
+              municipalitySelect={municipalitySelect}
+              setDataContributor={setDataContributor}
+              dataContributor={dataContributor}
+            />
+
+            {/* <FormControl fullWidth sx={{ mb: 2 }}>
+              <InputLabel id="municipality-label">Municipio</InputLabel>
+              <Select
+                required
+                labelId="municipality-label"
+                id="id-municipality"
+                value={municipality}
+                disabled={!state}
+                label="Municipio"
+                // onChange={handleMunicipalityChange}
+                onChange={(e) => setCity(e.target.value)}
+              >
+                {municipalities.map((data, index) => (
+                  <MenuItem key={data.id} value={data.id}>
+                    {data.descripcion}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl> */}
+
+            {/* <label htmlFor="city">City</label>
+            <select
+              id="city"
+              value={city}
+              disabled={!country}
+              onChange={(e) => setCity(e.target.value)}
+            >
+              <option value="">--Choose a City--</option>
+              {cities.map((city) => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
+            </select> */}
+
             {/* <FormControl component="fieldset" style={marginTop}>
               <FormLabel component="legend">Firma personal</FormLabel>
               <RadioGroup aria-label="firma" name="firma" style={{ display: 'initial' }}>

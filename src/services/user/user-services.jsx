@@ -5,6 +5,8 @@ export const createUser = async (params) => {
   console.log("params: " + JSON.stringify(params));
   try {
     params.contributor_type = { id: params.contributor_type };
+    // params.parish = { id: params.parish };
+
     const response = await Request.post("/users", params);
     return response;
   } catch (error) {
