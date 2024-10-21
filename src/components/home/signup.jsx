@@ -92,7 +92,6 @@ export default function SignupPage(props) {
     identity_document: "",
     phone_number: "",
     contributor_type: "",
-    // personal_signature: false,
     birthdate: "",
     constitution_date: "",
     address: "",
@@ -216,7 +215,6 @@ export default function SignupPage(props) {
               Datos Usuario
             </Divider>
             <TextField
-              /* color="secondary" */
               fullWidth
               label="Correo Electrónico"
               placeholder="Ingrese correo electrónico"
@@ -229,8 +227,6 @@ export default function SignupPage(props) {
               }
             />
             <TextField
-              // defaultValue={"Nel24297146@"}
-              /* color="secondary" */
               label="Contraseña"
               name="password"
               placeholder="Ingrese contraseña"
@@ -419,22 +415,6 @@ export default function SignupPage(props) {
               <></>
             )}
 
-            {/* {isNaturalContributor() ? (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="checked-allrules"
-                    color="secondary" 
-                    onClick={(e) => handleChangeCheck(e)}
-                  />
-                }
-                label="Es firma personal."
-                sx={{ mb: 2, mt: 0 }}
-              />
-            ) : (
-              <></>
-            )} */}
-
             {!isNaturalContributor() ? (
               <TextField
                 /* color="secondary" */
@@ -483,7 +463,6 @@ export default function SignupPage(props) {
             )}
 
             <TextField
-              /* color="secondary" */
               fullWidth
               label="Dirección"
               placeholder="Ingrese dirección"
@@ -529,65 +508,11 @@ export default function SignupPage(props) {
               dataContributor={dataContributor}
             />
 
-            {/* <FormControl fullWidth sx={{ mb: 2 }}>
-              <InputLabel id="municipality-label">Municipio</InputLabel>
-              <Select
-                required
-                labelId="municipality-label"
-                id="id-municipality"
-                value={municipality}
-                disabled={!state}
-                label="Municipio"
-                // onChange={handleMunicipalityChange}
-                onChange={(e) => setCity(e.target.value)}
-              >
-                {municipalities.map((data, index) => (
-                  <MenuItem key={data.id} value={data.id}>
-                    {data.descripcion}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl> */}
-
-            {/* <label htmlFor="city">City</label>
-            <select
-              id="city"
-              value={city}
-              disabled={!country}
-              onChange={(e) => setCity(e.target.value)}
-            >
-              <option value="">--Choose a City--</option>
-              {cities.map((city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
-            </select> */}
-
-            {/* <FormControl component="fieldset" style={marginTop}>
-              <FormLabel component="legend">Firma personal</FormLabel>
-              <RadioGroup aria-label="firma" name="firma" style={{ display: 'initial' }}>
-                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                <FormControlLabel value="male" control={<Radio />} label="Male" />
-              </RadioGroup>
-            </FormControl> */}
-
-            {/* <TextField fullWidth label='Password' placeholder="Enter your password" />
-            <TextField fullWidth label='Confirm Password' placeholder="Confirm your password" /> */}
-
             <Grid sx={{ mt: 5 }}>
-              <Button
-                type="submit"
-                // color="secondary"
-                variant="contained"
-                fullWidth
-                // onClick={(e) => handleOnSubmit(e)}
-              >
+              <Button type="submit" variant="contained" fullWidth>
                 Crear cuenta
               </Button>
             </Grid>
-
-            {/* </form> */}
           </Box>
         </Paper>
       </Grid>

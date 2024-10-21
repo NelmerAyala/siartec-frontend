@@ -28,6 +28,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { getProfiledUser } from "@/services/user/get-profile-services";
+import { getSession } from "next-auth/react";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -53,8 +55,17 @@ export default function CreateTaxStamps() {
   const [ente, setEnte] = useState("");
   const [subEnte, setSubEnte] = useState("");
   const [tramite, setTramite] = useState("");
+  const [profileUser, setprofileUser] = useState("");
   // const [contribuyents, setContribuyents] = useState([]);
 
+  const sendRequest = async () => {
+    let data = await getProfiledUser(await getSession());
+    console.log(data);
+    if (data) setprofileUser(data);
+  };
+  React.useEffect(() => {
+    sendRequest();
+  }, []);
   return (
     <>
       <Box className="box" id="sect-2" sx={{ flexGrow: 1, padding: "2rem" }}>
@@ -65,7 +76,7 @@ export default function CreateTaxStamps() {
           <Grid item xs={12}>
             <TextField
               color="secondary"
-              value="Carlos Cárdenas"
+              value={profileUser.fullname}
               type="text"
               fullWidth
               label="Nombre"
@@ -75,7 +86,7 @@ export default function CreateTaxStamps() {
           <Grid item xs={12}>
             <TextField
               color="secondary"
-              value="28465203"
+              value={`${profileUser.identity_document_letter}-${profileUser.identity_document}`}
               type="text"
               fullWidth
               label="Rif/Cédula"
