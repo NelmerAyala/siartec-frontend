@@ -21,12 +21,12 @@ const SelectMunicipalities = (props) => {
           required
           labelId="state-label"
           id="id-state"
-          value={props.stateSelect}
+          value={props.stateSelect || "default"}
           label="Estado"
           onChange={props.handleStateChange}
         >
-          <MenuItem key={0} value={"default"}>
-            Seleccione el estado
+          <MenuItem key="default" value={"default"} disabled>
+            Seleccione un Estado
           </MenuItem>
           {states.map((data) => (
             <MenuItem key={data.id} value={data.id}>

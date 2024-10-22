@@ -1,8 +1,10 @@
 "use client";
 import * as React from "react";
+import "../../../styles/app/generar/generar.scss";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import {
+  Alert,
   Button,
   Divider,
   FormControl,
@@ -11,11 +13,11 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-
+import Snackbar from "@mui/material/Snackbar";
 import moment from "moment";
 import { getSession, useSession } from "next-auth/react";
 import { getProfiledUser } from "@/services/user/get-profile-services";
-import CONTRIBUTORS from "@/common/TYPES_CONTRIBUTORS";
+import CONTRIBUTORS, { TYPES_CONTRIBUTORS } from "@/common/TYPES_CONTRIBUTORS";
 import IDENTIY_DOCUMENT_LETTERS, {
   LETTERS,
 } from "@/common/IDENTIY_DOCUMENT_LETTERS";
@@ -30,26 +32,31 @@ import { UpdateUser } from "@/services/user/update-user-services";
 
 export default function PayTaxStamps() {
   const { data: session, status } = useSession();
-
-  const [stateSelect, setStateSelect] = React.useState([]);
+  const getToday = () => {
+    let today = moment(
+      dataContributor.birthdate || dataContributor.constitution_date
+    ).format("yyyy-MM-DD");
+    return today;
+  };
+  const [stateSelect, setStateSelect] = React.useState("default");
   const [states, setStates] = React.useState([]);
   const [state, setState] = React.useState(["default"]);
   const [municipalities, setMunicipalities] = React.useState([]);
-  const [municipalitySelect, setMunicipalitySelect] = React.useState([]);
+  const [municipalitySelect, setMunicipalitySelect] = React.useState("default");
   const [parishes, setParishes] = React.useState([]);
   const [messageError, setMessageError] = React.useState("");
   const [messageSuccess, setMessageSuccess] = React.useState("");
   const [dataContributor, setDataContributor] = React.useState({
     email: "",
     fullname: "",
-    identity_document_letter: "",
+    identity_document_letter: "default",
     identity_document: "",
     phone_number: "",
-    contributor_type: "",
-    birthdate: "",
-    constitution_date: "",
+    contributor_type: "default",
+    birthdate: "1950-01-01",
+    constitution_date: "1950-01-01",
     address: "",
-    parish: "",
+    parish: "default",
   });
 
   const changeTypeContributor = (event) => {
@@ -79,7 +86,7 @@ export default function PayTaxStamps() {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    console.log("dataContributor: " + JSON.stringify(dataContributor));
+
     let result;
     try {
       if (
@@ -99,7 +106,7 @@ export default function PayTaxStamps() {
           : delete dataContributor.birthdate;
 
         result = await UpdateUser({ params: dataContributor, session });
-        console.log("result: " + JSON.stringify(result));
+
         if (
           result.data &&
           (result.statusCode !== 200 || result.status !== 200)
@@ -107,12 +114,25 @@ export default function PayTaxStamps() {
           let message = result.data.message;
 
           setMessageError(message);
+          setStateSnackbarError({
+            ...stateSnackbarError,
+            openSnackbarError: true,
+          });
         } else {
           setMessageError("");
+          setStateSnackbarError({
+            ...stateSnackbarError,
+            openSnackbarError: false,
+          });
           setMessageSuccess("Modificación exitosa");
+          setStateSnackbar({ ...stateSnackbar, openSnackbar: true });
         }
       } else {
         setMessageError("Debe ingresar todos los campos requeridos");
+        setStateSnackbarError({
+          ...stateSnackbarError,
+          openSnackbarError: true,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -121,7 +141,6 @@ export default function PayTaxStamps() {
 
   const sendRequest = async () => {
     let data = await getProfiledUser(await getSession());
-    console.log(data);
 
     let getStates = await getStatesAll();
     if (getStates) setStates(getStates);
@@ -139,6 +158,7 @@ export default function PayTaxStamps() {
     setStateSelect(data.parish.municipality.state.id);
     setMunicipalitySelect(data.parish.municipality.id);
     data.parish = data.parish.id;
+    data.contributor_type = data.contributor_type.id;
 
     if (data) setDataContributor(data);
   };
@@ -147,14 +167,10 @@ export default function PayTaxStamps() {
     sendRequest();
   }, []);
 
-  const getToday = () => {
-    let today = moment(
-      dataContributor.birthdate || dataContributor.constitution_date
-    ).format("YYYY-MM-DD");
-    return today;
-  };
-
   const handleStateChange = async (event) => {
+    setMunicipalities([]);
+    setMunicipalitySelect("default");
+    setStateSelect(event.target.value);
     setState(event.target.value);
 
     if (event.target.value !== "default") {
@@ -169,6 +185,11 @@ export default function PayTaxStamps() {
   };
 
   const handleMunicipalityChange = async (event) => {
+    setParishes([]);
+    setDataContributor((dataContributor) => ({
+      ...dataContributor,
+      parish: "default",
+    }));
     setMunicipalitySelect(event.target.value);
 
     const getParishes = await getParishesByMunicipality({
@@ -181,37 +202,86 @@ export default function PayTaxStamps() {
   const identityDocumentLetters = Object.values(
     IDENTIY_DOCUMENT_LETTERS.LETTERS
   );
+
   const [stateSnackbar, setStateSnackbar] = React.useState({
-    open: false,
+    openSnackbar: false,
     vertical: "top",
     horizontal: "center",
   });
-  const { vertical, horizontal, open } = stateSnackbar;
+  const { vertical, horizontal, openSnackbar } = stateSnackbar;
 
-  const handleClick = (newState) => () => {
-    setStateSnackbar({ ...newState, open: true });
+  const handleClose = () => {
+    setStateSnackbar({ ...stateSnackbar, openSnackbar: false });
   };
+  const [stateSnackbarError, setStateSnackbarError] = React.useState({
+    openSnackbarError: false,
+    verticalError: "top",
+    horizontalError: "center",
+  });
+  const { verticalError, horizontalError, openSnackbarError } =
+    stateSnackbarError;
+
+  const handleCloseError = () => {
+    setStateSnackbarError({ ...stateSnackbarError, openSnackbarError: false });
+  };
+
   return (
     <>
       {messageError !== "" ? (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Button
-            onClick={handleClick({ vertical: "top", horizontal: "center" })}
+        <Box sx={{ width: 500 }}>
+          <Snackbar
+            open={openSnackbarError}
+            autoHideDuration={3600}
+            onClose={handleCloseError}
+            anchorOrigin={{
+              vertical: verticalError,
+              horizontal: horizontalError,
+            }}
+            // message={messageError}
+            // key={verticalError + horizontalError}
           >
-            {messageError}
-          </Button>
+            <Alert
+              onClose={handleCloseError}
+              severity="error"
+              variant="filled"
+              sx={{ width: "100%" }}
+            >
+              {messageError}
+            </Alert>
+          </Snackbar>
         </Box>
       ) : (
         <></>
       )}
 
       {messageSuccess !== "" ? (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Button
-            onClick={handleClick({ vertical: "top", horizontal: "center" })}
+        <Box sx={{ width: 500 }}>
+          {/* <Snackbar
+            open={openSnackbar}
+            autoHideDuration={1200}
+            onClose={handleClose}
+            
+            anchorOrigin={{ vertical: vertical, horizontal: horizontal }}
+            message={messageSuccess}
+            key={vertical + horizontal}
+          /> */}
+          <Snackbar
+            open={openSnackbar}
+            autoHideDuration={3600}
+            onClose={handleClose}
+            anchorOrigin={{ vertical: vertical, horizontal: horizontal }}
+            // message={messageSuccess}
+            // key={vertical + horizontal}
           >
-            {messageSuccess}
-          </Button>
+            <Alert
+              onClose={handleClose}
+              severity="success"
+              variant="filled"
+              sx={{ width: "100%" }}
+            >
+              {messageSuccess}
+            </Alert>
+          </Snackbar>
         </Box>
       ) : (
         <></>
@@ -276,12 +346,16 @@ export default function PayTaxStamps() {
                   </InputLabel>
                   <Select
                     required
+                    disabled
                     labelId="identity-document-letter-label"
                     id="id-letter"
                     value={dataContributor.identity_document_letter}
                     label="Letra"
                     onChange={changeLetter}
                   >
+                    <MenuItem key="default" value={"default"} disabled>
+                      Seleccione una letra
+                    </MenuItem>
                     {identityDocumentLetters.map((data, index) => (
                       <MenuItem key={data.id} value={data.code}>
                         {data.code}
@@ -292,6 +366,7 @@ export default function PayTaxStamps() {
               </Grid>
               <Grid item xs={9}>
                 <TextField
+                  disabled
                   fullWidth
                   type="text"
                   required
@@ -340,10 +415,13 @@ export default function PayTaxStamps() {
                   required
                   labelId="type-contributor-natural-label"
                   id="type-contributor-natural"
-                  value={dataContributor.contributor_type.id}
+                  value={dataContributor.contributor_type}
                   label="Tipo de contribuyente natural"
                   onChange={changeTypeContributor}
                 >
+                  <MenuItem key="default" value={"default"} disabled>
+                    Seleccione un tipo
+                  </MenuItem>
                   {typesContributors.map((data, index) => {
                     if (data.letters_contributors === "NATURAL")
                       return (
@@ -370,12 +448,22 @@ export default function PayTaxStamps() {
                 <Select
                   labelId="type-contributor-legal-label"
                   id="type-contributor-legal"
-                  value={dataContributor.contributor_type.id}
+                  value={dataContributor.contributor_type}
                   label="Tipo de contribuyente Jurídico"
                   onChange={changeTypeContributor}
                 >
+                  <MenuItem key="default" value={"default"} disabled>
+                    Seleccione un tipo
+                  </MenuItem>
                   {typesContributors.map((data, index) => {
-                    if (data.letters_contributors === "LEGAL")
+                    if (
+                      data.letters_contributors === "LEGAL" &&
+                      !(
+                        data.id === TYPES_CONTRIBUTORS.SUCESION.id &&
+                        dataContributor.identity_document_letter ===
+                          IDENTIY_DOCUMENT_LETTERS.LETTERS.CONSEJO.code
+                      )
+                    )
                       return (
                         <MenuItem key={data.id} value={data.id}>
                           {data.name}
@@ -390,31 +478,32 @@ export default function PayTaxStamps() {
 
             {!isNaturalContributor() ? (
               <TextField
+                id="constitution_date"
                 type="date"
-                defaultValue={getToday()}
                 fullWidth
                 label="Fecha de constitución"
-                value={dataContributor.constitution_date}
+                value={dataContributor.constitution_date || getToday()}
                 required
                 InputLabelProps={{ shrink: true }}
                 onChange={(e) =>
                   setDataContributor((dataContributor) => ({
                     ...dataContributor,
-                    ...{ constitution_date: e.target.value },
+                    constitution_date: e.target.value,
                   }))
                 }
               />
             ) : (
               <TextField
+                id="birthdate"
                 type="date"
                 fullWidth
                 label="Fecha de nacimiento"
-                value={dataContributor.birthdate}
+                value={dataContributor.birthdate || getToday()}
                 required
                 onChange={(e) =>
                   setDataContributor((dataContributor) => ({
                     ...dataContributor,
-                    ...{ birthdate: e.target.value },
+                    birthdate: e.target.value,
                   }))
                 }
               />
@@ -454,7 +543,7 @@ export default function PayTaxStamps() {
             />
 
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" /* fullWidth */>
+              <Button type="submit" variant="contained">
                 Guardar
               </Button>
             </Grid>

@@ -20,7 +20,7 @@ const SelectParishes = (props) => {
           required
           labelId="parishes-label"
           id="id-parishes"
-          value={props.dataContributor.parish}
+          value={parishes.length > 1 ? props.dataContributor.parish : "default"}
           disabled={props.municipalitySelect == []}
           label="Parroquia"
           onChange={(e) =>
@@ -30,6 +30,9 @@ const SelectParishes = (props) => {
             }))
           }
         >
+          <MenuItem key="default" value={"default"} disabled>
+            Seleccione una Parroquia
+          </MenuItem>
           {parishes.map((data) => (
             <MenuItem key={data.id} value={data.id}>
               {data.description}

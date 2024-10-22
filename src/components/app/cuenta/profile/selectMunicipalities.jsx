@@ -21,10 +21,13 @@ const SelectMunicipalities = (props) => {
           required
           labelId="municipality-label"
           id="id-municipality"
-          value={props.municipalitySelect}
+          value={props.municipalitySelect || "default"}
           label="Municipio"
           onChange={props.handleMunicipalityChange}
         >
+          <MenuItem key="default" value={"default"} disabled>
+            Seleccione un Municipio
+          </MenuItem>
           {municipalities.map((data) => (
             <MenuItem key={data.id} value={data.id}>
               {data.description}

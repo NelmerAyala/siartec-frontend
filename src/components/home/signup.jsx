@@ -23,7 +23,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { MuiTelInput } from "mui-tel-input";
 import Checkbox from "@mui/material/Checkbox";
-import CONTRIBUTORS from "@/common/TYPES_CONTRIBUTORS";
+import CONTRIBUTORS, { TYPES_CONTRIBUTORS } from "@/common/TYPES_CONTRIBUTORS";
 import IDENTIY_DOCUMENT_LETTERS, {
   LETTERS,
 } from "@/common/IDENTIY_DOCUMENT_LETTERS";
@@ -125,7 +125,7 @@ export default function SignupPage(props) {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    console.log("dataContributor: " + JSON.stringify(dataContributor));
+
     let result;
     try {
       if (
@@ -402,9 +402,31 @@ export default function SignupPage(props) {
                   onChange={changeTypeContributor}
                 >
                   {typesContributors.map((data, index) => {
-                    if (data.letters_contributors === "LEGAL")
+                    console.log(
+                      "dataContributor.identity_document_letter" +
+                        dataContributor.identity_document_letter
+                    );
+                    console.log("data.id: " + data.id + "   " + data.name);
+                    if (
+                      data.letters_contributors === "LEGAL" &&
+                      !(
+                        data.id === TYPES_CONTRIBUTORS.SUCESION.id &&
+                        dataContributor.identity_document_letter ===
+                          IDENTIY_DOCUMENT_LETTERS.LETTERS.CONSEJO.code
+                      )
+                    )
                       return (
-                        <MenuItem key={data.id} value={data.id}>
+                        <MenuItem
+                          key={data.id}
+                          value={data.id}
+                          // disabled={
+                          //   data.id === TYPES_CONTRIBUTORS.SUCESION.id &&
+                          //   dataContributor.identity_document_letter ===
+                          //     IDENTIY_DOCUMENT_LETTERS.LETTERS.CONSEJO.code
+                          //     ? true
+                          //     : false
+                          // }
+                        >
                           {data.name}
                         </MenuItem>
                       );
@@ -420,21 +442,7 @@ export default function SignupPage(props) {
                 /* color="secondary" */
                 type="date"
                 defaultValue={getToday()}
-                fullWidth
-                label="Fecha de constitución"
-                required
-                onChange={(e) =>
-                  setDataContributor((dataContributor) => ({
-                    ...dataContributor,
-                    ...{ constitution_date: e.target.value },
-                  }))
-                }
-              />
-            ) : dataContributor.personal_signature === true ? (
-              <TextField
-                /* color="secondary" */
-                type="date"
-                defaultValue={getToday()}
+                InputLabelProps={{ shrink: true }}
                 fullWidth
                 label="Fecha de constitución"
                 required
@@ -447,6 +455,7 @@ export default function SignupPage(props) {
               />
             ) : (
               <TextField
+                InputLabelProps={{ shrink: true }}
                 /* color="secondary" */
                 type="date"
                 defaultValue={getToday()}

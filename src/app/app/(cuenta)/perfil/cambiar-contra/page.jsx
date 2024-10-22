@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import "../../../../styles/app/generar/generar.scss";
 import { useSession } from "next-auth/react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -25,9 +26,8 @@ export default function ChangePassword() {
   const [messageSuccess, setMessageSuccess] = React.useState("");
   const [passwordError, setPasswordError] = React.useState("");
   const [passwordNewError, setPasswordNewError] = React.useState("");
-  const [passwordNewConfirmError, setPasswordNewConfirmError] = React.useState(
-    ""
-  );
+  const [passwordNewConfirmError, setPasswordNewConfirmError] =
+    React.useState("");
 
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -37,9 +37,8 @@ export default function ChangePassword() {
   const handleClickShowPasswordNew = () => setShowPasswordNew(!showPasswordNew);
   const handleMouseDownPasswordNew = () => setShowPasswordNew(!showPasswordNew);
 
-  const [showPasswordNewConfirm, setShowPasswordNewConfirm] = React.useState(
-    false
-  );
+  const [showPasswordNewConfirm, setShowPasswordNewConfirm] =
+    React.useState(false);
   const handleClickShowPasswordNewConfirm = () =>
     setShowPasswordNewConfirm(!showPasswordNewConfirm);
   const handleMouseDownPasswordNewConfirm = () =>
