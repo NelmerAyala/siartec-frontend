@@ -84,7 +84,14 @@ export default function ServicesPage() {
               </Card>
             </Grid>
 
-            <Grid item xs={6}></Grid>
+            <Grid item xs={6}>
+              <img
+                width={"100%"}
+                height={"400px"}
+                src="img/contact.svg"
+                alt=""
+              />
+            </Grid>
           </Grid>
         </Box>
       </div>

@@ -70,14 +70,14 @@ function MenuApp(props) {
             component="img"
             sx={{
               // height: 60,
-              width: 120,
+              width: 160,
               maxHeight: { xs: 233, md: 167 },
               maxWidth: { xs: 350, md: 250 },
               display: { xs: "none", md: "flex" },
               mr: 1,
             }}
             alt="logo siartec"
-            src="/img/logo.png"
+            src="/img/siartec.png"
           />
           <Box
             component="img"

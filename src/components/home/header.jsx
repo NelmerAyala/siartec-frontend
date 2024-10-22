@@ -253,14 +253,14 @@ export default function MenuHome() {
                 <Box
                   component="img"
                   sx={{
-                    width: 120,
+                    width: 200,
                     maxHeight: { xs: 233, md: 167 },
                     maxWidth: { xs: 350, md: 250 },
                     display: { xs: "none", md: "flex" },
                     mr: 1,
                   }}
                   alt="The house from the offer."
-                  src="/img/logo.png"
+                  src="/img/siartec.png"
                 />
                 <Typography
                   variant="h6"
@@ -326,14 +326,14 @@ export default function MenuHome() {
                 <Box
                   component="img"
                   sx={{
-                    width: 120,
+                    width: 200,
                     maxHeight: { xs: 233, md: 167 },
                     maxWidth: { xs: 350, md: 250 },
                     display: { xs: "flex", md: "none" },
                     mr: 1,
                   }}
                   alt="The house from the offer."
-                  src="/img/logo.png"
+                  src="/img/siartec.png"
                 />
                 <Typography
                   variant="h5"
@@ -401,14 +401,14 @@ export default function MenuHome() {
               <Box
                 component="img"
                 sx={{
-                  width: 120,
+                  width: 200,
                   maxHeight: { xs: 233, md: 167 },
                   maxWidth: { xs: 350, md: 250 },
                   display: { xs: "none", md: "flex" },
                   mr: 1,
                 }}
                 alt="The house from the offer."
-                src="/img/logo.png"
+                src="/img/siartec.png"
               />
               <Typography
                 variant="h6"
@@ -475,14 +475,14 @@ export default function MenuHome() {
               <Box
                 component="img"
                 sx={{
-                  width: 120,
+                  width: 200,
                   maxHeight: { xs: 233, md: 167 },
                   maxWidth: { xs: 350, md: 250 },
                   display: { xs: "flex", md: "none" },
                   mr: 1,
                 }}
                 alt="The house from the offer."
-                src="/img/logo.png"
+                src="/img/siartec.png"
               />
               <Typography
                 variant="h5"

@@ -55,7 +55,7 @@ export const Footer = () => {
                   </Typography>
                 </Stack>
               </Grid>
-              <Grid item xs={2} sm={4} md={6} key={2}>
+              {/* <Grid item xs={2} sm={4} md={6} key={2}>
                 <Stack
                   direction="column"
                   justifyContent="center"
@@ -98,7 +98,7 @@ export const Footer = () => {
                     <i></i> tributosrecaudacion@gmail.com
                   </Typography>
                 </Stack>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
           <Box
@@ -118,14 +118,14 @@ export const Footer = () => {
                     component="img"
                     sx={{
                       // height: 60,
-                      width: 120,
+                      width: 250,
                       maxHeight: { xs: 233, md: 167 },
                       maxWidth: { xs: 350, md: 250 },
                       // display: { xs: 'none', md: 'flex' },
-                      mr: 1,
+                      mr: 2,
                     }}
                     alt="The house from the offer."
-                    src="/img/logo.png"
+                    src="/img/inverse.png"
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -156,7 +156,7 @@ export const Footer = () => {
             columns={{ xs: 4, sm: 8, md: 12 }}
             className="foot-section"
           >
-            <Grid item xs={2} sm={4} md={6} key={1}>
+            <Grid item xs={12} key={1}>
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -179,7 +179,7 @@ export const Footer = () => {
                 <Typography>De Lunes a Viernes desde las 8am a 2pm.</Typography>
               </Stack>
             </Grid>
-            <Grid item xs={2} sm={4} md={6} key={2}>
+            {/* <Grid item xs={2} sm={4} md={6} key={2}>
               <Stack
                 direction="column"
                 justifyContent="center"
@@ -222,7 +222,7 @@ export const Footer = () => {
                   <i></i> tributosrecaudacion@gmail.com
                 </Typography>
               </Stack>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Box>
         <Box

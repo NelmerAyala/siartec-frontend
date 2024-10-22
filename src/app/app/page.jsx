@@ -14,15 +14,15 @@ import Grid from "@mui/material/Grid";
 const steps = ["Paso 1", "Paso 2", "Paso 3"];
 const IMAGES_STEPS = ["img/steps/1.svg", "img/steps/2.svg", "img/steps/3.svg"];
 const caption = [
-  "Compra estampillas de forma: fácil, rápida y segura.",
+  "Compra estampillas",
   "Con tan solo un click",
   "Formas de Pago",
 ];
 
 const captionDesq = [
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa ipsam delectus repellendus aperiam doloremque quidem laudantium vel rem placeat.",
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa ipsam delectus repellendus aperiam doloremque quidem laudantium vel rem placeat.",
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa ipsam delectus repellendus aperiam doloremque quidem laudantium vel rem placeat.",
+  "De forma fácil, rápida y sencilla. Usando la pasarela de pago de 100% banco puedes pagar tus estampillas desde cualquier lugar y en cualquier horario. ",
+  "Solo necesitas acceso a internet para generar y comprar tus estampillas...",
+  `Puedes pagar desde nuestra plataforma de pago virtual o generar las estampillas y dirigirte al punto de recaudación de tu preferencia`,
 ];
 
 export default function HorizontalLinearStepper() {
@@ -100,8 +100,8 @@ export default function HorizontalLinearStepper() {
       {activeStep === steps.length ? (
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>
-            Ha completado todos los pasos - Ya puedes descargar/imprimir tu
-            estampilla fiscal
+            Ha completado todos los pasos - Ya puedes Comprar, descargar y/o
+            imprimir tu estampilla fiscal
           </Typography>
           <Container maxWidth="sm">
             <Box

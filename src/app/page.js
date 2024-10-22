@@ -117,7 +117,7 @@ export default function HomePage() {
                 component="img"
                 className="img-banner"
                 alt="The house from the offer."
-                src="img/bg/bg-1.png"
+                src="img/bg/bg-1.webp"
               />
             </Grid>
             {/* 
@@ -159,7 +159,7 @@ export default function HomePage() {
             <Grid item xs={5}>
               <div
                 className="card"
-                style={{ backgroundImage: "url('img/bg/bg-2.png')" }}
+                style={{ backgroundImage: "url('img/bg/bg-2.webp')" }}
               >
                 <div className="content">
                   <h2 className="title">Timbres Fiscales</h2>
@@ -175,7 +175,7 @@ export default function HomePage() {
             <Grid item xs={5}>
               <div
                 className="card"
-                style={{ backgroundImage: "url('img/bg/bg-3.png')" }}
+                style={{ backgroundImage: "url('img/bg/bg-3.webp')" }}
               >
                 <div className="content">
                   <h2 className="title">1x1000</h2>
@@ -190,7 +190,7 @@ export default function HomePage() {
             <Grid item xs={5}>
               <div
                 className="card"
-                style={{ backgroundImage: "url('img/bg/bg-4.png')" }}
+                style={{ backgroundImage: "url('img/bg/bg-4.webp')" }}
               >
                 <div className="content">
                   <h2 className="title">Renta Minera</h2>
@@ -205,7 +205,7 @@ export default function HomePage() {
             <Grid item xs={5}>
               <div
                 className="card"
-                style={{ backgroundImage: "url('img/bg/bg-5.png')" }}
+                style={{ backgroundImage: "url('img/bg/bg-5.webp')" }}
               >
                 <div className="content">
                   <h2 className="title">Guias de Circulacion</h2>
@@ -336,13 +336,13 @@ export default function HomePage() {
               >
                 <div className="card-content">
                   <Typography>
-                    <span>ASISTENCIA AL CONTRIBUYENTE: </span> 0241-874.34.70
+                    <span>ASISTENCIA AL CONTRIBUYENTE: </span> 0241-874 34 50
                   </Typography>
                   <Typography>
-                    <span>RECAUDACIÓN Y CONTROL: </span> 0241-874.34.64
+                    <span>RECAUDACIÓN Y CONTROL: </span> 0241-874 34 64
                   </Typography>
                   <Typography>
-                    <span>FISCALIZACIÓN: </span> 0241-874.34.64
+                    <span>FISCALIZACIÓN: </span> 0241-874 34 64
                   </Typography>
                 </div>
               </TabPanel>
@@ -354,13 +354,16 @@ export default function HomePage() {
               >
                 <div className="card-content">
                   <Typography>
-                    <span> #1: </span> tributosrecaudacion@gmail.com
+                    <span> #1: </span> asistenciasiartec@gmail.com
                   </Typography>
                   <Typography>
-                    <span> #2: </span> recaudacionycontrol18@gmail.com
+                    <span> #2: </span> tributosrecaudacion@gmail.com
                   </Typography>
                   <Typography>
-                    <span> #3: </span> asist.contribuyente2016@gmail.com
+                    <span> #3: </span> recaudacionycontrol18@gmail.com
+                  </Typography>
+                  <Typography>
+                    <span> #4: </span> asist.contribuyente2016@gmail.com
                   </Typography>
                 </div>
               </TabPanel>

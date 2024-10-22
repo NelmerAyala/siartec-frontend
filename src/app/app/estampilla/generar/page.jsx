@@ -1,23 +1,14 @@
 "use client";
-import React, { useState } from "react";
-
 import "../../../styles/app/generar/generar.scss";
-import SelectsAnidados from "@/components/app/SelectAnidados";
-
-let nextId = 0;
-
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Divider,
-  Select,
-  TextField,
-  Button,
-} from "@mui/material";
+import { Divider, TextField } from "@mui/material";
 
+<<<<<<< HEAD
+import SelectsAnidados from "@/components/app/SelectAnidados";
+
+export default function CreateTaxStamps() {
+=======
 //table
 
 import { styled } from "@mui/material/styles";
@@ -66,6 +57,7 @@ export default function CreateTaxStamps() {
   React.useEffect(() => {
     sendRequest();
   }, []);
+>>>>>>> 7ed64d1db9e0577794927b9110ffb70c77645d34
   return (
     <>
       <Box className="box" id="sect-2" sx={{ flexGrow: 1, padding: "2rem" }}>
@@ -96,7 +88,6 @@ export default function CreateTaxStamps() {
           <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
             Seleccione Destino de la Estampilla
           </Divider>
-          {/* <ul>{entesList}</ul> */}
         </Grid>
 
         <SelectsAnidados />

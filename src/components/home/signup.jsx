@@ -354,11 +354,46 @@ export default function SignupPage(props) {
             <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
               Datos Contribuyente
             </Divider>
-            {[
-              LETTERS.VENEZOLANO.code,
-              LETTERS.EXTRANJERO.code,
-              LETTERS.PASAPORTE.code,
-            ].includes(dataContributor.identity_document_letter) ? (
+
+            {/* opciones para VENEZOLANO */}
+            {[LETTERS.VENEZOLANO.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
+              <Typography textAlign="justify">
+                <b>Venezolano </b> Pueden ser: <br />
+                <b>Personal Natural: </b> Lorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Harum, at atque? Qui quis
+                aspernatur quo. <br /> <br />
+                <b>Firma Personal:</b> Lorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Harum, at atque? Qui quis aspernatur quo.
+                <br />
+                <br />
+              </Typography>
+            ) : (
+              <></>
+            )}
+
+            {/* opciones para EXTRANJERO */}
+            {[LETTERS.EXTRANJERO.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
+              <Typography textAlign="justify">
+                <b>Extranjero </b> Pueden ser: <br />
+                <b>Personal Natural: </b> Lorem ipsum dolor sit amet
+                consectetur, adipisicing elit. Harum, at atque? Qui quis
+                aspernatur quo. <br /> <br />
+                <b>Firma Personal:</b> Lorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Harum, at atque? Qui quis aspernatur quo.
+                <br />
+                <br />
+              </Typography>
+            ) : (
+              <></>
+            )}
+
+            {[LETTERS.VENEZOLANO.code, LETTERS.EXTRANJERO.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
               <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
                 <InputLabel id="type-contributor-natural-label">
                   Tipo de contribuyente Natural
@@ -385,11 +420,30 @@ export default function SignupPage(props) {
               <></>
             )}
 
-            {[
-              LETTERS.JURIDICO.code,
-              LETTERS.GUBERNAMENTAL.code,
-              LETTERS.CONSEJO.code,
-            ].includes(dataContributor.identity_document_letter) ? (
+            {/* opciones para JURIDICO */}
+            {[LETTERS.JURIDICO.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
+              <Typography textAlign="justify">
+                Ud ha seleccionado <b>Jurídico </b> Pueden ser: <br />
+                <b>Comercial: </b> Lorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Harum, at atque? Qui quis aspernatur quo.{" "}
+                <br />
+                <b>Industrial:</b> Lorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Harum, at atque? Qui quis aspernatur quo.
+                <br />
+                <b>Sucesión :</b> Suele usarse para solicitudes ante el SENIAT
+                para documentos sucesoriales.
+                <br />
+                <br />
+              </Typography>
+            ) : (
+              <></>
+            )}
+
+            {[LETTERS.JURIDICO.code, LETTERS.CONSEJO.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
               <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
                 <InputLabel id="type-contributor-legal-label">
                   Tipo de contribuyente Jurídico
@@ -433,6 +487,52 @@ export default function SignupPage(props) {
                   })}
                 </Select>
               </FormControl>
+            ) : (
+              <></>
+            )}
+
+            {/* opciones para CONSEJO */}
+            {[LETTERS.CONSEJO.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
+              <Typography textAlign="justify">
+                Ud ha seleccionado <b>Comunas </b> Pueden ser: <br />
+                <b>Comercial: </b> Lorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Harum, at atque? Qui quis aspernatur quo.{" "}
+                <br />
+                <b>Industrial:</b> Lorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Harum, at atque? Qui quis aspernatur quo.
+                <br />
+                <br />
+              </Typography>
+            ) : (
+              <></>
+            )}
+
+            {/* opciones para GUBERNAMENTAL */}
+            {[LETTERS.GUBERNAMENTAL.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
+              <Typography textAlign="justify">
+                Ud ha seleccionado <b>Gubernamental. </b>
+                <br />
+                <br />
+              </Typography>
+            ) : (
+              <></>
+            )}
+
+            {/* opciones para PASAPORTE */}
+            {[LETTERS.PASAPORTE.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
+              <Typography textAlign="justify">
+                Ud ha seleccionado <b>Pasaporte: </b> En caso de no poseer un
+                documento de identidad Venezolano, puede tramitar con el nro.
+                del pasaporte.
+                <br />
+                <br />
+              </Typography>
             ) : (
               <></>
             )}
