@@ -448,7 +448,7 @@ export default function PayTaxStamps() {
                 <Select
                   labelId="type-contributor-legal-label"
                   id="type-contributor-legal"
-                  value={dataContributor.contributor_type}
+                  value={dataContributor.contributor_type || "default"}
                   label="Tipo de contribuyente Jurídico"
                   onChange={changeTypeContributor}
                 >

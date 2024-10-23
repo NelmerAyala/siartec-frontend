@@ -1,14 +1,10 @@
 "use client";
+import * as React from "react";
 import "../../../styles/app/generar/generar.scss";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Divider, TextField } from "@mui/material";
-
-<<<<<<< HEAD
-import SelectsAnidados from "@/components/app/SelectAnidados";
-
-export default function CreateTaxStamps() {
-=======
+import SelectsAnidados from "@/components/app/selectAnidados";
 //table
 
 import { styled } from "@mui/material/styles";
@@ -43,11 +39,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function CreateTaxStamps() {
   ///prueba
-  const [ente, setEnte] = useState("");
-  const [subEnte, setSubEnte] = useState("");
-  const [tramite, setTramite] = useState("");
-  const [profileUser, setprofileUser] = useState("");
-  // const [contribuyents, setContribuyents] = useState([]);
+  const [ente, setEnte] = React.useState("");
+  const [subEnte, setSubEnte] = React.useState("");
+  const [tramite, setTramite] = React.useState("");
+  const [profileUser, setprofileUser] = React.useState({
+    fullname: "",
+    identity_document_letter: "",
+    identity_document: "",
+  });
+  // const [contribuyents, setContribuyents] = React.useState([]);
 
   const sendRequest = async () => {
     let data = await getProfiledUser(await getSession());
@@ -57,7 +57,6 @@ export default function CreateTaxStamps() {
   React.useEffect(() => {
     sendRequest();
   }, []);
->>>>>>> 7ed64d1db9e0577794927b9110ffb70c77645d34
   return (
     <>
       <Box className="box" id="sect-2" sx={{ flexGrow: 1, padding: "2rem" }}>
@@ -71,7 +70,7 @@ export default function CreateTaxStamps() {
               value={profileUser.fullname}
               type="text"
               fullWidth
-              label="Nombre"
+              label="Nombres y Apellidos / Razón social"
             />
           </Grid>
 

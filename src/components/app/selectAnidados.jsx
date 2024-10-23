@@ -3,7 +3,7 @@ import * as React from "react";
 import SelectList from "./selectList";
 
 import Grid from "@mui/material/Grid";
-import { Button, Divider } from "@mui/material";
+import { Alert, Button, Divider, Snackbar } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -77,6 +77,49 @@ const SelectsAnidados = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [disableButton, setDisableButton] = React.useState(false);
+  const [hiddenInputCode, setHiddenInputCode] = React.useState(true);
+  const [hiddenButtonPay, setHiddenButtonPay] = React.useState(true);
+  const [verificationCode, setVerificationCode] = React.useState("");
+  const [messageError, setMessageError] = React.useState("");
+  const [messageSuccess, setMessageSuccess] = React.useState("");
+
+  const handleOnSubmitPay = () => {
+    setMessageSuccess("Pago satisfactorio");
+    setStateSnackbar({ ...stateSnackbar, openSnackbar: true });
+    setHiddenInputCode(true);
+    setHiddenButtonPay(true);
+  };
+
+  const handleOnSubmit = () => {
+    setDisableButton(true);
+    setHiddenInputCode(false);
+    setHiddenInputCode(false);
+    setHiddenButtonPay(false);
+  };
+
+  const [stateSnackbar, setStateSnackbar] = React.useState({
+    openSnackbar: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+  const { vertical, horizontal, openSnackbar } = stateSnackbar;
+
+  const handleCloseSnackbar = () => {
+    setStateSnackbar({ ...stateSnackbar, openSnackbar: false });
+  };
+  const [stateSnackbarError, setStateSnackbarError] = React.useState({
+    openSnackbarError: false,
+    verticalError: "top",
+    horizontalError: "center",
+  });
+  const { verticalError, horizontalError, openSnackbarError } =
+    stateSnackbarError;
+
+  const handleCloseError = () => {
+    setStateSnackbarError({ ...stateSnackbarError, openSnackbarError: false });
+  };
+
   //modal Select
   const [selectedValue, setSelectedValue] = React.useState("");
   const handleChangeSelected = (event) => {
@@ -114,300 +157,380 @@ const SelectsAnidados = () => {
   let montoTotal = contribuyents.length * valorUCD;
   suma = montoInical + montoTotal;
   return (
-    <Grid className="grid" container spacing={3}>
-      <Grid item xs={3}>
-        <SelectList
-          title="ente"
-          url={`../../json/ente.json`}
-          handleChange={(e) => {
-            setState(e.target.value);
-          }}
-        />
-      </Grid>
-      {state && (
-        <Grid item xs={4}>
-          <SelectList
-            title="subEnte"
-            url={`../../json/subEntes/${state}.json`}
-            handleChange={(e) => {
-              setTown(e.target.value);
+    <>
+      {messageError !== "" ? (
+        <Box sx={{ width: 500 }}>
+          <Snackbar
+            open={openSnackbarError}
+            autoHideDuration={3600}
+            onClose={handleCloseError}
+            anchorOrigin={{
+              vertical: verticalError,
+              horizontal: horizontalError,
             }}
-          />
-        </Grid>
+            // message={messageError}
+            // key={verticalError + horizontalError}
+          >
+            <Alert
+              onClose={handleCloseError}
+              severity="error"
+              variant="filled"
+              sx={{ width: "100%" }}
+            >
+              {messageError}
+            </Alert>
+          </Snackbar>
+        </Box>
+      ) : (
+        <></>
       )}
-      {state && (
+
+      {messageSuccess !== "" ? (
+        <Box sx={{ width: 500 }}>
+          <Snackbar
+            open={openSnackbar}
+            autoHideDuration={3600}
+            onClose={handleCloseSnackbar}
+            anchorOrigin={{ vertical: vertical, horizontal: horizontal }}
+          >
+            <Alert
+              onClose={handleCloseSnackbar}
+              severity="success"
+              variant="filled"
+              sx={{ width: "100%" }}
+            >
+              {messageSuccess}
+            </Alert>
+          </Snackbar>
+        </Box>
+      ) : (
+        <></>
+      )}
+
+      <Grid className="grid" container spacing={3}>
         <Grid item xs={3}>
           <SelectList
-            title="tramites"
-            url={`../../json/tramites/${state}.json`}
+            title="ente"
+            url={`../../json/ente.json`}
             handleChange={(e) => {
-              setSuburb(e.target.value);
+              setState(e.target.value);
             }}
           />
         </Grid>
-      )}
-      {suburb && town && (
-        <Grid item xs={1}>
-          <div className="buttons">
-            <Button
-              variant="contained"
-              onClick={() => {
-                setContribuyents([
-                  ...contribuyents,
-                  {
-                    id: nextId++,
-                    ente: state,
-                    subEnte: town,
-                    tramite: suburb,
-                  },
-                ]);
-
-                console.log(state);
-                console.log(town);
-                console.log(suburb);
+        {state && (
+          <Grid item xs={4}>
+            <SelectList
+              title="subEnte"
+              url={`../../json/subEntes/${state}.json`}
+              handleChange={(e) => {
+                setTown(e.target.value);
               }}
-            >
-              Añadir
-            </Button>
-          </div>
-        </Grid>
-      )}
-      <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
-        Destino(s) de la Estampilla
-      </Divider>
-      <Grid item xs={12}>
-        {" "}
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>Nro.</StyledTableCell>
-                <StyledTableCell align="right">Ente</StyledTableCell>
-                <StyledTableCell align="right">Sub Ente</StyledTableCell>
-                <StyledTableCell align="right">Trámite</StyledTableCell>
-                <StyledTableCell align="right">Monto</StyledTableCell>
-                <StyledTableCell align="center">Eliminar</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {contribuyents.map((row, index) => (
-                <StyledTableRow key={row.id}>
-                  <StyledTableCell component="th" scope="row">
-                    {index + 1}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{row.ente}</StyledTableCell>
-                  <StyledTableCell align="right">{row.subEnte}</StyledTableCell>
-                  <StyledTableCell align="right">{row.tramite}</StyledTableCell>
-                  <StyledTableCell align="right">199</StyledTableCell>
-                  <StyledTableCell align="center">
-                    <a href={"#" + row.id} onClick={() => deleteItem(row.id)}>
-                      X
-                    </a>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Grid>
-      <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
-        Información adicional
-      </Divider>
-      <Grid item xs={5}>
-        <TextField
-          color="secondary"
-          value={suma / valorUCD}
-          type="text"
-          fullWidth
-          label="Cant. de Estampillas"
-        />
-      </Grid>
-      <Grid item xs={5}>
-        <TextField
-          color="secondary"
-          value={suma}
-          type="text"
-          fullWidth
-          label="Monto a Pagar"
-        />
-      </Grid>
-      {suma !== 0 ? (
-        <Grid item xs={1}>
-          <div className="buttons">
-            <Button onClick={handleOpen} variant="contained">
-              Comprar
-            </Button>
-          </div>
-        </Grid>
-      ) : (
-        <></>
-      )}
-      {suma !== 0 ? (
-        <Grid item xs={1}>
-          <div className="buttons">
-            <Button variant="contained">Generar</Button>
-          </div>
-        </Grid>
-      ) : (
-        <></>
-      )}
-      {/* Modal */}
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Ingrese sus Datos de Cuenta para Pagar
-          </Typography>
-          <Grid className="grid" container spacing={3}>
-            <Grid item xs={12}>
-              <SelectList
-                title="banco"
-                url={`../../json/bancos/bancos.json`}
-                handleChange={(e) => {
-                  setBank(e.target.value);
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl>
-                <FormLabel id="demo-row-radio-buttons-group-label">
-                  Seleccione..
-                </FormLabel>
-                <RadioGroup
-                  row
-                  aria-labelledby="demo-row-radio-buttons-group-label"
-                  name="row-radio-buttons-group"
-                >
-                  <FormControlLabel
-                    control={<Radio />}
-                    label="Nro. de Teléfono"
-                    checked={selectedValue === "a"}
-                    onChange={handleChangeSelected}
-                    value="a"
-                    name="radio-buttons"
-                    inputProps={{ "aria-label": "A" }}
-                  />
-                  <FormControlLabel
-                    control={<Radio />}
-                    label="Nro. de Cuenta"
-                    checked={selectedValue === "b"}
-                    onChange={handleChangeSelected}
-                    value="b"
-                    name="radio-buttons"
-                    inputProps={{ "aria-label": "B" }}
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
+            />
+          </Grid>
+        )}
+        {state && (
+          <Grid item xs={3}>
+            <SelectList
+              title="tramites"
+              url={`../../json/tramites/${state}.json`}
+              handleChange={(e) => {
+                setSuburb(e.target.value);
+              }}
+            />
+          </Grid>
+        )}
+        {suburb && town && (
+          <Grid item xs={1}>
+            <div className="buttons">
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setContribuyents([
+                    ...contribuyents,
+                    {
+                      id: nextId++,
+                      ente: state,
+                      subEnte: town,
+                      tramite: suburb,
+                    },
+                  ]);
 
-            {selectedValue == "a" ? (
+                  console.log(state);
+                  console.log(town);
+                  console.log(suburb);
+                }}
+              >
+                Añadir
+              </Button>
+            </div>
+          </Grid>
+        )}
+        <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
+          Destino(s) de la Estampilla
+        </Divider>
+        <Grid item xs={12}>
+          {" "}
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Nro.</StyledTableCell>
+                  <StyledTableCell align="right">Ente</StyledTableCell>
+                  <StyledTableCell align="right">Sub Ente</StyledTableCell>
+                  <StyledTableCell align="right">Trámite</StyledTableCell>
+                  <StyledTableCell align="right">Monto</StyledTableCell>
+                  <StyledTableCell align="center">Eliminar</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {contribuyents.map((row, index) => (
+                  <StyledTableRow key={row.id}>
+                    <StyledTableCell component="th" scope="row">
+                      {index + 1}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{row.ente}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      {row.subEnte}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
+                      {row.tramite}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">199</StyledTableCell>
+                    <StyledTableCell align="center">
+                      <a href={"#" + row.id} onClick={() => deleteItem(row.id)}>
+                        X
+                      </a>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+        <Divider textAlign="left" sx={{ width: "100%", mb: 2, mt: 4 }}>
+          Información adicional
+        </Divider>
+        <Grid item xs={5}>
+          <TextField
+            color="secondary"
+            value={suma / valorUCD}
+            type="text"
+            fullWidth
+            label="Cant. de Estampillas"
+          />
+        </Grid>
+        <Grid item xs={5}>
+          <TextField
+            color="secondary"
+            value={suma}
+            type="text"
+            fullWidth
+            label="Monto a Pagar"
+          />
+        </Grid>
+        {suma !== 0 ? (
+          <Grid item xs={1}>
+            <div className="buttons">
+              <Button onClick={handleOpen} variant="contained">
+                Comprar
+              </Button>
+            </div>
+          </Grid>
+        ) : (
+          <></>
+        )}
+        {suma !== 0 ? (
+          <Grid item xs={1}>
+            <div className="buttons">
+              <Button variant="contained">Generar</Button>
+            </div>
+          </Grid>
+        ) : (
+          <></>
+        )}
+        {/* Modal */}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Ingrese sus Datos de Cuenta para Pagar
+            </Typography>
+            <Grid className="grid" container spacing={3}>
+              <Grid item xs={12}>
+                <SelectList
+                  title="banco"
+                  url={`../../json/bancos/bancos.json`}
+                  handleChange={(e) => {
+                    setBank(e.target.value);
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl>
+                  <FormLabel id="demo-row-radio-buttons-group-label">
+                    Seleccione..
+                  </FormLabel>
+                  <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="row-radio-buttons-group"
+                  >
+                    <FormControlLabel
+                      control={<Radio />}
+                      label="Nro. de Teléfono"
+                      checked={selectedValue === "a"}
+                      onChange={handleChangeSelected}
+                      value="a"
+                      name="radio-buttons"
+                      inputProps={{ "aria-label": "A" }}
+                    />
+                    <FormControlLabel
+                      control={<Radio />}
+                      label="Nro. de Cuenta"
+                      checked={selectedValue === "b"}
+                      onChange={handleChangeSelected}
+                      value="b"
+                      name="radio-buttons"
+                      inputProps={{ "aria-label": "B" }}
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+
+              {selectedValue == "a" ? (
+                <Grid item xs={3}>
+                  <FormControl fullWidth>
+                    {/* <InputLabel>Código</InputLabel> */}
+                    <InputLabel id="demo-simple-select-helper-label">
+                      Código Phone
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={docType}
+                      label="Tipo de Documento"
+                      onChange={handleChangeDocType}
+                    >
+                      <MenuItem value={414}>0414</MenuItem>
+                      <MenuItem value={424}>0424</MenuItem>
+                      <MenuItem value={412}>0412</MenuItem>
+                      <MenuItem value={416}>0416</MenuItem>
+                    </Select>
+                    <br />
+                  </FormControl>
+                </Grid>
+              ) : (
+                <></>
+              )}
+
+              {selectedValue == "a" ? (
+                <Grid item xs={9}>
+                  <TextField
+                    color="secondary"
+                    type="number"
+                    fullWidth
+                    // corregir y agregar debajo
+                    label="Número de Teléfono"
+                    maxLength="7"
+                  />
+                </Grid>
+              ) : (
+                <></>
+              )}
+
+              {selectedValue == "b" ? (
+                <Grid item xs={12}>
+                  <TextField
+                    color="secondary"
+                    type="text"
+                    fullWidth
+                    // corregir y agregar debajo
+                    label="Número de Cuenta"
+                  />
+                </Grid>
+              ) : (
+                <></>
+              )}
+
               <Grid item xs={3}>
                 <FormControl fullWidth>
                   {/* <InputLabel>Código</InputLabel> */}
                   <InputLabel id="demo-simple-select-helper-label">
-                    Código Phone
+                    Tipo de Documento
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-helper-label"
                     id="demo-simple-select-helper"
-                    value={docType}
-                    label="Tipo de Documento"
-                    onChange={handleChangeDocType}
+                    value={phoneCode}
+                    label="Phone"
+                    onChange={handlePhoneCode}
                   >
-                    <MenuItem value={414}>0414</MenuItem>
-                    <MenuItem value={424}>0424</MenuItem>
-                    <MenuItem value={412}>0412</MenuItem>
-                    <MenuItem value={416}>0416</MenuItem>
+                    <MenuItem value={"V"}>V</MenuItem>
+                    <MenuItem value={"E"}>E</MenuItem>
+                    <MenuItem value={"J"}>J</MenuItem>
+                    <MenuItem value={"C"}>C</MenuItem>
                   </Select>
                   <br />
                 </FormControl>
               </Grid>
-            ) : (
-              <></>
-            )}
-
-            {selectedValue == "a" ? (
               <Grid item xs={9}>
                 <TextField
                   color="secondary"
-                  type="number"
+                  type="text"
                   fullWidth
-                  // corregir y agregar debajo
-                  label="Número de Teléfono"
-                  maxLength="7"
+                  label="Nro de Documento"
                 />
               </Grid>
-            ) : (
-              <></>
-            )}
-
-            {selectedValue == "b" ? (
               <Grid item xs={12}>
                 <TextField
                   color="secondary"
                   type="text"
                   fullWidth
-                  // corregir y agregar debajo
-                  label="Número de Cuenta"
+                  label="Monto"
+                  value={suma}
                 />
               </Grid>
-            ) : (
-              <></>
-            )}
-
-            <Grid item xs={3}>
-              <FormControl fullWidth>
-                {/* <InputLabel>Código</InputLabel> */}
-                <InputLabel id="demo-simple-select-helper-label">
-                  Tipo de Documento
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={phoneCode}
-                  label="Phone"
-                  onChange={handlePhoneCode}
-                >
-                  <MenuItem value={"V"}>V</MenuItem>
-                  <MenuItem value={"E"}>E</MenuItem>
-                  <MenuItem value={"J"}>J</MenuItem>
-                  <MenuItem value={"C"}>C</MenuItem>
-                </Select>
-                <br />
-              </FormControl>
+              <Grid item xs={12}>
+                <TextField
+                  color="secondary"
+                  type="text"
+                  fullWidth
+                  label="Código Verificación"
+                  disabled={hiddenInputCode}
+                  onChange={(e) => {
+                    setVerificationCode(e);
+                  }}
+                />
+                <div className="buttons">
+                  <Button
+                    onClick={handleOnSubmitPay}
+                    variant="contained"
+                    disabled={hiddenButtonPay}
+                  >
+                    Pagar
+                  </Button>
+                </div>
+              </Grid>
+              <Grid item xs={2}>
+                <div className="buttons">
+                  <Button
+                    onClick={handleOnSubmit}
+                    variant="contained"
+                    disabled={disableButton}
+                  >
+                    Solicitar Código
+                  </Button>
+                </div>
+              </Grid>
             </Grid>
-            <Grid item xs={9}>
-              <TextField
-                color="secondary"
-                type="text"
-                fullWidth
-                label="Nro de Documento"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                color="secondary"
-                type="text"
-                fullWidth
-                label="Monto"
-                value={suma}
-              />
-            </Grid>
-            <Grid item xs={1}>
-              <div className="buttons">
-                <Button onClick={handleOpen} variant="contained">
-                  Pagar
-                </Button>
-              </div>
-            </Grid>
-          </Grid>
-        </Box>
-      </Modal>
-    </Grid>
+          </Box>
+        </Modal>
+      </Grid>
+    </>
   );
 };
 

@@ -20,7 +20,7 @@ const SelectParishes = (props) => {
           required
           labelId="parishes-label"
           id="id-parishes"
-          value={parishes.length > 1 ? props.dataContributor.parish : "default"}
+          value={parishes.length > 0 ? props.dataContributor.parish : "default"}
           disabled={props.municipalitySelect == []}
           label="Parroquia"
           onChange={(e) =>

@@ -28,12 +28,7 @@ const SelectList = ({ title, url, handleChange }) => {
         <InputLabel htmlFor={id} id={id}>
           {label}
         </InputLabel>
-<<<<<<< HEAD
-
-        <Select name={id} id={id} onChange={handleChange}>
-=======
         <Select name={id} id={id} label={label} onChange={handleChange}>
->>>>>>> 7ed64d1db9e0577794927b9110ffb70c77645d34
           {data &&
             options.map((el) => (
               <MenuItem key={el} value={el}>
