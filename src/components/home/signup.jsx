@@ -72,7 +72,6 @@ export default function SignupPage(props) {
 
   const paperStyle = {
     padding: 20,
-    // width: 300,
     margin: "0.5rem",
   };
 
@@ -281,18 +280,6 @@ export default function SignupPage(props) {
                 }))
               }
             />
-            {/* <TextField
-              fullWidth
-              label="Apellidos"
-              placeholder="Ingrese apellidos"
-              required
-              onChange={(e) =>
-                setDataContributor((dataContributor) => ({
-                  ...dataContributor,
-                  lastname: e.target.value,
-                }))
-              }
-            /> */}
 
             <Grid container>
               <Grid item xs={3}>
@@ -304,10 +291,8 @@ export default function SignupPage(props) {
                     required
                     labelId="identity-document-letter-label"
                     id="id-letter"
-                    // value={dataContributor.identity_document_letter}
                     label="Letra"
                     onChange={changeLetter}
-                    // defaultValue={"V"}
                   >
                     {identityDocumentLetters.map((data, index) => (
                       <MenuItem key={data.id} value={data.code}>
@@ -319,8 +304,8 @@ export default function SignupPage(props) {
               </Grid>
               <Grid item xs={9}>
                 <TextField
-                  /* color="secondary" */
                   fullWidth
+                  max={6}
                   type="text"
                   required
                   label="Documento de Identifiación"
@@ -335,7 +320,6 @@ export default function SignupPage(props) {
               </Grid>
             </Grid>
             <MuiTelInput
-              /* color="secondary" */
               fullWidth
               label="Número de Teléfono"
               required
@@ -441,10 +425,28 @@ export default function SignupPage(props) {
               <></>
             )}
 
+            {/* opciones para CONSEJO */}
+            {[LETTERS.CONSEJO.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
+              <Typography textAlign="justify">
+                Ud ha seleccionado <b>Comunas </b> Pueden ser: <br />
+                <b>Comercial: </b> Lorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Harum, at atque? Qui quis aspernatur quo.{" "}
+                <br />
+                <b>Industrial:</b> Lorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Harum, at atque? Qui quis aspernatur quo.
+                <br />
+                <br />
+              </Typography>
+            ) : (
+              <></>
+            )}
+
             {[LETTERS.JURIDICO.code, LETTERS.CONSEJO.code].includes(
               dataContributor.identity_document_letter
             ) ? (
-              <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
+              <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel id="type-contributor-legal-label">
                   Tipo de contribuyente Jurídico
                 </InputLabel>
@@ -470,41 +472,13 @@ export default function SignupPage(props) {
                       )
                     )
                       return (
-                        <MenuItem
-                          key={data.id}
-                          value={data.id}
-                          // disabled={
-                          //   data.id === TYPES_CONTRIBUTORS.SUCESION.id &&
-                          //   dataContributor.identity_document_letter ===
-                          //     IDENTIY_DOCUMENT_LETTERS.LETTERS.CONSEJO.code
-                          //     ? true
-                          //     : false
-                          // }
-                        >
+                        <MenuItem key={data.id} value={data.id}>
                           {data.name}
                         </MenuItem>
                       );
                   })}
                 </Select>
               </FormControl>
-            ) : (
-              <></>
-            )}
-
-            {/* opciones para CONSEJO */}
-            {[LETTERS.CONSEJO.code].includes(
-              dataContributor.identity_document_letter
-            ) ? (
-              <Typography textAlign="justify">
-                Ud ha seleccionado <b>Comunas </b> Pueden ser: <br />
-                <b>Comercial: </b> Lorem ipsum dolor sit amet consectetur,
-                adipisicing elit. Harum, at atque? Qui quis aspernatur quo.{" "}
-                <br />
-                <b>Industrial:</b> Lorem ipsum dolor sit amet consectetur,
-                adipisicing elit. Harum, at atque? Qui quis aspernatur quo.
-                <br />
-                <br />
-              </Typography>
             ) : (
               <></>
             )}
@@ -522,6 +496,35 @@ export default function SignupPage(props) {
               <></>
             )}
 
+            {[LETTERS.GUBERNAMENTAL.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
+              <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="type-contributor-natural-label">
+                  Tipo de contribuyente Gubernamental
+                </InputLabel>
+                <Select
+                  labelId="type-contributor-natural-label"
+                  id="type-contributor-natural"
+                  value={dataContributor.contributor_type}
+                  label="Tipo de contribuyente natural"
+                  onChange={changeTypeContributor}
+                  // defaultValue={1}
+                >
+                  {typesContributors.map((data, index) => {
+                    if (data.letters_contributors === "GOB")
+                      return (
+                        <MenuItem key={data.id} value={data.id}>
+                          {data.name}
+                        </MenuItem>
+                      );
+                  })}
+                </Select>
+              </FormControl>
+            ) : (
+              <></>
+            )}
+
             {/* opciones para PASAPORTE */}
             {[LETTERS.PASAPORTE.code].includes(
               dataContributor.identity_document_letter
@@ -533,6 +536,42 @@ export default function SignupPage(props) {
                 <br />
                 <br />
               </Typography>
+            ) : (
+              <></>
+            )}
+
+            {[LETTERS.PASAPORTE.code].includes(
+              dataContributor.identity_document_letter
+            ) ? (
+              <FormControl /* color="secondary" */ fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="type-contributor-natural-label">
+                  Tipo de contribuyente Natural
+                </InputLabel>
+                <Select
+                  labelId="type-contributor-natural-label"
+                  id="type-contributor-natural"
+                  value={dataContributor.contributor_type}
+                  label="Tipo de contribuyente natural"
+                  onChange={changeTypeContributor}
+                  // defaultValue={1}
+                >
+                  {typesContributors.map((data, index) => {
+                    if (
+                      data.letters_contributors === "NATURAL" &&
+                      !(
+                        data.id === TYPES_CONTRIBUTORS.FIRMA.id &&
+                        dataContributor.identity_document_letter ===
+                          IDENTIY_DOCUMENT_LETTERS.LETTERS.PASAPORTE.code
+                      )
+                    )
+                      return (
+                        <MenuItem key={data.id} value={data.id}>
+                          {data.name}
+                        </MenuItem>
+                      );
+                  })}
+                </Select>
+              </FormControl>
             ) : (
               <></>
             )}
@@ -556,7 +595,6 @@ export default function SignupPage(props) {
             ) : (
               <TextField
                 InputLabelProps={{ shrink: true }}
-                /* color="secondary" */
                 type="date"
                 defaultValue={getToday()}
                 fullWidth

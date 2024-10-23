@@ -29,6 +29,12 @@ const ENTITIES_TYPES_CONTRIBUTORS_NAME_ORDER = Object.freeze({
     code: "SUCESION",
     letters_contributors: "LEGAL",
   },
+  GOBIERNO: {
+    id: 6,
+    name: "Gobierno",
+    code: "GOBIERNO",
+    letters_contributors: "GOB",
+  },
 });
 const ENTITIES_TYPES_CONTRIBUTORS_ID_ORDER = Object.freeze(
   Object.keys(ENTITIES_TYPES_CONTRIBUTORS_NAME_ORDER).reduce((acc, k) => {

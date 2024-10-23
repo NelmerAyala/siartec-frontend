@@ -29,6 +29,9 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 
+//letra
+import IDENTIY_DOCUMENT_LETTERS from "@/common/IDENTIY_DOCUMENT_LETTERS";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -113,8 +116,11 @@ const SelectsAnidados = () => {
     verticalError: "top",
     horizontalError: "center",
   });
-  const { verticalError, horizontalError, openSnackbarError } =
-    stateSnackbarError;
+  const {
+    verticalError,
+    horizontalError,
+    openSnackbarError,
+  } = stateSnackbarError;
 
   const handleCloseError = () => {
     setStateSnackbarError({ ...stateSnackbarError, openSnackbarError: false });
@@ -156,6 +162,22 @@ const SelectsAnidados = () => {
   let valorUCD = 199;
   let montoTotal = contribuyents.length * valorUCD;
   suma = montoInical + montoTotal;
+
+  //letters
+  const identityDocumentLetters = Object.values(
+    IDENTIY_DOCUMENT_LETTERS.LETTERS
+  );
+
+  const changeLetter = (event) => {
+    setDataContributor((dataContributor) => ({
+      ...dataContributor,
+      identity_document_letter: event.target.value,
+      contributor_type: "",
+    }));
+    console.log(
+      "contributor_type: " + JSON.stringify(dataContributor.contributor_type)
+    );
+  };
   return (
     <>
       {messageError !== "" ? (
@@ -419,6 +441,7 @@ const SelectsAnidados = () => {
                       <MenuItem value={424}>0424</MenuItem>
                       <MenuItem value={412}>0412</MenuItem>
                       <MenuItem value={416}>0416</MenuItem>
+                      <MenuItem value={416}>0426</MenuItem>
                     </Select>
                     <br />
                   </FormControl>
@@ -462,7 +485,7 @@ const SelectsAnidados = () => {
                   <InputLabel id="demo-simple-select-helper-label">
                     Tipo de Documento
                   </InputLabel>
-                  <Select
+                  {/* <Select
                     labelId="demo-simple-select-helper-label"
                     id="demo-simple-select-helper"
                     value={phoneCode}
@@ -473,6 +496,28 @@ const SelectsAnidados = () => {
                     <MenuItem value={"E"}>E</MenuItem>
                     <MenuItem value={"J"}>J</MenuItem>
                     <MenuItem value={"C"}>C</MenuItem>
+                  </Select> */}
+                  <Select
+                    required
+                    labelId="identity-document-letter-label"
+                    id="id-letter"
+                    label="Letra"
+                    onChange={changeLetter}
+                  >
+                    {identityDocumentLetters.map((data, index) => {
+                      if (
+                        data.code === "V" ||
+                        data.code === "E" ||
+                        data.code === "J"
+                      )
+                        return (
+                          <MenuItem key={data.id} value={data.code}>
+                            {data.code}
+                          </MenuItem>
+                        );
+                    })}
+                    {console.log("Prueba 1")}
+                    {console.log(identityDocumentLetters)}
                   </Select>
                   <br />
                 </FormControl>
