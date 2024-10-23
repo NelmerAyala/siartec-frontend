@@ -186,7 +186,7 @@ export default function GacetasPage() {
         {/* /*div */}
         <Box className="box" id="sect-1" sx={{ flexGrow: 1 }}>
           <Grid className="grid" container spacing={5}>
-            <Grid className="gacetas" item xs={10} className="texto">
+            <Grid className="gacetas texto" item xs={10}>
               <h2 className="text">Gacetas</h2>
               <p>
                 Una gaceta oficial es la publicación oficial de un Estado donde
@@ -198,7 +198,7 @@ export default function GacetasPage() {
               </p>
             </Grid>
 
-            <Grid className="gacetas" item item xs={10}>
+            <Grid className="gacetas" item xs={10}>
               <TableContainer component={Paper}>
                 <Table
                   sx={{ minWidth: 500 }}
